@@ -1,0 +1,106 @@
+@font-face {
+    font-family: 'caveat';
+    src: url('../font/Caveat-VariableFont_wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+
+
+body {
+    font-family: caveat, Arial, Helvetica, sans-serif;
+    background-image: url("../img/bodyFon.svg");
+    background-size: 200px;
+}
+
+p {
+    font-size: 1.5rem;
+    text-indent: 1em;
+    text-align: justify;
+}
+
+h1 {
+    font-weight: bold;
+    font-size: 3rem;
+}
+
+h2 {
+    font-weight: bold;
+    font-size: 2.5rem;
+}
+
+.rom-logo {
+    width: 5rem;
+    position: absolute;
+    top: 1.4rem;
+    left: 4rem;
+}
+
+
+
+.rom-gameDescription-icon {
+    background-image: url("../img/gameDescriptionIcon.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain; 
+    transform: scale(1.2);
+    cursor: pointer; 
+    transition: all 0.5s ease-in-out; 
+}
+
+.rom-gameDescription-icon:hover {
+    transform: scale(1.6);  
+}
+
+
+
+
+
+
+#bug-enclosure {
+   
+}
+
+#bug-div {
+    position:absolute;
+    transition: transform 2s linear;
+
+}
+
+#active-bug {
+    
+}
+
+
+
+
+
+/* Обратная связь */
+
+#information {
+    position: relative;
+     
+}
+
+
+#modal-information {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    row-gap: 2em;
+
+
+
+    background-color: brown;
+}
+
+.modal-img {
+    width: 20%;    
+    border-radius: 50%;
+}

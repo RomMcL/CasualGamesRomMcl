@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=0">    
+    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="./css/myBootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="./css/mainStyles.css" />
+    <title>Главная</title>
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+
+    <header>
+        <nav class="navbar navbar-expand-lg container-md bg-light border-start border-end border-dark border-1 py-0 py-lg-1">
+            <div class="container-fluid justify-content-end">
+              <a class="navbar-brand bg-light px-2 rom-logo" href="index.html">
+                <img src="./img/logo.png" alt="Логотип сайта" class="img-fluid fl-gr-75 fl-gr-0-hover">
+              </a>
+              <button class="navbar-toggler mx-3 my-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>                                
+              <div class="collapse navbar-collapse justify-content-end mx-xxl-3 mx-xl-2 container-md" id="navbarNavDropdown">
+                <ul class="navbar-nav text-center border-top border-top-lg-0 border-start border-start-lg-0 border-dark border-3 border-3 mt-lg-2 fs-3 fw-bold">
+                  <li class="nav-item ms-2">
+                    <a class="nav-link active py-0" aria-current="page" href="index.html">Главная</a>
+                  </li>
+                  <li class="nav-item ms-2">
+                    <a class="nav-link py-0" href="catalog.html">Каталог игр</a>
+                  </li>
+                  <li class="nav-item ms-2">
+                    <a class="nav-link py-0" href="feedback.html">Обратная связь</a>
+                  </li>
+                </ul>
+              </div>
+            
+            </div>
+          </nav>
+    </header>
+
+    <main class="container-md flex-grow-1 d-flex justify-content-center bg-light border-start border-end border-dark border-1">
+        <section class="row container-md">            
+            <div class="col-lg-8 col-sm-12 d-flex flex-column">
+                <div class="row">
+                    <div class="col-12 border-top border-end border-dark border-3  border-end-lg-0">
+                      <div class="d-flex w-100 justify-content-center mt-4 py-3">
+                        <img src="./img/websiteName.svg" alt="Казуальные игры" class="w-75">
+                      </div>   
+                      <p>На этом сайте вы найдёте несколько простых, всем хорошо известных игр. Основная их цель – дать возможность автору сайта попрактиковаться в программировании, а Гостям сайта отвлечься от рутинных дел, немного расслабиться и, надеюсь, получить положительные эмоции.</p>
+                      <p>Игры настолько известны, что не нуждаются в подробном описании правил. Однако в каждую из них вложена толика авторского виденья мира, поэтому не удивляйтесь, если хорошо известная Вам игра покажется несколько странной.</p>
+                    </div>
+                </div>
+                <div class="row flex-grow-1">
+                  <div class="col-12 border-end border-dark border-3  border-end-lg-0">
+                    <h2>Тестирование</h2>                                            
+                    <p>Даже опытным разработчикам в своих проектах не всегда удаётся учесть все мелочи и предусмотреть все возможные варианты поведения пользователей, и как следствие самой программы. В результате возможны баги, т.е. ошибки в работе приложения. Для этого существуют тестировщики, но в разработке данного проекта они не участвовали. :) Поэтому если Вы обнаружили какую-то ошибку, начиная с орфографии и заканчивая багом в логике какой-либо игры, не поленитесь и дайте
+                    <a href="feedback.html">обратную связь </a>
+                    с описанием проблемы.</p>
+                    <p>Это запишет Вам плюсик в карму, а мне даст возможность пофиксить проблему, сделать сайт немного лучше, а себя немного профессиональнее. Ведь поймать Жука не всегда бывает просто, можете попробовать сами прихлопнуть того что ниже!</p>
+                    <div id="bug-enclosure" class="w-100 ratio ratio-21x9">
+                      
+                    </div> 
+                  </div>                 
+                </div>                    
+            </div>
+            <div class="col-lg-4 col-sm-12 border border-end-0 border-bottom-0 border-dark border-3">
+                <h2 class="text-center mt-3">Об авторе</h2>
+                <div class="row">
+                  <div class="col-lg-12 col-sm-4">
+                    <img src="./img/autor.jpeg" alt="Автор" class="img-fluid fl-gr-75 rounded-4 shadow-lg mb-2 ms-lg-2">
+                  </div>
+                  <div class="col-lg-12 col-sm-8">
+                    <p>Приветствую! Меня зовут Роман, и я начинающий разработчик. Сейчас я изучаю Frontend и осваиваю такие предметные области как верстка (HTML, CSS) и программирование на JavaScript. А ещё я люблю игры и в целом всё то, что несёт в себе позитивный и развлекательный контент, поэтому я решил совместить приятное с полезным и создать небольшой сайт с простенькими играми. Надеюсь будет интересно.</p>
+                    <p>Приятного времяпрепровождения!</p>
+                  </div>                                  
+                </div>                                
+            </div>                  
+        </section>
+        
+    </main>
+
+    <footer class="footer container-md mt-auto py-3 bg-dark text-white">
+        ФУТЕР
+    </footer>
+
+    <script src="./js/bootstrap.bundle.min.js"></script> 
+    <script src="./js/main.js"></script>  
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=0">    
+    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="./css/myBootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="./css/mainStyles.css" />
+    <title>Каталог игр</title>
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+
+  <header>
+    <nav class="navbar navbar-expand-lg container-md bg-light border-start border-end border-dark border-1 py-0 py-lg-1">
+        <div class="container-fluid justify-content-end">
+          <a class="navbar-brand bg-light px-2 rom-logo" href="index.html">
+            <img src="./img/logo.png" alt="Логотип сайта" class="img-fluid fl-gr-75 fl-gr-0-hover">
+          </a>
+          <button class="navbar-toggler mx-3 my-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>                                
+          <div class="collapse navbar-collapse justify-content-end mx-xxl-3 mx-xl-2 container-md ps-2" id="navbarNavDropdown">
+            <ul class="navbar-nav text-center border-top border-top-lg-0 border-start border-start-lg-0 border-dark border-3 border-3 mt-lg-2 fs-3 fw-bold">
+              <li class="nav-item ms-2">
+                <a class="nav-link py-0" aria-current="page" href="index.html">Главная</a>
+              </li>
+              <li class="nav-item ms-2">
+                <a class="nav-link active py-0" href="catalog.html">Каталог игр</a>
+              </li>
+              <li class="nav-item ms-2">
+                <a class="nav-link py-0" href="feedback.html">Обратная связь</a>
+              </li>
+            </ul>
+          </div>
+        
+        </div>
+      </nav>
+</header>
+
+    <main class="container-md flex-grow-1 d-flex justify-content-center bg-light border-start border-end border-dark border-1">
+
+        <section class="container-md  border-top border-end border-dark border-3 mx-2 ">
+          <div class="row">
+            <div class="col-12">
+                <h1 class="text-center">Каталог</h1>
+            </div>
+          </div> 
+          <div class="row  row-cols-lg-3 row-cols-md-2 row-cols-sm-1 justify-content-around  align-items-stretch g-3 pe-2">
+            <div class="card-wrapper">
+              <div class="card h-100">
+                <img src="./img/isUnderDevelopment.png" class="card-img-top" alt="Фото карточки">
+                <div class="card-body h-100">
+                  <h4 class="card-title fs-3 fw-bold">Название игры</h4>
+                  <p class="card-text fs-5 lh-sm">Краткое, но интересное описание игры. Пока нет игры, нет и описания, но оно обязательно появится.</p>
+                </div>
+                <ul class="list-group list-group-flush fw-bold">
+                  <li class="list-group-item d-flex justify-content-between"><span>Полное описание</span><span class="flex-grow-1 fa rom-gameDescription-icon" role="img"></span></li>
+                  <li class="list-group-item d-flex justify-content-between"><span>Тип игры:</span><span class="flex-grow-1 fw-normal text-center">вид, жанр</span></li>
+                </ul>
+                <div class="card-body d-flex justify-content-center">
+                  <a href="#" class="btn btn-success text-uppercase fs-3 fw-bold d-flex align-items-center justify-content-center flex-fill">Начать игру</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-wrapper">
+              <div class="card h-100  d-flex flex-column">
+                <img src="./img/isUnderDevelopment.png" class="card-img-top" alt="Фото карточки">
+                <div class="card-body h-100">
+                  <h4 class="card-title fs-3 fw-bold">В разработке</h4>
+                  <p class="card-text fs-5 lh-sm">Игра в разработке.</p>
+                </div>
+                <ul class="list-group list-group-flush fw-bold">
+                  <li class="list-group-item d-flex justify-content-between"><span>Полное описание</span><span class="flex-grow-1 fa rom-gameDescription-icon" role="img"></span></li>
+                  <li class="list-group-item d-flex justify-content-between"><span>Тип игры:</span><span class="flex-grow-1 fw-normal text-center">вид, жанр</span></li>
+                </ul>
+                <div class="card-body d-flex justify-content-center">
+                  <a href="#" class="btn btn-success text-uppercase fs-3 fw-bold d-flex align-items-center justify-content-center flex-fill">Начать игру</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-wrapper">
+              <div class="card h-100  d-flex flex-column">
+                <img src="./img/isUnderDevelopment.png" class="card-img-top" alt="Фото карточки">
+                <div class="card-body h-100">
+                  <h4 class="card-title fs-3 fw-bold">В разработке</h4>
+                  <p class="card-text fs-5 lh-sm">Игра в разработке.</p>
+                </div>
+                <ul class="list-group list-group-flush fw-bold">
+                  <li class="list-group-item d-flex justify-content-between"><span>Полное описание</span><span class="flex-grow-1 fa rom-gameDescription-icon" role="img"></span></li>
+                  <li class="list-group-item d-flex justify-content-between"><span>Тип игры:</span><span class="flex-grow-1 fw-normal text-center">вид, жанр</span></li>
+                </ul>
+                <div class="card-body d-flex justify-content-center">
+                  <a href="#" class="btn btn-success text-uppercase fs-3 fw-bold d-flex align-items-center justify-content-center flex-fill">Начать игру</a>
+                </div>
+              </div>
+            </div>
+                                           
+          </div>                  
+        </section>
+
+    </main>
+
+    <footer class="footer container-md mt-auto py-3 bg-dark text-white">
+        ФУТЕР
+    </footer>
+
+    <script src="./js/bootstrap.bundle.min.js"></script>   
+</body>
+</html>
