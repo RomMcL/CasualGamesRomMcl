@@ -47,28 +47,31 @@
     <main class="container-md flex-grow-1 d-flex justify-content-center bg-light border-start border-end border-dark border-1">
 
         <section class="container-md  border-top border-end border-dark border-3 mx-2">
-          <div class="row justify-content-center mt-5 me-1 border border-dark border-2">
-            <div id="information" class="col-md-6 p-5 bg-dark text-light">
+          <div class="row justify-content-center mt-5 me-1 border border-dark border-2 rounded-3">
+            <div id="information" class="col-md-6 p-5 bg-dark text-light text-center">
               <h1>Привет!</h1>
-              <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, repudiandae eligendi ratione modi numquam aperiam hic sit sed. Minus excepturi exercitationem harum unde, distinctio tenetur id dolorum veritatis fugit doloribus.</h4>
+              <h4>Спасибо, что нашли минутку написать мне сообщение.<br>
+                Для этого заполните форму, и нажмите кнопку &laquo;Отправить&raquo;.<br>
+                Если Ваше сообщение подразумевает ответ, обязательно укажите свой адрес электронной почты.
+                </h4>
               <div id="modal-information" class="bg-dark"></div>
             </div>
             <div class="col-md-6 py-3">
               <h1>Форма</h1>
               
               <div class="form-group">
-                <h5 for="name">Имя</h5>
-                <input type="text" class="form-control" id="name" placeholder="Введите имя">
+                <h5 for="name" class="fs-3">Имя</h5>
+                <input type="text" class="form-control border-dark" id="name" placeholder="Введите имя">
               </div>
               <div class="form-group  mt-3">
-                <h5 for="email">Почта</h5>
-                <input type="email" class="form-control" id="email" placeholder="Введите почту">
+                <h5 for="email" class="fs-3">Почта</h5>
+                <input type="email" class="form-control border-dark" id="email" placeholder="Не обязательно">
               </div>
               <div class="form-group  mt-3">
-                <h5 for="message">Сообщение</h5>
-                <textarea id="message" rows="6" class="form-control"></textarea>
+                <h5 for="message" class="fs-3">Сообщение</h5>
+                <textarea id="message" rows="6" class="form-control border-dark" placeholder="Ваше сообщение..."></textarea>
               </div>
-              <button id="sendMailBtn" class="btn btn-dark mt-3 disabled">Отправить</button>
+              <button id="sendMailBtn" class="btn btn-dark mt-3 fs-3">Отправить</button>
                           
             </div>
           </div>
