@@ -36,8 +36,6 @@ h2 {
     left: 4rem;
 }
 
-
-
 .rom-gameDescription-icon {
     background-image: url("../img/gameDescriptionIcon.svg");
     background-repeat: no-repeat;
@@ -54,10 +52,36 @@ h2 {
 
 
 
+
+#bug-enclosure {
+    user-select: none;
+
+    /* cursor: wait; */
+    /* cursor: url("../cursor/c2.cur"), auto; */
+}
+
+
 #bug-div {
     position:absolute;
     transition: transform 2s linear;
+    z-index: 5001;
+
 }
+
+.boom-div {
+    width: 20%;
+    height: fit-content;
+    aspect-ratio: 1 / 1; 
+    position: absolute;
+
+    background-image: url("../img/boom.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    
+    transition: opacity 2s linear;
+}
+
 
 
 
@@ -68,7 +92,6 @@ h2 {
     position: relative;
      
 }
-
 
 #modal-information {
     width: 100%;
@@ -81,10 +104,6 @@ h2 {
     justify-content: center;
     align-items: center;
     row-gap: 2em;
-
-
-
-    background-color: brown;
 }
 
 .modal-img {
