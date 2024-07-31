@@ -2,10 +2,14 @@
 const emName = document.getElementById('name');
 const emEmail = document.getElementById('email');
 const emMessage = document.getElementById('message');
+const messCount = document.getElementById('mess-count');
+const checkRobot = document.getElementById('flexCheckRobot');
+const switchCheckMood = document.getElementById('flexSwitchCheckMood');
 const infoDiv = document.getElementById('information');
 const infoText = infoDiv.querySelector('h4');
 const modalInfoDiv = document.getElementById('modal-information');
 const sendMailBtn = document.getElementById('sendMailBtn');
+
 
 
 // Доступ к сервису mailJS
@@ -19,11 +23,15 @@ const sendMailBtn = document.getElementById('sendMailBtn');
 // Заполнение формы (общение с пользователем)
 
 const defaultText = infoText.innerText;
+const minMessLen = 30;
+messCount.children[1].innerText = minMessLen;
+
 
 const phrasesForUser = {
     nameFocus: 'Представьтесь, пожалуйста! Приятно знать от кого получаешь сообщение.',
     emailFocus: 'Это поле не обязательно для заполнения, однако если ваше сообщение подразумевает ответ, не забудте заполнить его!',
     messageFocus: 'Не скупитесь на слова, проявите фантазию! =)',
+    badRobot: 'Я предпочитаю не общаться с роботами, особенно если они в плохом настроении. Да и с депрессивными людьми тоже! Вы же не такой человек?',
     emptyForm: 'Форма не полностью заполнена.',
 }
 
@@ -32,6 +40,8 @@ function recommendationsForUser(event) {
     switch (event.target.id) {
         case 'name': 
             infoText.innerText = phrasesForUser['nameFocus'];
+            this.setAttribute('placeholder', '')
+            this.classList.add('fw-bold');
             this.classList.remove('bg-warning');
             break;
         case 'email': 
@@ -39,15 +49,45 @@ function recommendationsForUser(event) {
             break;
         case 'message': 
             infoText.innerText = phrasesForUser['messageFocus'];
+            this.setAttribute('placeholder', '')
+            this.classList.add('fw-bold');
             this.classList.remove('bg-warning');
             break;
     }    
 }
 
+function choiceCheckbox(event) {
+
+    event.target.classList.remove('bg-warning');
+    event.target.nextElementSibling.classList.remove('bg-warning');
+        
+    switch (event.target.id) {
+        case 'flexCheckRobot':
+            if (event.target.checked) event.target.nextElementSibling.children[0].innerHTML = '&#128125;';
+            else event.target.nextElementSibling.children[0].innerHTML = '&#129302;';                 
+            break;
+        case 'flexSwitchCheckMood':
+            if (event.target.checked) event.target.nextElementSibling.innerText = 'Я на пизитиве!';
+            else event.target.nextElementSibling.innerText = 'Я в плохом настроении';        
+            break;
+    }    
+}
+
+
+
+function countChar(event) {
+       const messLength = event.target.value.length;
+       messCount.children[0].innerText = messLength;
+}
+
+
 emName.addEventListener('focus', recommendationsForUser);
 emEmail.addEventListener('focus', recommendationsForUser);
 emMessage.addEventListener('focus', recommendationsForUser);
+emMessage.addEventListener('keyup', countChar);
 infoDiv.addEventListener('click', () => infoText.innerText = defaultText);
+checkRobot.addEventListener('change', choiceCheckbox);
+switchCheckMood.addEventListener('change', choiceCheckbox);
 
 // Отправка сообщения
 
@@ -60,10 +100,22 @@ function checkForm() {
         emName.classList.add('bg-warning');
         infoText.innerText = `${phrasesForUser['emptyForm']}\n
                               ${phrasesForUser['nameFocus']}`; 
-    } else if (emMessage.value.length < 20) {
+    } else if (emMessage.value.length < minMessLen) {
         emMessage.classList.add('bg-warning');
         infoText.innerText = `${phrasesForUser['emptyForm']}\nСообщение слишком короткое.\n
                               ${phrasesForUser['messageFocus']}`;
+    } else if (!checkRobot.checked) {
+        checkRobot.nextElementSibling.classList.add('bg-warning');
+        checkRobot.classList.add('bg-warning');
+        infoText.innerText = `${phrasesForUser['emptyForm']}\n
+                              ${phrasesForUser['badRobot']}`;
+        
+    } else if (!switchCheckMood.checked) {
+        switchCheckMood.nextElementSibling.classList.add('bg-warning');
+        switchCheckMood.classList.add('bg-warning');
+        infoText.innerText = `${phrasesForUser['emptyForm']}\n
+                              ${phrasesForUser['badRobot']}`;
+       
     } else {
         sendMail();
     }
@@ -133,7 +185,12 @@ function resultSending() {
     modalImg.src  = 'img/ok.svg';
     sendMailBtn.classList.remove('disabled');
     infoText.innerText = defaultText;
-    
+    emName.setAttribute('placeholder', 'Введите имя')
+    emName.classList.remove('fw-bold');
+    emMessage.setAttribute('placeholder', 'Ваше сообщение...')
+    emMessage.classList.remove('fw-bold');
+    messCount.children[0].innerText = '0';
+
     setTimeout(() => {
         modalInfoDiv.innerHTML = '';
         modalInfoDiv.style.display = 'none';
