@@ -55,7 +55,7 @@ h2 {
 
 #bug-enclosure {
     user-select: none;
-
+    z-index: 5000;
     /* cursor: wait; */
     /* cursor: url("../cursor/c2.cur"), auto; */
 }

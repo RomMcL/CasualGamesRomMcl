@@ -185,15 +185,17 @@ function movingBug () {
 }
 
 
+/* стартуем анимацию мирной жизни жука */ 
 let bugRunningInterval = setInterval(() => movingBug(), bugWaiting);
 
+/* прекращение повтора анимации, если вкладка не активна  */ 
 document.addEventListener('visibilitychange', () => {
     if (document.hidden) {
-        console.log('вкладка не активна');
+        /* console.log('вкладка не активна'); */
         clearInterval(bugRunningInterval);
     }
     else {
-        console.log('вкладка активна');
+        /* console.log('вкладка активна'); */
         bugRunningInterval = setInterval(() => movingBug(), bugWaiting);
     }
 });
@@ -201,6 +203,7 @@ document.addEventListener('visibilitychange', () => {
 
 /*  Охота на Жука */
 
+/*  Возвращение домой после охоты */
 function returnHomeBug () {
 
     let widthBugEnclosure = bugEnclosure.offsetWidth;
@@ -208,43 +211,22 @@ function returnHomeBug () {
 
     let widthBug = bugDiv.offsetWidth;
     let heightBug = bugDiv.offsetHeight;
-
-    
+   
     // позиция жука после охоты
     let currentPosX = parseInt(bugDiv.style.left);
     let currentPosY = parseInt(bugDiv.style.top);
   
-
-    // квадрат расстояния между  2-мя точками
-    function lengthSquare(X, Y){ 
-        let xDiff = X[0] - Y[0]; 
-        let yDiff = X[1] - Y[1]; 
-        return xDiff*xDiff + yDiff*yDiff; 
-    } 
-
     let A = [0, -(heightBugEnclosure - heightBug)]; 
     let B = [currentPosX, -currentPosY]; 
     let C = [0, 0];
 
-    let a2 = lengthSquare(B,C); 
-    let b2 = lengthSquare(A,C); 
-    let c2 = lengthSquare(A,B);
-
-    let a = Math.sqrt(a2); 
-    let b = Math.sqrt(b2);
-    let c = Math.sqrt(c2);
-
-    let gamma = Math.acos((a2 + b2 - c2)/(2*a*b)) * 180 / Math.PI;
-    let beta = Math.acos((a2 + c2 - b2)/(2*a*c)) * 180 / Math.PI;
-    let alpha = Math.acos((b2 + c2 - a2)/(2*b*c)) * 180 / Math.PI;
-
-    /* console.log(gamma); */
+    anglesOfTriangle(A, B, C)
+    let gamma = anglesOfTriangle(A, B, C)['gamma'];
 
     staticBug.style.display = 'none';
     activeBug.style.display = 'block';
     bugEnclosure.removeEventListener("click", hit, {capture: true});
     bugEnclosure.style.cursor = 'url("cursor/redSniper.cur"), auto';
-
     
     bugDiv.style.transform = `rotate(${-gamma}deg)`
 
@@ -265,9 +247,12 @@ function returnHomeBug () {
 }
 
 
+/*  Охота (выстрелы) */
 let clickPosX = 0;
 let clickPosY = 0;
 let boomCount = 0;
+let centerBoomX = 0;
+let centerBoomY = 0;
 
 function boom() {
     let boomDiv = document.createElement('div');
@@ -275,20 +260,18 @@ function boom() {
 
     bugEnclosure.appendChild(boomDiv);
     
-    let centerBoomX = boomDiv.getBoundingClientRect().width/2;
-    let centerBoomY = boomDiv.getBoundingClientRect().height/2;
+    centerBoomX = boomDiv.getBoundingClientRect().width/2;
+    centerBoomY = boomDiv.getBoundingClientRect().height/2;
 
     let angleBoom = getRandomInt(0, 360);
     let scaleBoom = getRandomInt(6, 9);
 
-
     Object.assign(boomDiv.style, {
         left: `${clickPosX - centerBoomX}px`,
         top: `${clickPosY - centerBoomY}px`,
-        zIndex: `${boomCount}`,
+        zIndex: `${-boomCount}`,
         transform: `rotate(${angleBoom}deg) scale(0.${scaleBoom})`
       });
-
 
     let boomN = bugEnclosure.querySelector(`.boom-${boomCount}`);  
     setTimeout(() => {
@@ -297,24 +280,14 @@ function boom() {
             bugEnclosure.removeChild(boomN);
         }, 2000)
     }, 1000)
-
-    /* console.log(boomN); */
-
 }
 
 
-
-
+/*  Слушатели */
 
 bugEnclosure.addEventListener('mouseenter', () => {
     clearInterval(bugRunningInterval);
     peaceLife = false;
-
-
-    console.log('----------------');
-    console.log('peaceLife - ' + peaceLife);
-    console.log('huntIsOn - ' + huntIsOn);
-    console.log('----------------');
 });
 
 
@@ -323,24 +296,17 @@ bugEnclosure.addEventListener('mouseleave', () => {
     peaceLife = true;
     if (huntIsOn) returnHomeBug();
     huntIsOn = false;
-
-    
-    console.log('----------------');
-    console.log('peaceLife - ' + peaceLife);
-    console.log('huntIsOn - ' + huntIsOn);
-    console.log('----------------');
 });
-
-
 
 
 function hit(e) {
     if (e.target && e.target.id == 'bug-enclosure'){
         clickPosX = e.offsetX;
         clickPosY = e.offsetY;
-    } else if (e.target && e.target.classList.contains('boom-div')){
+    /* } else if (e.target && e.target.classList.contains('boom-div')){
         clickPosX = e.offsetX + parseInt(e.target.style.left);
         clickPosY = e.offsetY + parseInt(e.target.style.top);
+    */
     } else {
         huntIsOn = true;
         let currentPosX = 0;
@@ -353,33 +319,29 @@ function hit(e) {
     boomCount++;
     boom();
 
-    // console.log(e.target); 
-    console.log('----------------');
-    console.log('huntIsOn - ' + huntIsOn);
-    console.log('boomCount - ' + boomCount);
-    console.log('----------------');
 }
 
 bugEnclosure.addEventListener('click', hit, {capture: true});
 
 
 
+let bugWidth = bugDiv.getBoundingClientRect().width;
+let bugHeight = bugDiv.getBoundingClientRect().height;
 
 staticBug.addEventListener('click', (e) => {
-    let bugWidth = e.target.getBoundingClientRect().width;
-    let bugHeight = e.target.getBoundingClientRect().height;
-
+       
     let maxX = bugEnclosure.offsetWidth - bugWidth;
     let maxY = bugEnclosure.offsetHeight - bugHeight;
 
     let currentPosX = 0;
     let currentPosY = 0;
 
-    if (parseInt(bugDiv.style.left)) currentPosX = parseInt(bugDiv.style.left);
-    if (parseInt(bugDiv.style.top)) currentPosY = parseInt(bugDiv.style.top);
+    if (parseInt(bugDiv.style.left)) currentPosX = parseInt(bugDiv.style.left) + bugWidth/2;
+    else currentPosX = bugWidth/2;
 
-
-       
+    if (parseInt(bugDiv.style.top)) currentPosY = parseInt(bugDiv.style.top) + bugHeight/2;
+    else currentPosY = bugHeight/2;
+    
     let randomOffsetX = getRandomInt(0, maxX);
     let randomOffsetY = getRandomInt(0, maxY);
     let tryWhile = 10;  // ограничение на while, т.к. при неудачных рандомах может подвиснуть
@@ -406,44 +368,75 @@ staticBug.addEventListener('click', (e) => {
     
     bugDiv.style.left = randomOffsetX + 'px';
     bugDiv.style.top = randomOffsetY + 'px';
+
+    let newCenterBugX = randomOffsetX + bugWidth/2;
+    let newCenterBugY = randomOffsetY + bugHeight/2;
      
-    console.log(`Позиция клика: X = ${clickPosX} Y = ${clickPosY}`);
-    console.log(`Новая позиция жука: X = ${randomOffsetX}  Y = ${randomOffsetY}`);
+    /* console.log(`Позиция клика: X = ${clickPosX} Y = ${clickPosY}`);
+    console.log(`Центр жука: X = ${currentPosX} Y = ${currentPosY}`);
+    console.log(`Новая позиция жука: X = ${newCenterBugX}  Y = ${newCenterBugY}`); */
 
 
+    let A = [clickPosX, clickPosY]; 
+    let B = [newCenterBugX, newCenterBugY]; 
+    let C = [clickPosX, newCenterBugY];
 
     let angleBoom = 0;
+    const speedRotate = 300;
     
-    if (clickPosX>=randomOffsetX && clickPosY<=randomOffsetY) angleBoom = 45;
-    else if (clickPosX>=randomOffsetX && clickPosY>=randomOffsetY) angleBoom = 135;
-    else if (clickPosX<=randomOffsetX && clickPosY<=randomOffsetY) angleBoom = -45;
-    else if (clickPosX<=randomOffsetX && clickPosY>=randomOffsetY) angleBoom = -135;
+    if (clickPosX>=newCenterBugX && clickPosY<=newCenterBugY) angleBoom = anglesOfTriangle(A, B, C)['alpha'];
+    else if (clickPosX>=newCenterBugX && clickPosY>=newCenterBugY) angleBoom = 90+anglesOfTriangle(A, B, C)['beta'];      
+    else if (clickPosX<=newCenterBugX && clickPosY<=newCenterBugY) angleBoom = -anglesOfTriangle(A, B, C)['alpha'];      
+    else if (clickPosX<=newCenterBugX && clickPosY>=newCenterBugY) angleBoom = -90-anglesOfTriangle(A, B, C)['beta'];
 
     
     Object.assign(e.target.offsetParent.style, {
-        transition: 'transform 0.3s linear',
+        transition: `transform 0.${speedRotate}s linear`,
         transform: `rotate(${angleBoom}deg)`
       });
 
 
-    /* staticBug.style.display = 'none';
+    staticBug.style.display = 'none';
     activeBug.style.display = 'block';
 
     setTimeout (() => {
         staticBug.style.display = 'block';
         activeBug.style.display = 'none';
-    }, 500); */
+    }, speedRotate);
     
    
 });
 
 
+/* Вспомогательные функции */
 
-
-
-
+/* Рандомные числа из диапазона */
 function getRandomInt(min, max) {
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    }  
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+/* Углы тругольника по координатам вершин */
+function anglesOfTriangle(vertexA, vertexB, vertexC) {
+    // квадрат расстояния между  2-мя точками
+    function lengthSquare(X, Y){ 
+        let xDiff = X[0] - Y[0]; 
+        let yDiff = X[1] - Y[1]; 
+        return xDiff*xDiff + yDiff*yDiff; 
+    } 
+    // квадраты длин сторон
+    let a2 = lengthSquare(vertexB, vertexC); 
+    let b2 = lengthSquare(vertexA, vertexC); 
+    let c2 = lengthSquare(vertexA, vertexB);
+    // длины сторон
+    let a = Math.sqrt(a2); 
+    let b = Math.sqrt(b2);
+    let c = Math.sqrt(c2);
+    // углы
+    let gamma = Math.acos((a2 + b2 - c2)/(2*a*b)) * 180 / Math.PI;
+    let beta = Math.acos((a2 + c2 - b2)/(2*a*c)) * 180 / Math.PI;
+    let alpha = Math.acos((b2 + c2 - a2)/(2*b*c)) * 180 / Math.PI;
+
+    return {'alpha': alpha, 'beta': beta, 'gamma': gamma,}
+}
