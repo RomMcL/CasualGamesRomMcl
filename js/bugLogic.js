@@ -1,10 +1,20 @@
 
+const songOfBug = [
+    "Я ее полюбил...", "за ее красоту,", "За большие глаза,", "за золотую косу.",
+    "А ей нужен танкист...", "в шлеме и галифе,", "А ей нужен танкист...", "косая сажень в плече.",
+    "По три ночи не спал...", "кругом шла голова...", "А в ответ получал...", "одни и те же слова:",
+    "Да у тебя же мама педагог,", "Да у тебя же папа пианист,", "Да у тебя же все наоборот,",
+    "Какой ты на фиг танкист?!"
+]
+
+
+
 const bugEnclosure = document.getElementById('bug-enclosure');
 const bugDiv = document.getElementById('bug-div');
 const staticBug = document.getElementById('static-bug');
 const activeBug = document.getElementById('active-bug');
-
-
+const bugSay = document.getElementById('bug-say');
+const root = document.querySelector(":root");
 
 activeBug.style.display = 'none';
 activeBug.style.pointerEvents = 'none';
@@ -16,6 +26,7 @@ const bugWaiting = bugSpeed * 2500;
 
 let peaceLife = true;
 let huntIsOn = false;
+let peaceLifeCount = 0;
 
 
 
@@ -38,6 +49,12 @@ function moveYourAssBug({timing, draw, duration}) {
             activeBug.style.display = 'none';
             bugEnclosure.addEventListener('click', hit, {capture: true});
             bugEnclosure.style.cursor = 'url("cursor/greenSniper.cur"), auto';
+
+            if (peaceLife) setTimeout(() => bugSay.style.display = 'none', bugWaiting/2-bugSpeed*1000);
+            else {bugSay.innerText = 'ТЫ ЧЁ УДУМАЛ?!';
+                  bugSay.style.color = 'red';
+            }
+            
             
             if (!peaceLife) cancelAnimationFrame(animationBug);
         }
@@ -52,15 +69,12 @@ function moveYourAssBug({timing, draw, duration}) {
 }
 
 
-
-
 function movingBug () {
 
     let widthBugEnclosure = bugEnclosure.offsetWidth;
     let heightBugEnclosure = bugEnclosure.offsetHeight;
     let cornerBugEnclosure = Math.round(Math.atan(heightBugEnclosure/widthBugEnclosure) * 180/Math.PI);
     let hypotenuseBugEnclosure = Math.sqrt(widthBugEnclosure**2 + heightBugEnclosure**2);
-
 
     let widthBug = bugDiv.offsetWidth;
     let heightBug = bugDiv.offsetHeight;
@@ -73,7 +87,6 @@ function movingBug () {
     
     bugDiv.style.transition = `transform 2s linear`;
     
-
     if (positionLeft <= widthBugEnclosure/2 && positionTop <= heightBugEnclosure/2) {
         direction = 1; /* TL -> право или низ + диагональ */
     } else if (positionLeft <= widthBugEnclosure/2 && positionTop > heightBugEnclosure/2) {
@@ -94,42 +107,103 @@ function movingBug () {
     bugEnclosure.removeEventListener("click", hit, {capture: true});
     bugEnclosure.style.cursor = 'url("cursor/redSniper.cur"), auto';
 
+
+    (function bugSayPosition(direction) {
+
+        bugSay.innerText = songOfBug[peaceLifeCount];
+        bugSay.style.display = 'block';
+        bugSay.style.color = 'inherit';
+
+        let widthSay = bugSay.offsetWidth;
+        let heightSay = bugSay.offsetHeight;
+
+        if (direction == "1.1" || direction == "4.1" || direction == "2.3" || direction == "3.3") {
+            bugSay.style.right = 'auto';
+            bugSay.style.left = `${widthBug - widthSay/2 + heightSay/2}px`;
+            bugSay.style.top = `${widthSay/2 - heightSay/2}px`;
+        } else if (direction == "2.1" || direction == "3.1" || direction == "1.3" || direction == "4.3") {
+            bugSay.style.left = 'auto';
+            bugSay.style.right = `${widthBug - widthSay/2 + heightSay/2}px`;
+            bugSay.style.top = `${widthSay/2 - heightSay/2}px`;
+        } else if (direction == "1.2" || direction == "4.2") {
+            bugSay.style.right = 'auto';
+            bugSay.style.left = `${-widthSay}px`;
+            bugSay.style.top = `${heightSay}px`;
+        } else if (direction == "3.2" || direction == "2.2") {
+            bugSay.style.left = 'auto';
+            bugSay.style.right = `${-widthSay}px`;
+            bugSay.style.top = `${heightSay}px`;
+        }    
+        
+        if (direction == "1.3" || direction == "2.1" || direction == "3.2") {
+            root.style.setProperty("--pseudo-transform", "scaleX(-1)");
+            bugSay.style.paddingBottom = '1em';
+            bugSay.style.paddingTop = '0';
+        } else if (direction == "2.2" || direction == "3.1" || direction == "4.3") {
+            root.style.setProperty("--pseudo-transform", "scaleY(-1)");
+            bugSay.style.paddingBottom = '0';
+            bugSay.style.paddingTop = '1em';        
+        } else if (direction == "1.1" || direction == "2.3" || direction == "4.2") {
+            root.style.setProperty("--pseudo-transform", "scaleX(-1) scaleY(-1)");
+            bugSay.style.paddingBottom = '0';
+            bugSay.style.paddingTop = '1em';        
+        } else if (direction == "1.2" || direction == "3.3" || direction == "4.1") {
+            root.style.setProperty("--pseudo-transform", "none");
+            bugSay.style.paddingBottom = '1em';
+            bugSay.style.paddingTop = '0';
+        }  
+    })(direction);
+
+   /*  bugSayPosition(direction); */
+
     switch (direction) {
         case 1.1: /* из TL -> вправо */
             bugDiv.style.transform = 'rotate(90deg)';
+            bugSay.style.transform = 'rotate(-90deg)';
             break;
         case 1.2: /* из TL -> вниз */
             bugDiv.style.transform = 'rotate(180deg)';
+            bugSay.style.transform = 'rotate(-180deg)';
             break;
         case 1.3: /* из TL -> диагональ */
-            bugDiv.style.transform = 'rotate(' + (90 + cornerBugEnclosure) + 'deg)';          
+            bugDiv.style.transform = `rotate(${90 + cornerBugEnclosure}deg)`;
+            bugSay.style.transform = 'rotate(-90deg)';
             break;
         case 2.1: /* из BL -> вправо */
             bugDiv.style.transform = 'rotate(90deg)';
+            bugSay.style.transform = 'rotate(-90deg)';
             break;
         case 2.2: /* из BL -> вверх */
             bugDiv.style.transform = 'rotate(0deg)';
+            bugSay.style.transform = 'rotate(0deg)';
             break;
         case 2.3: /* из BL -> диагональ */
-        bugDiv.style.transform = 'rotate(' + (90 - cornerBugEnclosure) + 'deg)';           
+            bugDiv.style.transform = `rotate(${90 - cornerBugEnclosure}deg)`;
+            bugSay.style.transform = 'rotate(-90deg)';
             break;
         case 3.1: /* из TR -> влево */
             bugDiv.style.transform = 'rotate(-90deg)';
+            bugSay.style.transform = 'rotate(90deg)';
             break;
         case 3.2: /* из TR -> вниз */
             bugDiv.style.transform = 'rotate(180deg)';
+            bugSay.style.transform = 'rotate(-180deg)';
             break;
         case 3.3: /* из TR -> диагональ */
-        bugDiv.style.transform = 'rotate(' + (90 + cornerBugEnclosure)*(-1) + 'deg)';
+            bugDiv.style.transform = `rotate(${-(90 + cornerBugEnclosure)}deg)`;
+            bugSay.style.transform = 'rotate(90deg)';
             break;
         case 4.1: /* из BR -> влево */
             bugDiv.style.transform = 'rotate(-90deg)';
+            bugSay.style.transform = 'rotate(90deg)';
             break;
         case 4.2: /* из BR -> вверх */
             bugDiv.style.transform = 'rotate(0deg)';
+            bugSay.style.transform = 'rotate(0deg)';
             break;
         case 4.3: /* из BR -> диагональ */
-        bugDiv.style.transform = 'rotate(' + (90 - cornerBugEnclosure)*(-1) + 'deg)';
+            bugDiv.style.transform = `rotate(${-(90 - cornerBugEnclosure)}deg)`;
+            bugSay.style.transform = 'rotate(90deg)';
             break;
         default:
             console.log("Жук не знает куда идти");
@@ -181,7 +255,12 @@ function movingBug () {
                                     }                           
                             }())
                 }), 
-        2000); /* задержка на разворот Жука */       
+        2000); /* задержка на разворот Жука */
+
+        if (peaceLifeCount < songOfBug.length-1) peaceLifeCount++;
+        else peaceLifeCount = 0;  
+        
+        
 }
 
 
@@ -243,7 +322,8 @@ function returnHomeBug () {
                 return bugSpeed * 500;                          
                         }())
             }), 
-    300); // задержка на разворот перед походом домой  
+    300); // задержка на разворот перед походом домой
+    peaceLifeCount = 0;
 }
 
 
@@ -315,6 +395,7 @@ function hit(e) {
         if (parseInt(bugDiv.style.top)) currentPosY = parseInt(bugDiv.style.top);
         clickPosX = e.offsetX + currentPosX;
         clickPosY = e.offsetY + currentPosY;
+        bugSay.style.display = 'none'
     }
     boomCount++;
     boom();

@@ -56,8 +56,6 @@ h2 {
 #bug-enclosure {
     user-select: none;
     z-index: 5000;
-    /* cursor: wait; */
-    /* cursor: url("../cursor/c2.cur"), auto; */
 }
 
 
@@ -65,8 +63,42 @@ h2 {
     position:absolute;
     transition: transform 2s linear;
     z-index: 5001;
-
 }
+
+#bug-say {
+    display: none;
+    width: fit-content;
+    height: fit-content;
+    position:absolute;
+    top: 0;
+    left: 0;
+    transition: transform 2s linear;
+    z-index: -1;
+    text-wrap: nowrap;
+    font-size: 1.3em;
+    padding-bottom: 1em;
+    padding-inline: 0.5em;
+    pointer-events: none;
+}
+
+:root{
+--pseudo-transform: none;
+}
+
+#bug-say::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position:absolute;
+    top: 0;
+    left: 0;
+    z-index: -2;
+    background-image: url("../img/bugDialogBorder.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+    transform: var(--pseudo-transform);  
+  }
 
 .boom-div {
     width: 20%;
