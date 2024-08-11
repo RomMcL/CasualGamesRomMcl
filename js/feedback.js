@@ -67,7 +67,7 @@ function choiceCheckbox(event) {
             else event.target.nextElementSibling.children[0].innerHTML = '&#129302;';                 
             break;
         case 'flexSwitchCheckMood':
-            if (event.target.checked) event.target.nextElementSibling.innerText = 'Я на пизитиве!';
+            if (event.target.checked) event.target.nextElementSibling.innerText = 'Я сейчас на позитиве!';
             else event.target.nextElementSibling.innerText = 'Я в плохом настроении';        
             break;
     }    

@@ -1,0 +1,14 @@
+
+.rom-gameDescription-icon {
+    background-image: url("../img/gameDescriptionIcon.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain; 
+    transform: scale(1.2);
+    cursor: pointer; 
+    transition: all 0.5s ease-in-out; 
+}
+
+.rom-gameDescription-icon:hover {
+    transform: scale(1.6);  
+}

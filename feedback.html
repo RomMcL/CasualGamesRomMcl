@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="./css/myBootstrap.css" />
     <link rel="stylesheet" type="text/css" href="./css/mainStyles.css" />
+    <link rel="stylesheet" type="text/css" href="./css/feedback.css" />
      
     <script type="text/javascript"
         src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
@@ -35,6 +36,9 @@
                   <a class="nav-link py-0" href="catalog.html">Каталог игр</a>
                 </li>
                 <li class="nav-item ms-2">
+                  <a class="nav-link py-0" href="weather.html">Погода</a>
+                </li>
+                <li class="nav-item ms-2">
                   <a class="nav-link active py-0" href="feedback.html">Обратная связь</a>
                 </li>
               </ul>
@@ -47,7 +51,7 @@
     <main class="container-md flex-grow-1 d-flex justify-content-center bg-light border-start border-end border-dark border-1">
 
         <section class="container-md  border-top border-end border-dark border-3 mx-2">
-          <div class="row justify-content-center mt-5 me-1 border border-dark border-2 rounded-3">
+          <div class="row justify-content-center mt-5  mb-2 me-1 border border-dark border-2 rounded-3">
             <div id="information" class="col-md-6 p-5 bg-dark text-light text-center">
               <h1>Привет!</h1>
               <h4>Спасибо, что нашли минутку написать мне сообщение.<br>
@@ -72,9 +76,9 @@
                 <textarea id="message" rows="6" class="form-control border-dark fs-5" placeholder="Ваше сообщение..."></textarea>
                 <span id="mess-count" class="float-end">Символов: <span class="fw-bold">0</span> - min(<span>#</span>)</span>
               </div>
-              <div class="d-flex justify-content-between align-items-center gap-5 mt-3">
+              <div class="d-flex flex-md-column-reverse flex-lg-row justify-content-between align-items-center gap-3 mt-3 w-100">
                 <button id="sendMailBtn" class="btn btn-dark fs-3">Отправить</button>
-                <div class="d-flex flex-column flex-grow-1 fs-5">
+                <div class="d-flex flex-column flex-grow-1 fs-5 w-100">
                   <div class="form-check ms-2">
                     <input class="form-check-input" type="checkbox" value="" id="flexCheckRobot">
                     <label class="form-check-label ms-3 px-2 rounded-pill" for="flexCheckRobot">Я не робот <span>&#129302;</span></label>
