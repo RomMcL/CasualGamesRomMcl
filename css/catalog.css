@@ -1,4 +1,10 @@
 
+.rom-card-img {
+    width: 94%;
+    margin: 0 auto;
+    aspect-ratio: 4 / 3;
+}
+
 .rom-gameDescription-icon {
     background-image: url("../img/gameDescriptionIcon.svg");
     background-repeat: no-repeat;
@@ -11,4 +17,47 @@
 
 .rom-gameDescription-icon:hover {
     transform: scale(1.6);  
+}
+
+
+.rom-modal-wrapper {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: none;
+}
+
+#modal-fullDescription {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);    
+    padding-inline: 3em;
+    border-radius: 20%;
+  }
+
+#modal-startGame {
+    font-size: 2em;
+    color: blue;
+}
+
+#modal-closeBtn {
+    font-size: 2em;
+    font-weight: bold;
+    padding-inline: 0.3em;
+    position: absolute;
+    top: -0.5em;
+    right: -0.5em;
+    cursor: pointer;
+    transform: rotate(45deg);
+    transition: transform 0.3s ease-in-out;
+}
+
+#modal-closeBtn:hover {
+    color: red;
+    transform: rotate(45deg) scale(1.3);
 }
