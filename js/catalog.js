@@ -6,7 +6,7 @@ const games = {
         'info': 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, id quae ratione aut veritatis optio laudantium nemo voluptate incidunt voluptatibus reprehenderit corrupti.',
         'description': 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, id quae ratione aut veritatis optio laudantium nemo voluptate incidunt voluptatibus reprehenderit corrupti. Nam repellendus suscipit optio sequi deleniti iure. Impedit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque nobis dolorum recusandae maxime iure architecto omnis beatae excepturi. Architecto earum minus quae, magnam culpa reprehenderit consequatur. Atque eum similique quae.',
         'type': 'Жанр игры 1',
-        'start': 'index.html'
+        'start': './games/layoutDesigner.html'
     },
     'game2': {
         'name': 'Название второй игры',
