@@ -34,4 +34,15 @@ h2 {
     left: 4rem;
 }
 
+.social_network_img {
+    height: 32px;
+}
 
+
+/* переопределение bootstrap */
+
+.active {
+    color: #f7d36e !important;
+    text-shadow: 0 0 1.0em #000, 
+                 0 0 0.2em #000;
+}
