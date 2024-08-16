@@ -1,0 +1,432 @@
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url("../../img/layoutDesigner/bodyFon.svg");
+    background-size: 200px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+
+.game-content {
+    /* position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10; */
+    background-color: #fff;
+
+    width: 100%;
+    max-width: 1250px;
+    min-height: 90vh;
+    margin-inline: 1em;
+    border: #000 solid 2px;
+    border-radius: 2em;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.container {
+
+    
+}
+
+.header {
+    padding: 1.5em 1em;
+}
+
+.header-title {
+    text-align: center;
+    color: #1f1d1d;
+}
+
+main {
+    flex-grow: 1;
+    display: flex;
+
+    background-color: red;
+}
+
+.game-section {
+    
+    width: 100%;
+    /* background-color: blue; */
+}
+
+.game-section-container {
+    
+    height: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    column-gap: 1em;
+    margin: 0 1em;
+
+    
+
+    background-color: grey;
+}
+
+.game-menu__block_startGame{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    /* background-color: yellowgreen; */
+
+}
+
+
+.game-menu__title_startGame {
+    margin: 0;
+    margin-bottom: 15px;
+    text-align: center;
+    color: #000;
+}
+
+.game-menu__difficult-btn {
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    color: #222;
+    transition: background-color .3s ease-in-out, color .3s ease-in-out;
+}
+
+.game-menu__difficult-btn:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.game-menu__difficult-btn {
+    padding: 15px 20px;
+    background-color: #5dc6ff;
+}
+
+.game-menu__difficult-btn:hover {
+    transition: background-color .3s ease-in-out, color .3s ease-in-out;
+    background-color: #222;
+    color: #fff;
+}
+
+
+.game-menu__block_infoGame {
+    flex-grow: 1;
+    width: 70%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: space-between;
+
+    align-self: stretch;
+    row-gap: 1em;
+
+
+    background-color: rgb(121, 121, 115);
+}
+
+
+.game-menu__block_complexityGame {
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    row-gap: 1em;
+    align-self: flex-start;
+    margin-top: 2em;
+
+    /* background-color: yellowgreen; */
+}
+
+
+
+.game-menu__title_complexityGame {
+    text-align: center;
+    color: #000;
+}
+
+
+.game-menu__senorSay {
+    width: 90%;
+    
+    /* background-color: rgb(10, 195, 241); */
+}
+
+.game-menu__menuImgs {
+    width: 100%;
+    aspect-ratio: 3 / 1;
+    
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    
+
+    
+    background-color: rgb(56, 207, 26);
+}
+
+.game-menu__djunImg {
+    /* background-color: aquamarine; */
+    
+    width: 50%;
+    background-image: url("../../img/layoutDesigner/menu_djun.png");
+    background-repeat: no-repeat;
+    background-position: bottom left;
+    background-size: contain;
+}
+
+.game-menu__senorImg {
+    /* background-color: #5dc6ff; */
+
+    width: 50%;
+  
+    background-image: url("../../img/layoutDesigner/menu_senor.png");
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-size: contain;
+}
+
+
+
+/* Кастомизация чекбоксов */
+
+label:has(> #checkbox_codeReview),
+label:has(> #checkbox_evilSenor) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 1em;
+    padding-top: 0.3em;
+    overflow: hidden;   
+    cursor: pointer;
+}
+
+#checkbox_codeReview,
+#checkbox_evilSenor {
+    height: 2.3em;
+    width: 2.3em;
+    position: relative;
+    left: -50px;
+    cursor: pointer;
+}
+
+#checkbox_codeReview::before,
+#checkbox_evilSenor::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 4em;
+    height: 2.3em;
+    width: 2.3em;
+    border-radius: 0.6em;
+    background-color: rgba(255,255,255,1);
+    outline: rgba(0,0,0,1) solid 1px;
+    outline-offset:-3px;
+}
+
+#checkbox_codeReview:checked::after,
+#checkbox_evilSenor:checked::after {
+    content: "✔";
+    font-size: 2.4em;
+    color: green;
+    text-shadow: 2px 2px 2px #000;
+    position: absolute;
+    top: -0.4em;
+    left: 1.8em;
+    height: 2.3em;
+    width: 2.3em;
+}
+
+
+
+
+
+
+
+.game-table {
+    width: 70%;
+    align-self: center;
+    background-color: aquamarine;
+    
+    display: grid;
+    gap: 1%;
+}
+
+.table-8 {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+.table-12 {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+}
+.table-24,
+.table-32 {
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(6, 1fr)
+}
+
+
+.game-card-center {
+    background-color: #d18f2c;
+    border-radius: 1em;
+    background-image: url("../../img/layoutDesigner/menu_djun.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;   
+}
+
+.center-card-8 {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+.center-card-12 {
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 4;
+}
+.center-card-24,
+.center-card-32 {
+    grid-column-start: 3;
+    grid-column-end: 5;
+    grid-row-start: 3;
+    grid-row-end: 5;
+}
+
+
+.game-card {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: purple;
+    border-radius: 1em;
+    transition: all 0.2s linear;
+    
+    user-select: none;
+}
+
+
+
+.game-card span {
+    font-size: 16px;
+    display: none;    
+}
+
+.game-card span+span {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-image: url("../../img/layoutDesigner/questionLayoutDesigner.svg");    
+    background-size: 70% 70%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.game-card.flip {
+    background: #5dc6ff !important;
+    transform: perspective(100px) rotateY(180deg);
+}
+
+.game-card.flip span {
+    display: block;
+    transform: rotateY(-180deg);
+}
+
+.game-card.flip span+span {
+    display: none;
+}
+
+.game-card.successfully {
+    background: #76db82 !important;
+}
+
+.game-card:hover{
+    background: #d1d1c0;
+}
+
+
+
+
+
+
+
+.senor-cabinet {
+    align-self: stretch;
+    width: 30%;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+   
+
+
+
+    background-color: aquamarine;
+}
+
+.cabinet-senorImg {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-image: url("../../img/layoutDesigner/menu_senor.png");
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-size: contain;
+
+    background-color: #5dc6ff;
+}
+
+
+.cabinet-info {
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    row-gap: 1em;
+
+
+    background-color: #d18f2c;
+}
+
+
+.restart-btn {
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    margin: 10px;
+    padding: 0;
+    background: transparent;
+    color: #222;
+    transition: background-color .3s ease-in-out, color .3s ease-in-out;
+    padding: 15px 20px;
+    background-color: #5dc6ff;
+}
+
+.restart-btn:hover {
+    transition: background-color .3s ease-in-out, color .3s ease-in-out;
+    background-color: #222;
+    color: #fff;
+}
+
