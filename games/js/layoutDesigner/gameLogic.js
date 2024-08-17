@@ -1,7 +1,10 @@
 import { settingsDict } from "./parametersGame.js"
 import { createTagsArray } from "./layoutDesignerUtils.js"
 import { createGameCard } from "./gameCard.js"
-import { createGameMenu } from "./gameMenu.js"
+import { createGameMenu, codeReview } from "./gameMenu.js"
+import { startSenorQuestion } from "./gameSenorQuestions.js"
+
+
 
 
 export const gameLogic = (tagsNum) => {
@@ -61,14 +64,14 @@ export const gameLogic = (tagsNum) => {
             break;
         case 12: 
             break;
-        case 32: 
-            break;
         case 24: 
             cards[2].style.cssText = 'grid-column: 5;';
             cards[10].style.cssText = 'grid-column: 2;';
             cards[12].style.cssText = 'grid-column: 2;';
             cards[14].style.cssText = 'grid-column: 1;';
             cards[22].style.cssText = 'grid-column: 5;';
+            break;
+        case 32: 
             break;
         default:
             console.log("Неведомая ошибка.");
@@ -93,7 +96,6 @@ export const gameLogic = (tagsNum) => {
                     clickableCard = false;
                 }
             }
-
         }
 
         if (indexFirstCard != null && indexSecondCard != null && indexFirstCard != indexSecondCard) {
@@ -103,8 +105,11 @@ export const gameLogic = (tagsNum) => {
                 gameTable.style.pointerEvents = 'auto';  /* ---------------------------------- */
             }, settingsDict['conversionDelay']);
 
-            if (cards[indexFirstCard].firstElementChild.className === cards[indexSecondCard].firstElementChild.className) {
+            let firstTag = cards[indexFirstCard].firstChild.innerText;
+            let secondTag = cards[indexSecondCard].firstChild.innerText;
 
+            const guessedPair = () => {
+                console.log("угадали");
                 setTimeout(() => {
                     try {
                         cards[indexFirstCard].classList.add('successfully');
@@ -116,9 +121,18 @@ export const gameLogic = (tagsNum) => {
                         /* console.error(e); */
                         console.log('Очень часто тыкаешь!');
                       }
-                }, settingsDict['conversionDelay']);               
-            } else {
+                }, settingsDict['conversionDelay']);
+                                                
+                let currentTag = '';
+                console.log("первая = " + firstTag);
+                console.log("вторая = " + secondTag);
+                if(firstTag.replace(/[^a-zA-Z]/g, '') == '') currentTag = secondTag.replace(/[^a-zA-Z]/g, '');
+                else currentTag = firstTag.replace(/[^a-zA-Z]/g, '');
+                startSenorQuestion(currentTag);
+            }
 
+            const notGuessedPair = () => {
+                console.log("не угадали");
                 setTimeout(() => {  
                     try {
                         cards[indexFirstCard].classList.remove('flip');
@@ -130,7 +144,21 @@ export const gameLogic = (tagsNum) => {
                         /* console.error(e); */
                         console.log('Часто тыкаешь!');
                       }
-                }, settingsDict['conversionDelay']); 
+                }, settingsDict['conversionDelay']);
+            }
+
+            if (cards[indexFirstCard].firstElementChild.className === cards[indexSecondCard].firstElementChild.className) {
+
+                console.log('codeReview = ' + codeReview);
+
+
+
+                guessedPair();
+                
+            } else {
+                 
+                notGuessedPair();
+                
             }
 
             if (Array.from(cards).every(card => card.className.includes('flip'))) {
@@ -144,5 +172,7 @@ export const gameLogic = (tagsNum) => {
         
 
     }));
+
+    
 
 }

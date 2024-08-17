@@ -26,8 +26,6 @@ export const createGameMenu = () => {
 
     const codeReview_CheckBox = document.createElement('input');
     codeReview_CheckBox.type = "checkbox";
-    codeReview_CheckBox.name = "name";
-    codeReview_CheckBox.value = "value";
     codeReview_CheckBox.id = "checkbox_codeReview";
     const label_codeReview_CheckBox = document.createElement('label')
     label_codeReview_CheckBox.htmlFor = "checkbox_codeReview";
@@ -36,8 +34,6 @@ export const createGameMenu = () => {
 
     const evilSenor_CheckBox = document.createElement('input');
     evilSenor_CheckBox.type = "checkbox";
-    evilSenor_CheckBox.name = "name";
-    evilSenor_CheckBox.value = "value";
     evilSenor_CheckBox.id = "checkbox_evilSenor";
     const label_evilSenor_CheckBox = document.createElement('label')
     label_evilSenor_CheckBox.htmlFor = "checkbox_evilSenor";

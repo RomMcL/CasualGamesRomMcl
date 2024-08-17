@@ -4,6 +4,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    user-select: none;
 }
 
 body {
@@ -205,60 +206,6 @@ main {
 
 
 
-/* Кастомизация чекбоксов */
-
-label:has(> #checkbox_codeReview),
-label:has(> #checkbox_evilSenor) {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    column-gap: 1em;
-    padding-top: 0.3em;
-    overflow: hidden;   
-    cursor: pointer;
-}
-
-#checkbox_codeReview,
-#checkbox_evilSenor {
-    height: 2.3em;
-    width: 2.3em;
-    position: relative;
-    left: -50px;
-    cursor: pointer;
-}
-
-#checkbox_codeReview::before,
-#checkbox_evilSenor::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 4em;
-    height: 2.3em;
-    width: 2.3em;
-    border-radius: 0.6em;
-    background-color: rgba(255,255,255,1);
-    outline: rgba(0,0,0,1) solid 1px;
-    outline-offset:-3px;
-}
-
-#checkbox_codeReview:checked::after,
-#checkbox_evilSenor:checked::after {
-    content: "✔";
-    font-size: 2.4em;
-    color: green;
-    text-shadow: 2px 2px 2px #000;
-    position: absolute;
-    top: -0.4em;
-    left: 1.8em;
-    height: 2.3em;
-    width: 2.3em;
-}
-
-
-
-
-
-
 
 .game-table {
     width: 70%;
@@ -324,7 +271,7 @@ label:has(> #checkbox_evilSenor) {
     border-radius: 1em;
     transition: all 0.2s linear;
     
-    user-select: none;
+    /* user-select: none; */
 }
 
 
@@ -430,3 +377,156 @@ label:has(> #checkbox_evilSenor) {
     color: #fff;
 }
 
+
+
+
+
+
+#modal-senorQuestion,
+#modal-endGame {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    /* z-index: 5001; */
+    background-color: rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    display: none;
+}
+
+#senorQuestion-container,
+#endGame-container {
+    width: 80%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);    
+    padding: 1em 3em;
+    border-radius: 2em;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    column-gap: 5%;
+    row-gap: 1em;
+
+    
+    background-color: #fff;
+  }
+
+
+
+#senorQuestion-senorImg {
+    width: 30%;
+    transform: scaleX(-1);
+
+    background-color: #e45c94;
+}
+
+#senorQuestion-question {
+    
+    width: 65%;
+
+    background-color: #76db82;
+}
+
+#senorQuestion-answersList {
+    width: 100%;
+    list-style: none;
+
+    background-color: #77b4e6;
+}
+
+#senorQuestion-btn {
+
+    cursor: pointer;
+    background-color: #5e5463;
+}
+
+
+
+
+/* Кастомизация чекбоксов */
+
+label:has(> #checkbox_codeReview),
+label:has(> #checkbox_evilSenor),
+label:has(> .option-radio) {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 1em;
+    padding-top: 0.3em;
+    overflow: hidden;   
+    cursor: pointer;
+}
+
+label:has(> .option-radio) {
+    border-radius: 1em;
+}
+
+#checkbox_codeReview,
+#checkbox_evilSenor,
+.option-radio {
+    height: 2.3em;
+    width: 2.3em;
+    position: relative;
+    left: -50px;
+    cursor: pointer;
+}
+
+#checkbox_codeReview::before,
+#checkbox_evilSenor::before,
+.option-radio::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 4em;
+    height: 2.3em;
+    width: 2.3em;
+    border-radius: 0.6em;
+    background-color: rgba(255,255,255,1);
+    outline: rgba(0,0,0,1) solid 1px;
+    outline-offset:-3px;
+}
+
+.option-radio::before{
+    border-radius: 50%;
+}
+
+#checkbox_codeReview:checked::after,
+#checkbox_evilSenor:checked::after,
+.option-radio:checked::after {
+    content: "✓";
+    font-size: 2.4em;
+    color: green;
+    text-shadow: 2px 2px 2px #000;
+    position: absolute;
+    top: -0.4em;
+    left: 1.8em;
+    height: 2.3em;
+    width: 2.3em;
+}
+
+.option-radio:checked::after {
+    content: "✘";
+    top: -0.3em;
+    left: 1.7em;
+}
+
+.btn-notActive {
+    pointer-events: none;
+    cursor: none;
+    color: grey;
+}
+
+
+
+
+
+
+.modalGameBtn {
+    padding: 1em 2em;
+    border: 1px solid #000;
+    border-radius: 1em;
+}
