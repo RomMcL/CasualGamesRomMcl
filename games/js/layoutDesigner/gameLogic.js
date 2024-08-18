@@ -1,66 +1,93 @@
-import { settingsDict } from "./parametersGame.js"
+import { settingsDict, senorSayDict } from "./parametersGame.js"
 import { createTagsArray } from "./layoutDesignerUtils.js"
 import { createGameCard } from "./gameCard.js"
-import { createGameMenu, codeReview } from "./gameMenu.js"
-import { startSenorQuestion } from "./gameSenorQuestions.js"
+import { createGameMenu, codeReview, evilSenor } from "./gameMenu.js"
+import { startSenorQuestion, countBreamObj } from "./gameSenorQuestions.js"
 
 
-
-
-export const gameLogic = (tagsNum) => {
+export const gameLogic = (tagsNum, minute, second) => {
     let indexFirstCard = null;
     let indexSecondCard = null;
     let clickableCard = true;
+    let isDeadline = false;
+    
+    const header = document.querySelector('.header');
+    header.style.display = 'none';
 
     const gameSection = document.querySelector('.game-section-container');
+
+    const senorCommit = document.createElement('div');
+    senorCommit.textContent = senorSayDict['startGame'];
+    senorCommit.id = 'senor-commit';
     const gameTable = document.createElement('div');
-
+    gameTable.classList.add('game-table', `table-${tagsNum}`); 
     const cardCenter = document.createElement('div');
-
+    cardCenter.classList.add('game-card-center', `center-card-${tagsNum}`);
     const senorCabinet = document.createElement('div');
+    senorCabinet.classList.add('senor-cabinet');
     const cabinetSenorImg = document.createElement('div');
-    const cabinetInfo = document.createElement('div');
-    const cabInfoDeadlineTitle = document.createElement('p');
+    cabinetSenorImg.classList.add('cabinet-senorImg');
+    const deadlineWrapper = document.createElement('div');
+    deadlineWrapper.classList.add('deadline-wrapper');   
+    const deadlineTitle = document.createElement('span');
+    deadlineTitle.classList.add('cabInfo-title');
+    deadlineTitle.textContent = 'Дедлайн:';
+    const timerHead = document.createElement('span');
+    timerHead.classList.add('timer-head-footer');
+    timerHead.textContent = 'осталось';
     const cabInfoDeadline = document.createElement('span');
-    const cabInfoBreamTitle = document.createElement('p');
-    const cabInfoBream = document.createElement('div');
+    cabInfoDeadline.id = 'cabInfo-timer';
+    cabInfoDeadline.textContent = '-- : --';
+    const timerFooter = document.createElement('span');
+    timerFooter.classList.add('timer-head-footer');
+    timerFooter.textContent = 'мин : сек';
+    let breamWrapper = null;
+    if (evilSenor) {
+        breamWrapper = document.createElement('div');
+        breamWrapper.classList.add('bream-wrapper');
+        const cabInfoBreamTitle = document.createElement('p');
+        cabInfoBreamTitle.classList.add('cabInfo-title');
+        cabInfoBreamTitle.textContent = 'Лещи от Сеньора:';
+        let breamImg = document.createElement('div');
+        breamImg.id = 'bream-img';
+        let countBreamSpan = document.createElement('span');
+        countBreamSpan.id = 'bream-count';
+        countBreamSpan.textContent = countBreamObj['countBream'];
+        breamWrapper.append(cabInfoBreamTitle, breamImg, countBreamSpan);
+    }
+    const gameFooter = document.createElement('div');
+    gameFooter.classList.add('game-footer');
     const restartBtn = document.createElement('button');
+    restartBtn.textContent = 'Рестарт';
+    restartBtn.classList.add('restart-btn');
 
     const cardsTags = createTagsArray(tagsNum);
 
     gameSection.innerHTML = '';
-    gameTable.classList.add('game-table', `table-${tagsNum}`);    
-    cardCenter.classList.add('game-card-center', `center-card-${tagsNum}`);
-    senorCabinet.classList.add('senor-cabinet');
-    cabinetSenorImg.classList.add('cabinet-senorImg');
-    cabinetInfo.classList.add('cabinet-info');
-    cabInfoDeadlineTitle.classList.add('cabInfo-title');
-    cabInfoDeadlineTitle.textContent = 'Дедлайн:';
-    cabInfoDeadline.classList.add('cabInfo-timer');    
-    cabInfoDeadline.textContent = 'таймер';
-    cabInfoBreamTitle.classList.add('cabInfo-title');
-    cabInfoBreamTitle.textContent = 'Лещи от Сеньора:';
-    cabInfoBream.classList.add('cabInfo-bream'); 
-    cabInfoBream.textContent = 'лещи';
-
-    restartBtn.textContent = 'Рестарт';
-    restartBtn.classList.add('restart-btn');
-
-
-    cardsTags.forEach(tag => gameTable.append(createGameCard('cartShirt', tag)));
-
-    gameSection.append(gameTable, senorCabinet);
+       
+    gameSection.append(senorCommit,
+                       cabinetSenorImg,
+                       gameTable,
+                       senorCabinet,
+                       gameFooter
+                       );
 
     gameTable.append(cardCenter);
+    cardsTags.forEach(tag => gameTable.append(createGameCard('cartShirt', tag)));
 
-    senorCabinet.append(cabinetSenorImg, cabinetInfo, restartBtn);
-    cabinetInfo.append(cabInfoDeadlineTitle, cabInfoDeadline, cabInfoBreamTitle, cabInfoBream);
+    senorCabinet.append( deadlineWrapper);
+    evilSenor && senorCabinet.append(breamWrapper);
+
+    deadlineWrapper.append(deadlineTitle, timerHead, cabInfoDeadline, timerFooter);
+
+    gameFooter.append(restartBtn);
 
     const cards = document.querySelectorAll('.game-card');
 
 
     switch(tagsNum) {
         case 8: 
+            gameTable.style.gap = '3%';
             break;
         case 12: 
             break;
@@ -76,8 +103,27 @@ export const gameLogic = (tagsNum) => {
         default:
             console.log("Неведомая ошибка.");
     }
-
-
+    
+    const deadLineTimer = (min, sec) => {
+        let currentMin = min;
+        let currentSec = sec;
+        cabInfoDeadline.style.color = "inherit"
+        let timerInterval = setInterval(() => {
+            if (currentMin == 0 && currentSec <= 10) cabInfoDeadline.style.color = "red";
+            cabInfoDeadline.textContent = `${currentMin.toString().padStart(2, '0')} : 
+                                           ${currentSec.toString().padStart(2, '0')}`; 
+            if (currentMin == 0 && currentSec == 0) {
+                isDeadline = true;
+                for(let card of cards) card.style.pointerEvents = 'none';
+                restartBtn.style.pointerEvents = 'none';
+                clearInterval(timerInterval);
+            } else if (currentSec == 0) {
+                currentSec = 59;
+                currentMin--;
+            } else currentSec--;       
+        }, 1000);
+    }
+    deadLineTimer(minute, second);
 
 
     restartBtn.addEventListener('click', createGameMenu);
@@ -109,7 +155,8 @@ export const gameLogic = (tagsNum) => {
             let secondTag = cards[indexSecondCard].firstChild.innerText;
 
             const guessedPair = () => {
-                console.log("угадали");
+                /* console.log("угадали"); */
+                senorCommit.textContent = senorSayDict['anyQuestions'];
                 setTimeout(() => {
                     try {
                         cards[indexFirstCard].classList.add('successfully');
@@ -124,15 +171,15 @@ export const gameLogic = (tagsNum) => {
                 }, settingsDict['conversionDelay']);
                                                 
                 let currentTag = '';
-                console.log("первая = " + firstTag);
-                console.log("вторая = " + secondTag);
+                /* console.log("первая = " + firstTag);
+                console.log("вторая = " + secondTag); */
                 if(firstTag.replace(/[^a-zA-Z]/g, '') == '') currentTag = secondTag.replace(/[^a-zA-Z]/g, '');
                 else currentTag = firstTag.replace(/[^a-zA-Z]/g, '');
                 startSenorQuestion(currentTag);
             }
 
             const notGuessedPair = () => {
-                console.log("не угадали");
+                /* console.log("не угадали"); */
                 setTimeout(() => {  
                     try {
                         cards[indexFirstCard].classList.remove('flip');
@@ -149,16 +196,14 @@ export const gameLogic = (tagsNum) => {
 
             if (cards[indexFirstCard].firstElementChild.className === cards[indexSecondCard].firstElementChild.className) {
 
-                console.log('codeReview = ' + codeReview);
-
-
-
-                guessedPair();
-                
-            } else {
+                if (codeReview && firstTag.includes('/')) {
+                    /* console.log('codeReview: ' + "неверный порядок"); */
+                    senorCommit.textContent = senorSayDict['codeReview'];
+                    notGuessedPair();
+                } else guessedPair();
                  
-                notGuessedPair();
-                
+            } else {                 
+                notGuessedPair();               
             }
 
             if (Array.from(cards).every(card => card.className.includes('flip'))) {
@@ -173,6 +218,15 @@ export const gameLogic = (tagsNum) => {
 
     }));
 
+
+    console.log('опыты');
+
+    
+
+
+    
+
+    
     
 
 }

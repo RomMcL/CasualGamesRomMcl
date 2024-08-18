@@ -1,4 +1,6 @@
 import { gameLogic } from "./gameLogic.js"
+import { senorSayDict } from "./parametersGame.js"
+import { countBreamObj } from "./gameSenorQuestions.js"
 
 export let codeReview = false;
 export let evilSenor = false;
@@ -6,16 +8,15 @@ export let evilSenor = false;
 
 export const createGameMenu = () => {
 
+    const header = document.querySelector('.header');
+    header.style.display = 'block';
+
     /* Раздел Выбор проекта */
     const block_startGame = document.createElement('div');
     block_startGame.classList.add('game-menu__block_startGame');
     const title_startGame = document.createElement('h2');
     title_startGame.textContent = 'Выбор проекта';
     title_startGame.classList.add('game-menu__title_startGame');
-
-    /* Раздел инфо и настройки сложности */
-    const block_infoGame = document.createElement('div');
-    block_infoGame.classList.add('game-menu__block_infoGame');
 
     /* Раздел Настройка сложности */
     const block_complexityGame = document.createElement('div');
@@ -47,29 +48,35 @@ export const createGameMenu = () => {
     /* Раздел Инфо */
     const senorSay = document.createElement('div');
     senorSay.classList.add('game-menu__senorSay');
-    senorSay.innerText = 'Привет, Джуниор! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex saepe quam libero qui, incidunt labore mollitia accusamus, debitis, voluptatibus sit cumque ducimus porro. Unde doloremque dolore neque illo, inventore dolores. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex saepe quam libero qui, incidunt labore mollitia accusamus, debitis, voluptatibus sit cumque ducimus porro. Unde doloremque dolore neque illo, inventore dolores.';
-    const menuImgs = document.createElement('div');
-    menuImgs.classList.add('game-menu__menuImgs');
+    senorSay.innerText = senorSayDict['hello'];
+
+    /* Раздел Вопросов */
+    const djunrAsk = document.createElement('div');
+    djunrAsk.classList.add('game-menu__djunrAsk');
+    djunrAsk.innerText = 'Вопросики';
+
+
+    /* Изображения Сеньора и Джуна */
+    const heroesImgs = document.createElement('div');
+    heroesImgs.classList.add('game-menu__heroesImgs');
     const djunImg = document.createElement('div');
     djunImg.classList.add('game-menu__djunImg');
     const senorImg = document.createElement('div');
     senorImg.classList.add('game-menu__senorImg');
 
-
-
-    /* Очистка контейнера */
+    
+    /* Очистка контейнера и обнуление переменных */
     const gameSection = document.querySelector('.game-section-container');
     gameSection.innerHTML = '';
-    /* document.querySelector('.confetti').innerHTML = ''; */
-
-
+    countBreamObj['countBream'] = 0;
+   
 
     /* Создание кнопок */
-    const createStarttButton = (tagsNum) => {
+    const createStarttButton = (tagsNum, minute, second) => {
         const button = document.createElement('button');
         button.classList.add('game-menu__difficult-btn');
         button.innerText = `Сверстать проект на\n${tagsNum} тегов`;
-        button.addEventListener('click', () => gameLogic(tagsNum));
+        button.addEventListener('click', () => gameLogic(tagsNum, minute, second));
         return button;
     }
 
@@ -81,33 +88,32 @@ export const createGameMenu = () => {
     /* Компановка элементов */
     gameSection.append(
         block_startGame,
-        block_infoGame,        
+        block_complexityGame,
+        senorSay,
+        djunrAsk,
+        heroesImgs,        
     );
 
     block_startGame.append(
         title_startGame,
-        createStarttButton(8),
-        createStarttButton(12),
-        createStarttButton(24),
-        createStarttButton(32),
-    );
-
-    block_infoGame.append(
-        block_complexityGame,
-        senorSay,
-        menuImgs,
+        createStarttButton(8, 1, 5),     //кол-во карточек, минуты, секунды дедлайна
+        createStarttButton(12, 2, 10),
+        createStarttButton(24, 3, 20),
+        createStarttButton(32, 4, 30),
     );
 
     block_complexityGame.append(
         title_complexityGame,
-        /* codeReview_CheckBox, */
         label_codeReview_CheckBox,
-        /* evilSenor_CheckBox, */
         label_evilSenor_CheckBox,
     );
 
-    menuImgs.append(
+    heroesImgs.append(
         djunImg,
         senorImg,
     );
+
+   
+
+
 }

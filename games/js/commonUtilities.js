@@ -1,6 +1,6 @@
 
 
-/* Перемешивание массива */
+// Перемешивание массива
 export function shufflingArray(arrForShuffling) {
     for (let i = arrForShuffling.length - 1; i > 0; i--) { 
         const j = Math.floor(Math.random() * (i + 1)); 
@@ -8,6 +8,18 @@ export function shufflingArray(arrForShuffling) {
     }
     return arrForShuffling;
 }
+
+
+
+// склонение слов
+export function declensionNum(num, words) {
+    return words[(num % 100 > 4 && num % 100 < 20) ? 2 : [2, 0, 1, 1, 1, 2][(num % 10 < 5) ? num % 10 : 5]];
+}
+
+
+
+
+
 
 
 /* Плавное появление */

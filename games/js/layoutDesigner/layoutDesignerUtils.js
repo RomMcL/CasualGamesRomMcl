@@ -22,3 +22,11 @@ export const createTagsArray = (difficult) => {
     return shufflingArray(tagsArray);
 
 }
+
+
+export const createBream = (numberBream) => {
+    const bream = document.createElement('div');
+    bream.id = `bream-${numberBream}`;
+    document.getElementById('bream-img').appendChild(bream);
+    setTimeout(() => bream.style.opacity = '1', 500)        
+}

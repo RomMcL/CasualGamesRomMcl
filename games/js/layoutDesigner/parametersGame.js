@@ -2,11 +2,12 @@
 export const settingsDict = {
     'soloTagName': 'Одиночный тег',   // имя парной карты для одиночного тега
     'conversionDelay': 500,           // задержка переворота карты
+    'fadeInDelay': 500,               // задержка появления окна с вопросом
     'fadeOutDelay': 1500,             // задержка ухода окна с вопросом
+    'maxBreams': 3,                   // максимум лещей до проигрыша
+    
 
-
-
-    '1': '1'
+    
 };
 
 export const pairedTagsDict = {
@@ -45,3 +46,18 @@ export const singleTagsDict = {
     'singley': 'Определение y соло'
 };
 
+export const senorSayDict = {
+    'hello': 'Привет, Джуниор! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex saepe quam libero qui, incidunt labore mollitia accusamus, debitis, voluptatibus sit cumque ducimus porro. Unde doloremque dolore neque illo, inventore dolores. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex saepe quam libero qui, incidunt labore mollitia accusamus, debitis, voluptatibus sit cumque ducimus porro. Unde doloremque dolore neque illo, inventore dolores.',
+
+    'startGame': 'Ну что ж, погнали! И не забывай о дедлайне, Джуниор!!!',
+
+    'anyQuestions': 'У меня есть к тебе вопрос...',
+
+    'correctAnswer': 'Абсолютно верно! Продолжай в том же духе.',
+
+    'incorrectAnswer': 'Неверно!',
+    'evilIncorrectAnswer': ' Как можно не знать такие вещи? Лови ЛЕЩА!',
+
+    'codeReview': 'Наоборот, Джуниор!!! Сначала открывающий тег, потом закрывающий.',
+
+};

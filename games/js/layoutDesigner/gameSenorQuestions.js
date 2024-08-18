@@ -1,7 +1,10 @@
 
-import { pairedTagsDict, singleTagsDict, settingsDict } from "./parametersGame.js"
+import { pairedTagsDict, singleTagsDict, settingsDict, senorSayDict } from "./parametersGame.js"
+import { createBream } from "./layoutDesignerUtils.js"
 import { shufflingArray } from "../commonUtilities.js"
+import { evilSenor } from "./gameMenu.js"
 
+export let countBreamObj = {'countBream': 0};
 
 const modalSQ = document.getElementById('modal-senorQuestion');
 modalSQ.style.transition = `opacity ${settingsDict['fadeOutDelay']}ms`;
@@ -10,9 +13,7 @@ const tagsDict = Object.assign({}, pairedTagsDict, singleTagsDict);
 
 
 export const startSenorQuestion = (currentTag) => {
-
-        
-   
+  
     let keysTagsDict = Object.keys(tagsDict);
     let indexCorrectKeys = keysTagsDict.indexOf(currentTag);
     indexCorrectKeys !== -1 && keysTagsDict.splice(indexCorrectKeys, 1);
@@ -29,10 +30,9 @@ export const startSenorQuestion = (currentTag) => {
     createModalQuestion(currentTag, shufflingAnswers);
 
     modalSQ.style.display = 'block';
-    setTimeout(() => modalSQ.style.opacity = '1', 500)  
+    setTimeout(() => modalSQ.style.opacity = '1', settingsDict['fadeInDelay'])  
     modalSQ.style.pointerEvents = 'auto';    
 }
-
 
 
 const createModalQuestion = (tag, answers) => {
@@ -60,12 +60,11 @@ const createModalQuestion = (tag, answers) => {
 
             const keyOption = Object.keys(tagsDict).find(k => tagsDict[k] === answers[i]);
 
-
             const option = document.createElement('li');
 
             const optionRadio = document.createElement('input');
-            optionRadio.type = "radio";
-            optionRadio.name = "optionRadio";
+            optionRadio.type = 'radio';
+            optionRadio.name = 'optionRadio';
             optionRadio.value = keyOption;
             optionRadio.id = `optionRadio-${i+1}`;
             optionRadio.classList.add('option-radio');
@@ -92,10 +91,11 @@ const createModalQuestion = (tag, answers) => {
 
 const giveAnswer = (tag) => {
 
+    const senorCommit = document.getElementById('senor-commit');
     let options = document.getElementsByName('optionRadio');
     let optionValue = '';
     let currentOption = null;
-    /* for(let option of options) option.checked && (optionValue = option.value); */
+
     for(let option of options) {
         if (option.checked) {
             optionValue = option.value;
@@ -104,20 +104,24 @@ const giveAnswer = (tag) => {
     }
 
 
-
     if (tag == optionValue) {
-        console.log('правильно');
+        /* console.log('правильно'); */
         currentOption.parentElement.style.backgroundColor = 'green';
+        senorCommit.textContent = senorSayDict['correctAnswer'];
+
     } else {
-        console.log('не правильно');
+        /* console.log('не правильно'); */
+        senorCommit.textContent = senorSayDict['incorrectAnswer'];
         currentOption.parentElement.style.backgroundColor = 'red';
+        countBreamObj['countBream']++
+        if (evilSenor) {
+            document.getElementById('bream-count').textContent = countBreamObj['countBream'];
+            createBream(countBreamObj['countBream']);
+            senorCommit.textContent += senorSayDict['evilIncorrectAnswer'];
+        } else senorCommit.textContent += ` Правильный ответ: ${optionValue} ${tagsDict[optionValue]}`;
+
     }
 
-    
-
-    /* console.log(optionValue); */
-
-    
 
     modalSQ.style.opacity = '0';
     modalSQ.style.pointerEvents = 'none';
