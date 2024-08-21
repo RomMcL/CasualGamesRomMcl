@@ -1,6 +1,7 @@
 import { gameLogic } from "./gameLogic.js"
-import { senorSayDict } from "./parametersGame.js"
-import { countBreamObj } from "./gameSenorQuestions.js"
+import { senorSayDict, wordsDict, settingsDict } from "./parametersGame.js"
+import { countersSQ } from "./gameSenorQuestions.js"
+import { wordDeclension } from "../commonUtilities.js"
 
 export let codeReview = false;
 export let evilSenor = false;
@@ -9,7 +10,7 @@ export let evilSenor = false;
 export const createGameMenu = () => {
 
     const header = document.querySelector('.header');
-    header.style.display = 'block';
+    header.style.display = 'flex';
 
     /* Раздел Выбор проекта */
     const block_startGame = document.createElement('div');
@@ -48,12 +49,57 @@ export const createGameMenu = () => {
     /* Раздел Инфо */
     const senorSay = document.createElement('div');
     senorSay.classList.add('game-menu__senorSay');
-    senorSay.innerText = senorSayDict['hello'];
+    const dialodInfo = document.createElement('p');
+    dialodInfo.classList.add('dialog');
+    dialodInfo.textContent = senorSayDict['hello'];
 
-    /* Раздел Вопросов */
+
+    /* Раздел FAQ */
+    const help = (message, numAsk) => {
+        dialodInfo.textContent = message;
+        let transitTime = settingsDict['transitTime'];
+        if (numAsk == 1) {
+            let gameBtns = document.getElementsByClassName('game-btns');
+            let step = transitTime;
+            for (let gameBtn of gameBtns) {                                                
+                setTimeout(() => {
+                    gameBtn.style.backgroundColor = settingsDict['backlightСolor'];
+                    setTimeout(() => {
+                        gameBtn.style.backgroundColor = '';
+                    }, transitTime-transitTime/gameBtns.length);
+                }, transitTime)
+                transitTime += step;                
+            }
+        } else {
+            let checkbox = null;
+            numAsk == 2 && (checkbox = label_codeReview_CheckBox); 
+            numAsk == 3 && (checkbox = label_evilSenor_CheckBox);
+            let count = 3;
+            const interval = setInterval(() => {
+                                checkbox.style.backgroundColor = settingsDict['backlightСolor'];
+                                setTimeout(() => {
+                                    checkbox.style.backgroundColor = '';
+                                }, transitTime);
+                                count--;
+                                count <= 0 && clearInterval(interval)
+                            }, transitTime*2);
+        }
+    }
+
     const djunrAsk = document.createElement('div');
     djunrAsk.classList.add('game-menu__djunrAsk');
-    djunrAsk.innerText = 'Вопросики';
+    const djunAskTitle = document.createElement('h1');
+    djunAskTitle.textContent = 'F.A.Q.';
+    const asks = senorSayDict['FAQ'];
+
+    djunrAsk.appendChild(djunAskTitle);
+    for (let ask = 0; ask <= asks.length-1; ask++) {
+        const btn = document.createElement('button');
+        btn.classList.add('modalGameBtn', `ask-${ask+1}`);
+        btn.innerText = asks[ask];
+        djunrAsk.appendChild(btn);
+        btn.addEventListener('click', help.bind(null, senorSayDict[`help${ask+1}`], ask+1));
+    }
 
 
     /* Изображения Сеньора и Джуна */
@@ -68,14 +114,16 @@ export const createGameMenu = () => {
     /* Очистка контейнера и обнуление переменных */
     const gameSection = document.querySelector('.game-section-container');
     gameSection.innerHTML = '';
-    countBreamObj['countBream'] = 0;
-   
+    countersSQ['countBream'] = 0;
+    countersSQ['countSenorQuestion'] = 0;
+    
 
     /* Создание кнопок */
     const createStarttButton = (tagsNum, minute, second) => {
         const button = document.createElement('button');
-        button.classList.add('game-menu__difficult-btn');
-        button.innerText = `Сверстать проект на\n${tagsNum} тегов`;
+        button.classList.add('game-btns');
+        button.innerText = `Сверстать проект на 
+                            ${tagsNum/2} ${wordDeclension(tagsNum/2, wordsDict['tag'])}`;
         button.addEventListener('click', () => gameLogic(tagsNum, minute, second));
         return button;
     }
@@ -107,6 +155,8 @@ export const createGameMenu = () => {
         label_codeReview_CheckBox,
         label_evilSenor_CheckBox,
     );
+
+    senorSay.appendChild(dialodInfo);
 
     heroesImgs.append(
         djunImg,

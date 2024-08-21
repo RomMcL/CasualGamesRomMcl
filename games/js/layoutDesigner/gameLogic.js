@@ -1,24 +1,34 @@
-import { settingsDict, senorSayDict } from "./parametersGame.js"
+import { settingsDict, senorSayDict, wordsDict } from "./parametersGame.js"
+import { wordDeclension } from "../commonUtilities.js"
 import { createTagsArray } from "./layoutDesignerUtils.js"
 import { createGameCard } from "./gameCard.js"
 import { createGameMenu, codeReview, evilSenor } from "./gameMenu.js"
-import { startSenorQuestion, countBreamObj } from "./gameSenorQuestions.js"
+import { startSenorQuestion, countersSQ } from "./gameSenorQuestions.js"
+import { endGame } from "./gameEnd.js"
+
 
 
 export const gameLogic = (tagsNum, minute, second) => {
     let indexFirstCard = null;
     let indexSecondCard = null;
     let clickableCard = true;
+    
+    let isGameWin = false;
     let isDeadline = false;
+    let isLimitBreams = false;
+    let restarted = false;
     
     const header = document.querySelector('.header');
     header.style.display = 'none';
 
     const gameSection = document.querySelector('.game-section-container');
 
-    const senorCommit = document.createElement('div');
-    senorCommit.textContent = senorSayDict['startGame'];
+    const senorCommit = document.createElement('div');   
     senorCommit.id = 'senor-commit';
+    const dialodCommit = document.createElement('p');
+    dialodCommit.id = 'dialod-commit';
+    dialodCommit.classList.add('dialog');
+    dialodCommit.textContent = senorSayDict['startGame'];
     const gameTable = document.createElement('div');
     gameTable.classList.add('game-table', `table-${tagsNum}`); 
     const cardCenter = document.createElement('div');
@@ -26,7 +36,8 @@ export const gameLogic = (tagsNum, minute, second) => {
     const senorCabinet = document.createElement('div');
     senorCabinet.classList.add('senor-cabinet');
     const cabinetSenorImg = document.createElement('div');
-    cabinetSenorImg.classList.add('cabinet-senorImg');
+    cabinetSenorImg.id = 'cabinet-senorImg';
+    /* cabinetSenorImg.classList.add('cabinet-senorImg'); */
     const deadlineWrapper = document.createElement('div');
     deadlineWrapper.classList.add('deadline-wrapper');   
     const deadlineTitle = document.createElement('span');
@@ -52,14 +63,14 @@ export const gameLogic = (tagsNum, minute, second) => {
         breamImg.id = 'bream-img';
         let countBreamSpan = document.createElement('span');
         countBreamSpan.id = 'bream-count';
-        countBreamSpan.textContent = countBreamObj['countBream'];
+        countBreamSpan.textContent = countersSQ['countBream'];
         breamWrapper.append(cabInfoBreamTitle, breamImg, countBreamSpan);
     }
     const gameFooter = document.createElement('div');
     gameFooter.classList.add('game-footer');
     const restartBtn = document.createElement('button');
     restartBtn.textContent = 'Рестарт';
-    restartBtn.classList.add('restart-btn');
+    restartBtn.classList.add('game-btns');
 
     const cardsTags = createTagsArray(tagsNum);
 
@@ -71,6 +82,8 @@ export const gameLogic = (tagsNum, minute, second) => {
                        senorCabinet,
                        gameFooter
                        );
+
+    senorCommit.appendChild(dialodCommit);
 
     gameTable.append(cardCenter);
     cardsTags.forEach(tag => gameTable.append(createGameCard('cartShirt', tag)));
@@ -89,8 +102,6 @@ export const gameLogic = (tagsNum, minute, second) => {
         case 8: 
             gameTable.style.gap = '3%';
             break;
-        case 12: 
-            break;
         case 24: 
             cards[2].style.cssText = 'grid-column: 5;';
             cards[10].style.cssText = 'grid-column: 2;';
@@ -98,10 +109,24 @@ export const gameLogic = (tagsNum, minute, second) => {
             cards[14].style.cssText = 'grid-column: 1;';
             cards[22].style.cssText = 'grid-column: 5;';
             break;
-        case 32: 
-            break;
         default:
-            console.log("Неведомая ошибка.");
+            break;
+    }
+
+    let allSecondsSpent = 0;
+    
+    const stopGame = (message) => {    
+        dialodCommit.textContent = senorSayDict[message];
+        for(let card of cards) card.style.pointerEvents = 'none';
+        restartBtn.style.pointerEvents = 'none';
+        
+        const minutesSpent = Math.floor((allSecondsSpent - 1) / 60);
+        const secondsSpent = (allSecondsSpent - 1) % 60;
+        const timeSpent = `${minutesSpent} ${wordDeclension(minutesSpent, wordsDict['minute'])} и ${secondsSpent} ${wordDeclension(secondsSpent, wordsDict['second'])}`;
+
+        const finalStaus = {'isGameWin': isGameWin, 'isDeadline': isDeadline, 'isLimitBreams': isLimitBreams}
+        
+        endGame(tagsNum, timeSpent, finalStaus);
     }
     
     const deadLineTimer = (min, sec) => {
@@ -109,26 +134,48 @@ export const gameLogic = (tagsNum, minute, second) => {
         let currentSec = sec;
         cabInfoDeadline.style.color = "inherit"
         let timerInterval = setInterval(() => {
-            if (currentMin == 0 && currentSec <= 10) cabInfoDeadline.style.color = "red";
-            cabInfoDeadline.textContent = `${currentMin.toString().padStart(2, '0')} : 
-                                           ${currentSec.toString().padStart(2, '0')}`; 
-            if (currentMin == 0 && currentSec == 0) {
-                isDeadline = true;
-                for(let card of cards) card.style.pointerEvents = 'none';
-                restartBtn.style.pointerEvents = 'none';
+            console.log('тик')
+            if (isGameWin || isLimitBreams || isDeadline || restarted)  {
                 clearInterval(timerInterval);
-            } else if (currentSec == 0) {
-                currentSec = 59;
-                currentMin--;
-            } else currentSec--;       
+                console.log('таймер выключен')
+            }
+            else {
+                if (currentMin == 0 && currentSec <= 10) {
+                    cabInfoDeadline.style.color = "red";
+                    dialodCommit.textContent = senorSayDict['deadlineWarning'];
+                }
+
+                cabInfoDeadline.textContent = `${currentMin.toString().padStart(2, '0')} : 
+                                            ${currentSec.toString().padStart(2, '0')}`;
+
+                if (currentMin <= 0 && currentSec <= 0) {
+                    console.log('Время вышло! Проигрыш.');
+                    isDeadline = true;
+                    stopGame('deadline');
+                    /* clearInterval(timerInterval); */
+                } else if (currentSec == 0) {
+                    currentSec = 59;
+                    currentMin--;
+                } else currentSec--;
+            }
+            allSecondsSpent++;
         }, 1000);
     }
     deadLineTimer(minute, second);
 
 
-    restartBtn.addEventListener('click', createGameMenu);
+    restartBtn.addEventListener('click', () => {
+        restarted = true;
+        createGameMenu();
+    });
 
     cards.forEach((card, index) => card.addEventListener('click', () => {
+        
+        if (countersSQ['countBream'] >= settingsDict['maxBreams'] && evilSenor) {
+            console.log('Перебор Лещей! Проигрыш.');
+            isLimitBreams = true;
+            stopGame('limitBreams');           
+        }
 
         if (clickableCard == true && !card.classList.contains('successfully')) {
 
@@ -156,7 +203,7 @@ export const gameLogic = (tagsNum, minute, second) => {
 
             const guessedPair = () => {
                 /* console.log("угадали"); */
-                senorCommit.textContent = senorSayDict['anyQuestions'];
+                dialodCommit.textContent = senorSayDict['anyQuestions'];
                 setTimeout(() => {
                     try {
                         cards[indexFirstCard].classList.add('successfully');
@@ -175,7 +222,12 @@ export const gameLogic = (tagsNum, minute, second) => {
                 console.log("вторая = " + secondTag); */
                 if(firstTag.replace(/[^a-zA-Z]/g, '') == '') currentTag = secondTag.replace(/[^a-zA-Z]/g, '');
                 else currentTag = firstTag.replace(/[^a-zA-Z]/g, '');
-                startSenorQuestion(currentTag);
+
+                if (Array.from(cards).every(card => card.className.includes('flip'))) {
+                    console.log('Приз в студию, ёпта!!!');
+                    isGameWin = true;
+                    stopGame('projectCompleted');                  
+                } else startSenorQuestion(currentTag);                
             }
 
             const notGuessedPair = () => {
@@ -198,7 +250,11 @@ export const gameLogic = (tagsNum, minute, second) => {
 
                 if (codeReview && firstTag.includes('/')) {
                     /* console.log('codeReview: ' + "неверный порядок"); */
-                    senorCommit.textContent = senorSayDict['codeReview'];
+                    if (evilSenor) {
+                        cabinetSenorImg.style.backgroundImage = 'url("./img/layoutDesigner/evil_senor.png")';
+                        setTimeout(() => cabinetSenorImg.style.backgroundImage = 'url("./img/layoutDesigner/menu_senor.png")', 1000);
+                    }
+                    dialodCommit.textContent = senorSayDict['codeReview'];
                     notGuessedPair();
                 } else guessedPair();
                  
@@ -206,27 +262,8 @@ export const gameLogic = (tagsNum, minute, second) => {
                 notGuessedPair();               
             }
 
-            if (Array.from(cards).every(card => card.className.includes('flip'))) {
-
-                console.log('Приз в студию, ёпта!!!');
-
-            }
-
         }
-
         
-
     }));
-
-
-    console.log('опыты');
-
-    
-
-
-    
-
-    
-    
 
 }

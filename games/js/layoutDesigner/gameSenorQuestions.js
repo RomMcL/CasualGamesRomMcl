@@ -4,7 +4,7 @@ import { createBream } from "./layoutDesignerUtils.js"
 import { shufflingArray } from "../commonUtilities.js"
 import { evilSenor } from "./gameMenu.js"
 
-export let countBreamObj = {'countBream': 0};
+export let countersSQ = {'countBream': 0, 'countSenorQuestion': 0};
 
 const modalSQ = document.getElementById('modal-senorQuestion');
 modalSQ.style.transition = `opacity ${settingsDict['fadeOutDelay']}ms`;
@@ -44,9 +44,16 @@ const createModalQuestion = (tag, answers) => {
         const sqSenorImg = document.createElement('img');
         sqSenorImg.id = 'senorQuestion-senorImg';
         sqSenorImg.src = './img/layoutDesigner/menu_senor.png';
-        sqSenorImg.alt = 'Вопрос от Сеньора';
-        const sqQuestion = document.createElement('h2');
+        sqSenorImg.alt = 'Сеньор';
+        const sqQuestion = document.createElement('div');
         sqQuestion.id = 'senorQuestion-question';
+        const sqQuestionTitle = document.createElement('h1');
+        sqQuestionTitle.id = 'senorQuestion-title';
+        sqQuestionTitle.textContent = senorSayDict['questionTitle'];
+        const sqQuestionText = document.createElement('h2');
+        sqQuestionText.id = 'senorQuestion-text';
+        sqQuestionText.classList.add('dialog');
+        sqQuestionText.innerText = `Джуниор, ты используешь тег ${questionTag}.\nА для чего он нужен?`;
         const sqAnswersList = document.createElement('ul');
         sqAnswersList.id = 'senorQuestion-answersList';        
         const answerBtn = document.createElement('span');
@@ -54,7 +61,7 @@ const createModalQuestion = (tag, answers) => {
         answerBtn.classList.add('modalGameBtn', 'btn-notActive');
 
 
-        sqQuestion.innerText = `Джуниор, ты используешь тег ${questionTag}.\nА для чего он нужен?`;
+        
 
         for (let i=0; i<4; i++) {
 
@@ -85,13 +92,14 @@ const createModalQuestion = (tag, answers) => {
         answerBtn.addEventListener('click', giveAnswer.bind(null, tag));
 
         modalSQ.appendChild(sqContainer);
-        sqContainer.append(sqSenorImg, sqQuestion, sqAnswersList, answerBtn);        
+        sqContainer.append(sqSenorImg, sqQuestion, sqAnswersList, answerBtn);
+        sqQuestion.append(sqQuestionTitle, sqQuestionText);
 }
 
 
 const giveAnswer = (tag) => {
 
-    const senorCommit = document.getElementById('senor-commit');
+    const dialodCommit = document.getElementById('senor-commit').firstChild;
     let options = document.getElementsByName('optionRadio');
     let optionValue = '';
     let currentOption = null;
@@ -103,26 +111,27 @@ const giveAnswer = (tag) => {
         }
     }
 
-
     if (tag == optionValue) {
         /* console.log('правильно'); */
         currentOption.parentElement.style.backgroundColor = 'green';
-        senorCommit.textContent = senorSayDict['correctAnswer'];
-
+        dialodCommit.textContent = senorSayDict['correctAnswer'];
     } else {
         /* console.log('не правильно'); */
-        senorCommit.textContent = senorSayDict['incorrectAnswer'];
+        dialodCommit.textContent = senorSayDict['incorrectAnswer'];
         currentOption.parentElement.style.backgroundColor = 'red';
-        countBreamObj['countBream']++
+        countersSQ['countBream']++
         if (evilSenor) {
-            document.getElementById('bream-count').textContent = countBreamObj['countBream'];
-            createBream(countBreamObj['countBream']);
-            senorCommit.textContent += senorSayDict['evilIncorrectAnswer'];
-        } else senorCommit.textContent += ` Правильный ответ: ${optionValue} ${tagsDict[optionValue]}`;
-
+            document.getElementById('bream-count').textContent = countersSQ['countBream'];
+            createBream(countersSQ['countBream']);
+            dialodCommit.textContent += senorSayDict['evilIncorrectAnswer'];
+            const cabinetSenorImg = document.getElementById('cabinet-senorImg');
+            cabinetSenorImg.style.backgroundImage = 'url("./img/layoutDesigner/evil_senor.png")';
+            setTimeout(() => cabinetSenorImg.style.backgroundImage = 'url("./img/layoutDesigner/menu_senor.png")', 2000);
+        } else dialodCommit.textContent += ` Правильный ответ: ${optionValue} ${tagsDict[optionValue]}`;
     }
 
-
+    countersSQ['countSenorQuestion']++;
+    
     modalSQ.style.opacity = '0';
     modalSQ.style.pointerEvents = 'none';
     setTimeout(() => {
@@ -131,3 +140,4 @@ const giveAnswer = (tag) => {
     }, settingsDict['fadeOutDelay']);
    
 }
+

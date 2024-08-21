@@ -1,3 +1,12 @@
+
+@font-face {
+    font-family: "Zhizn";
+    src: url("../../../font/Zhizn.otf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+
 *,
 *::before,
 *::after {
@@ -7,8 +16,10 @@
     user-select: none;
 }
 
+
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Zhizn, Arial, Helvetica, sans-serif;
+    font-size: 16xp;
     background-image: url("../../img/layoutDesigner/bodyFon.svg");
     background-size: 200px;
     height: 100vh;
@@ -40,19 +51,29 @@ body {
 
 
 .header {
-    padding: 1.5em 1em;
+    
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 1em;
+
+    padding: 1em 1em;
+
 }
 
 .header-title {
+
+    flex-grow: 1;
     text-align: center;
-    color: #1f1d1d;
+
 }
 
 main {
     flex-grow: 1;
     display: flex;
 
-    background-color: red;
+    /* background-color: red; */
 }
 
 .game-section {
@@ -60,7 +81,7 @@ main {
     width: 100%;
 
     
-    background-color: blue;
+    /* background-color: blue; */
 }
 
 .game-section-container {
@@ -78,7 +99,7 @@ main {
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: repeat(4, 1fr);
 
-    background-color: grey;
+    /* background-color: grey; */
 }
 
 
@@ -91,46 +112,23 @@ main {
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: flex-start;
+    row-gap: 0.5em;
 
-    background-color: yellowgreen;
+    /* background-color: yellowgreen; */
 
 }
 
 
 .game-menu__title_startGame {
     margin: 0;
-    margin-bottom: 15px;
     text-align: center;
-    color: #000;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
 }
 
-.game-menu__difficult-btn {
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    border: none;
-    margin: 0;
-    margin-bottom: 1em;
-    padding: 0;
-    background: transparent;
-    color: #222;
-    transition: background-color .3s ease-in-out, color .3s ease-in-out;
 
-    
-}
-
-.game-menu__difficult-btn {
-    padding: 15px 20px;
-    background-color: #5dc6ff;
-}
-
-.game-menu__difficult-btn:hover {
-    transition: background-color .3s ease-in-out, color .3s ease-in-out;
-    background-color: #222;
-    color: #fff;
-}
 
 
 .game-menu__block_complexityGame {
@@ -147,12 +145,14 @@ main {
     /* align-self: flex-start; */
 
 
-    background-color: rgb(218, 90, 96);
+    /* background-color: rgb(218, 90, 96); */
 }
 
 .game-menu__title_complexityGame {
+    margin: 0;
     text-align: center;
-    color: #000;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
 }
 
 
@@ -162,9 +162,12 @@ main {
     grid-row-start: 3;
     grid-row-end: 4;
 
-    /* z-index: 1; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     
-    background-color: rgb(10, 195, 241);
+    /* background-color: rgb(10, 195, 241); */
 }
 
 .game-menu__djunrAsk {
@@ -173,9 +176,21 @@ main {
     grid-row-start: 3;
     grid-row-end: 6;
 
-    background-color: rgb(218, 38, 143);
-}
+    display: flex;
+    flex-flow: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+    row-gap: 0.5em;
+    margin-bottom: 1em;
 
+
+    /* background-color: rgb(218, 38, 143); */
+}
+.game-menu__djunrAsk *:first-child {
+    align-self: center;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+}
 
 
 .game-menu__heroesImgs {
@@ -184,17 +199,19 @@ main {
     grid-row-start: 4;
     grid-row-end: 5;
 
+    margin-top: 0.5em;
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-around;
+    align-items: flex-end;
 
-    background-color: rgb(142, 233, 82);
+    /* background-color: rgb(142, 233, 82); */
 }
 
 .game-menu__djunImg {
-    background-color: aquamarine;
+    /* background-color: aquamarine; */
     
-    height: 100%;
+    height: 90%;
     aspect-ratio: 1 / 1;
     background-image: url("../../img/layoutDesigner/menu_djun.png");
     background-repeat: no-repeat;
@@ -203,7 +220,7 @@ main {
 }
 
 .game-menu__senorImg {
-    background-color: #5dc6ff;
+    /* background-color: #5dc6ff; */
 
     height: 100%;
     aspect-ratio: 1 / 1;
@@ -218,23 +235,22 @@ main {
 
 
 #senor-commit {
-    /* width: 100%;
-    aspect-ratio: 3 / 1; */
-
     grid-column-start: 1;
     grid-column-end: 10;
     grid-row-start: 1;
     grid-row-end: 2;
-
-
     display: flex;
     justify-content: center;
     align-items: center;
     
-    background-color: #fff;
+    /* background-color: #fff; */
+}
+#dialod-commit {
+    text-align: center;
+    font-size: 2em;
 }
 
-.cabinet-senorImg {
+#cabinet-senorImg {
     grid-column-start: 10;
     grid-column-end: 13;
     grid-row-start: 1;
@@ -248,7 +264,7 @@ main {
     background-position: bottom right;
     background-size: contain;
 
-    background-color: #5dc6ff;
+    /* background-color: #5dc6ff; */
 }
 
 
@@ -276,13 +292,13 @@ main {
     grid-row-start: 2;
     grid-row-end: 5;
 
-
-    background-color: aquamarine;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 1em;
     
     display: grid;
     gap: 1%;
-    
-    
+
+ /* background-color: aquamarine; */   
 
 }
 
@@ -302,9 +318,9 @@ main {
 
 
 .game-card-center {
-    background-color: #d18f2c;
+    /* background-color: #d18f2c; */
     border-radius: 1em;
-    background-image: url("../../img/layoutDesigner/menu_djun.png");
+    background-image: url("../../img/layoutDesigner/focused_djun.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;   
@@ -397,10 +413,13 @@ main {
     justify-content: space-around;
     row-gap: 1em;
    
+    border: 1px solid #000;
+    border-radius: 1em;
+
+    margin-left: 1em;
 
 
-
-    background-color: rgb(231, 166, 68);
+    /* background-color: rgb(231, 166, 68); */
 }
 
 
@@ -410,14 +429,15 @@ main {
     flex-flow: column nowrap;
     align-items: center;
     justify-content: center;
-    margin-left: 1em;
+    margin-inline: 0.3em;
     text-align: center;
 
-    background-color: #cfcdca;
+    /* background-color: #cfcdca; */
 }
 
 .cabInfo-title {
     font-size: 1.5em;
+    font-weight: bold;
     margin-bottom: 0.5em;
 }
 
@@ -439,7 +459,7 @@ main {
     margin: 1em auto;
 
 
-    background-color: #d18f2c;
+    /* background-color: #d18f2c; */
 }
 #bream-1,
 #bream-2,
@@ -451,7 +471,7 @@ main {
     transform: translateX(-50%);
     width:70%;
     height:130%;
-    background-image: url("../../img/layoutDesigner/bream.png");
+    background-image: url("../../img/layoutDesigner/bream.svg");
     background-repeat: no-repeat;
     background-position: bottom;
     background-size: cover;
@@ -485,30 +505,8 @@ main {
     justify-content: center;
     align-items: center;
 
-    background-color: #0a3952;
+    /* background-color: #0a3952; */
 }
-
-.restart-btn {
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    border: none;
-    margin: 10px;
-    padding: 0;
-    background: transparent;
-    color: #222;
-    transition: background-color .3s ease-in-out, color .3s ease-in-out;
-    padding: 15px 20px;
-    background-color: #5dc6ff;
-}
-
-.restart-btn:hover {
-    transition: background-color .3s ease-in-out, color .3s ease-in-out;
-    background-color: #222;
-    color: #fff;
-}
-
-
 
 
 
@@ -529,9 +527,11 @@ main {
     display: none;
 }
 
+
 #senorQuestion-container,
 #endGame-container {
-    width: 80%;
+    width: 90%;
+    max-width: 1000px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -543,9 +543,7 @@ main {
     justify-content: center;
     align-items: center;
     column-gap: 5%;
-    row-gap: 1em;
-
-    
+    row-gap: 1em;    
     background-color: #fff;
   }
 
@@ -555,28 +553,225 @@ main {
     width: 30%;
     transform: scaleX(-1);
 
-    background-color: #e45c94;
+    /* background-color: #e45c94; */
 }
 
 #senorQuestion-question {
     
     width: 65%;
+    align-self: stretch;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    
 
-    background-color: #76db82;
+    /* background-color: #76db82; */
 }
+
+#senorQuestion-text {   
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+
 
 #senorQuestion-answersList {
     width: 100%;
     list-style: none;
 
-    background-color: #77b4e6;
+    /* background-color: #77b4e6; */
 }
 
-#senorQuestion-btn {
+/* #senorQuestion-btn {
 
     cursor: pointer;
     background-color: #5e5463;
+} */
+
+
+
+
+
+#endGame-title {
+    width: 100%;
+    text-align: center;
+
+
+    /* background-color: #76db82; */
 }
+
+
+#endGame-body {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#endGame-senorImg,
+#endGame-djunImg {
+    width: 30%;
+    transform: scaleX(-1);
+}
+
+#endGame-senorSay,
+#endGame-result {
+    width: 65%;
+    text-align: center;
+    margin-bottom: 0.5em;
+
+    /* background-color: #84e09b; */
+}
+
+
+
+#endGame-senorText {
+    font-size: 1.6em;
+}
+
+#endGame-djunText {
+    font-size: 2.5em;
+}
+
+
+#endGame-footer {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+
+
+    /* background-color: #363a37; */
+}
+
+/* .game-menu__difficult-btn {
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    margin: 0;
+    margin-bottom: 1em;
+    padding: 0;
+    background: transparent;
+    color: #222;
+    transition: background-color .3s ease-in-out, color .3s ease-in-out;    
+}
+.game-menu__difficult-btn {
+    padding: 15px 20px;
+    background-color: #5dc6ff;
+}
+.game-menu__difficult-btn:hover {
+    transition: background-color .3s ease-in-out, color .3s ease-in-out;
+    background-color: #222;
+    color: #fff;
+} */
+
+
+
+/* Диалоговый параграф героев */
+.dialog {
+    border: 1px solid #000;
+    border-radius: 1em;
+    padding: 0.5em 1em;
+    text-align: center;
+}
+
+
+/*  Кнопки  */
+
+.game-btns,
+.modalGameBtn {
+    font-family: Zhizn, Arial, Helvetica, sans-serif;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: inherit;
+    background-color: #fff;
+    border: 2px solid #000;
+    border-bottom-left-radius: 1em 16em;
+    border-bottom-right-radius: 14em 1em;
+    border-top-left-radius: 16em 1em;
+    border-top-right-radius: 1em 14em;
+    box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
+    cursor: pointer;
+    /* line-height: 23px; */
+    outline: none;
+    padding: 0.5em 2em;
+    margin-bottom: 0.5em;
+    text-decoration: none;
+    transition: all 235ms ease-in-out;
+    touch-action: manipulation;
+  
+}
+
+.game-btns:hover {
+    box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
+    transform: translate3d(0, 2px, 0);
+}
+
+.game-btns:focus {
+    box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
+  }
+
+
+.modalGameBtn {
+    position: relative;
+    border-radius: 1em;
+}
+
+.modalGameBtn:hover {
+    box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
+    transform: translate3d(0, 2px, 0);
+}
+  
+.icon-span {
+    /* width: 2em; */
+    height: 100%;   
+    aspect-ratio: 1 / 1;
+    display: block;
+    position: absolute;
+    background-image: url("../../img/layoutDesigner/btn_icon.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    
+
+    /* background-color: #5dc6ff; */
+}
+
+#btn-returnMenu,
+#menu-closeGame {
+    padding-left: 3em;
+    padding-right: 1em;
+}
+#btn-returnMenu .icon-span,
+#menu-closeGame .icon-span {
+    top: 0;
+    left: 0;
+    transform: rotate(-90deg);
+}
+
+#btn-closeGame {
+    padding-left: 1em;
+    padding-right: 3em;
+}
+#btn-closeGame .icon-span {
+    top: 0;
+    right: 0;
+    transform: rotate(90deg);
+}
+
+
+.btn-notActive {
+    pointer-events: none;
+    cursor: none;
+    color: grey;
+}
+
+
+
 
 
 
@@ -586,19 +781,24 @@ main {
 label:has(> #checkbox_codeReview),
 label:has(> #checkbox_evilSenor),
 label:has(> .option-radio) {
+    font-weight: bold;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     column-gap: 1em;
-    padding-top: 0.3em;
+    padding: 0.2em;
     margin-left: 2em;
+    border-radius: 0.8em;
     overflow: hidden;   
     cursor: pointer;
+
+    /* background-color: #5dc6ff; */
 }
 
 label:has(> .option-radio) {
     border-radius: 1em;
     margin-left: 0;
+    /* padding: 0; */
 }
 
 #checkbox_codeReview,
@@ -622,7 +822,7 @@ label:has(> .option-radio) {
     width: 2.3em;
     border-radius: 0.6em;
     background-color: rgba(255,255,255,1);
-    outline: rgba(0,0,0,1) solid 1px;
+    outline: rgba(0,0,0,1) solid 2px;
     outline-offset:-3px;
 }
 
@@ -650,19 +850,4 @@ label:has(> .option-radio) {
     left: 1.7em;
 }
 
-.btn-notActive {
-    pointer-events: none;
-    cursor: none;
-    color: grey;
-}
 
-
-
-
-
-
-.modalGameBtn {
-    padding: 1em 2em;
-    border: 1px solid #000;
-    border-radius: 1em;
-}

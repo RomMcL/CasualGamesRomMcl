@@ -12,12 +12,14 @@ export function shufflingArray(arrForShuffling) {
 
 
 // склонение слов
-export function declensionNum(num, words) {
-    return words[(num % 100 > 4 && num % 100 < 20) ? 2 : [2, 0, 1, 1, 1, 2][(num % 10 < 5) ? num % 10 : 5]];
-}
-
-
-
+export function wordDeclension(num, arrText) {
+  if (num % 10 === 1 && num % 100 !== 11) {
+    return arrText[0];
+  } else if (num % 10 >= 2 && num % 10 <= 4 && (num % 100 < 10 || num % 100 >= 20)) {
+    return arrText[1];
+  }
+  return arrText[2];
+};
 
 
 
