@@ -1,6 +1,6 @@
 
 import { pairedTagsDict, singleTagsDict, settingsDict, senorSayDict } from "./parametersGame.js"
-import { createBream } from "./layoutDesignerUtils.js"
+import { createBream, alertResultAnswer } from "./layoutDesignerUtils.js"
 import { shufflingArray } from "../commonUtilities.js"
 import { evilSenor } from "./gameMenu.js"
 
@@ -112,13 +112,13 @@ const giveAnswer = (tag) => {
     }
 
     if (tag == optionValue) {
-        /* console.log('правильно'); */
-        currentOption.parentElement.style.backgroundColor = 'green';
-        dialodCommit.textContent = senorSayDict['correctAnswer'];
+        /* console.log('правильно ответил'); */
+        currentOption.parentElement.style.backgroundColor = settingsDict['winСolor'];
+        alertResultAnswer(dialodCommit, 'winСolor', 200, 'correctAnswer');
     } else {
-        /* console.log('не правильно'); */
-        dialodCommit.textContent = senorSayDict['incorrectAnswer'];
-        currentOption.parentElement.style.backgroundColor = 'red';
+        /* console.log('не правильно ответил'); */
+        currentOption.parentElement.style.backgroundColor = settingsDict['lossСolor'];
+        alertResultAnswer(dialodCommit, 'lossСolor', 200, 'incorrectAnswer');
         countersSQ['countBream']++
         if (evilSenor) {
             document.getElementById('bream-count').textContent = countersSQ['countBream'];
@@ -127,7 +127,7 @@ const giveAnswer = (tag) => {
             const cabinetSenorImg = document.getElementById('cabinet-senorImg');
             cabinetSenorImg.style.backgroundImage = 'url("./img/layoutDesigner/evil_senor.png")';
             setTimeout(() => cabinetSenorImg.style.backgroundImage = 'url("./img/layoutDesigner/menu_senor.png")', 2000);
-        } else dialodCommit.textContent += ` Правильный ответ: ${optionValue} ${tagsDict[optionValue]}`;
+        } else dialodCommit.textContent += ` Правильный ответ: ${tag} ${tagsDict[tag]}`;
     }
 
     countersSQ['countSenorQuestion']++;

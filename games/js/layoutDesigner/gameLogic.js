@@ -1,10 +1,11 @@
-import { settingsDict, senorSayDict, wordsDict } from "./parametersGame.js"
+import { settingsDict, senorSayDict, wordsDict, soundsDict } from "./parametersGame.js"
 import { wordDeclension } from "../commonUtilities.js"
-import { createTagsArray } from "./layoutDesignerUtils.js"
+import { createTagsArray, alertResultAnswer } from "./layoutDesignerUtils.js"
 import { createGameCard } from "./gameCard.js"
-import { createGameMenu, codeReview, evilSenor } from "./gameMenu.js"
+import { createGameMenu, codeReview, evilSenor, musicSelected } from "./gameMenu.js"
 import { startSenorQuestion, countersSQ } from "./gameSenorQuestions.js"
 import { endGame } from "./gameEnd.js"
+import { createPlayer } from "./gameSound.js"
 
 
 
@@ -20,6 +21,8 @@ export const gameLogic = (tagsNum, minute, second) => {
     
     const header = document.querySelector('.header');
     header.style.display = 'none';
+    document.documentElement.style.setProperty('--dialogBubble-color', '');
+
 
     const gameSection = document.querySelector('.game-section-container');
 
@@ -33,11 +36,11 @@ export const gameLogic = (tagsNum, minute, second) => {
     gameTable.classList.add('game-table', `table-${tagsNum}`); 
     const cardCenter = document.createElement('div');
     cardCenter.classList.add('game-card-center', `center-card-${tagsNum}`);
+    musicSelected && (cardCenter.style.backgroundImage = 'url("./img/layoutDesigner/music_djun.png")');
     const senorCabinet = document.createElement('div');
     senorCabinet.classList.add('senor-cabinet');
     const cabinetSenorImg = document.createElement('div');
     cabinetSenorImg.id = 'cabinet-senorImg';
-    /* cabinetSenorImg.classList.add('cabinet-senorImg'); */
     const deadlineWrapper = document.createElement('div');
     deadlineWrapper.classList.add('deadline-wrapper');   
     const deadlineTitle = document.createElement('span');
@@ -48,7 +51,7 @@ export const gameLogic = (tagsNum, minute, second) => {
     timerHead.textContent = 'осталось';
     const cabInfoDeadline = document.createElement('span');
     cabInfoDeadline.id = 'cabInfo-timer';
-    cabInfoDeadline.textContent = '-- : --';
+    cabInfoDeadline.textContent = '--:--';
     const timerFooter = document.createElement('span');
     timerFooter.classList.add('timer-head-footer');
     timerFooter.textContent = 'мин : сек';
@@ -93,11 +96,21 @@ export const gameLogic = (tagsNum, minute, second) => {
 
     deadlineWrapper.append(deadlineTitle, timerHead, cabInfoDeadline, timerFooter);
 
-    gameFooter.append(restartBtn);
+    gameFooter.appendChild(restartBtn);
+    musicSelected && gameFooter.appendChild(createPlayer());
 
+    /* Включение музыки */
+    if (musicSelected) {
+        const player = document.getElementById('music');
+        const btnPlayPause = document.getElementById('btn-playPause');
+        if (player.paused || player.ended) {
+            btnPlayPause.style.backgroundImage = soundsDict['pause'];
+            player.play();}
+    }
+    
+
+    /* Кейсы для изменения игрового поля в зависимости от количества карточек */
     const cards = document.querySelectorAll('.game-card');
-
-
     switch(tagsNum) {
         case 8: 
             gameTable.style.gap = '3%';
@@ -117,6 +130,8 @@ export const gameLogic = (tagsNum, minute, second) => {
     
     const stopGame = (message) => {    
         dialodCommit.textContent = senorSayDict[message];
+        isGameWin ? dialodCommit.style.backgroundColor = settingsDict['winСolor'] :
+                    dialodCommit.style.backgroundColor = settingsDict['lossСolor'];
         for(let card of cards) card.style.pointerEvents = 'none';
         restartBtn.style.pointerEvents = 'none';
         
@@ -134,7 +149,7 @@ export const gameLogic = (tagsNum, minute, second) => {
         let currentSec = sec;
         cabInfoDeadline.style.color = "inherit"
         let timerInterval = setInterval(() => {
-            console.log('тик')
+            /* console.log('тик') */
             if (isGameWin || isLimitBreams || isDeadline || restarted)  {
                 clearInterval(timerInterval);
                 console.log('таймер выключен')
@@ -142,11 +157,10 @@ export const gameLogic = (tagsNum, minute, second) => {
             else {
                 if (currentMin == 0 && currentSec <= 10) {
                     cabInfoDeadline.style.color = "red";
-                    dialodCommit.textContent = senorSayDict['deadlineWarning'];
+                    currentSec > 9 && alertResultAnswer(dialodCommit, 'lossСolor', 200, 'deadlineWarning');
                 }
 
-                cabInfoDeadline.textContent = `${currentMin.toString().padStart(2, '0')} : 
-                                            ${currentSec.toString().padStart(2, '0')}`;
+                cabInfoDeadline.textContent = `${currentMin.toString().padStart(2, '0')}:${currentSec.toString().padStart(2, '0')}`;
 
                 if (currentMin <= 0 && currentSec <= 0) {
                     console.log('Время вышло! Проигрыш.');
@@ -163,12 +177,13 @@ export const gameLogic = (tagsNum, minute, second) => {
     }
     deadLineTimer(minute, second);
 
-
+    // Слушатель кнопки Рестарт
     restartBtn.addEventListener('click', () => {
         restarted = true;
         createGameMenu();
     });
 
+    // Слушатель Карточек
     cards.forEach((card, index) => card.addEventListener('click', () => {
         
         if (countersSQ['countBream'] >= settingsDict['maxBreams'] && evilSenor) {
@@ -224,7 +239,7 @@ export const gameLogic = (tagsNum, minute, second) => {
                 else currentTag = firstTag.replace(/[^a-zA-Z]/g, '');
 
                 if (Array.from(cards).every(card => card.className.includes('flip'))) {
-                    console.log('Приз в студию, ёпта!!!');
+                    console.log('Приз в студию!!!');
                     isGameWin = true;
                     stopGame('projectCompleted');                  
                 } else startSenorQuestion(currentTag);                
@@ -254,7 +269,7 @@ export const gameLogic = (tagsNum, minute, second) => {
                         cabinetSenorImg.style.backgroundImage = 'url("./img/layoutDesigner/evil_senor.png")';
                         setTimeout(() => cabinetSenorImg.style.backgroundImage = 'url("./img/layoutDesigner/menu_senor.png")', 1000);
                     }
-                    dialodCommit.textContent = senorSayDict['codeReview'];
+                    alertResultAnswer(dialodCommit, 'lossСolor', 200, 'codeReview');
                     notGuessedPair();
                 } else guessedPair();
                  

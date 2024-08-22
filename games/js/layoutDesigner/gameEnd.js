@@ -7,14 +7,11 @@ import { countersSQ } from "./gameSenorQuestions.js"
 const modalEG = document.getElementById('modal-endGame');
 const modalSQ = document.getElementById('modal-senorQuestion');
 
-
-
 export const endGame = (tagsNum, timeSpent, finalStaus) => {
   
     modalSQ.textContent = '';
     modalSQ.style.display = 'none';
     
-
     const finalResult = () => {
         let senorText, djunText, senorImgLink, djunImgLink = '';
         let breams = countersSQ['countBream'];
@@ -95,6 +92,13 @@ export const endGame = (tagsNum, timeSpent, finalStaus) => {
     djunText.id = 'endGame-djunText';
     djunText.classList.add('dialog');
     djunText.innerText = result['djunText'];
+    if (finalStaus['isGameWin']) {
+        djunText.style.backgroundColor = settingsDict['winСolor'];
+        document.documentElement.style.setProperty('--dialogBubble-color', settingsDict['winСolor']);
+    } else {
+        djunText.style.backgroundColor = settingsDict['lossСolor'];
+        document.documentElement.style.setProperty('--dialogBubble-color', settingsDict['lossСolor']);
+    }
 
     const endGameBtns = document.createElement('div');
     endGameBtns.id = 'endGame-footer';
@@ -115,9 +119,6 @@ export const endGame = (tagsNum, timeSpent, finalStaus) => {
     const iconSpan2 = document.createElement('span');
     iconSpan2.classList.add('icon-span');
     exitBtn.append(document.createTextNode('К каталогу игр'), iconSpan2);
-
-    /* exitBtn.innerText = 'К каталогу игр'; */
-
 
     modalEG.appendChild(endGameContainer);
     endGameContainer.append(endGameTitle,

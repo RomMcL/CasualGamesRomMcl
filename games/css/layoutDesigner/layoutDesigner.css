@@ -17,6 +17,16 @@
 }
 
 
+:root {
+    --fon-color: #D9D9D9;
+    --elements-color: #fff;
+    --dialogBubble-color: var(--elements-color);
+    --width_toggle: 6em;
+	--height_toggle: calc(var(--width_toggle) / 3);
+}
+
+
+
 body {
     font-family: Zhizn, Arial, Helvetica, sans-serif;
     font-size: 16xp;
@@ -32,12 +42,6 @@ body {
 
 
 .game-content {
-    /* position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 10; */
-    background-color: #fff;
 
     width: 100%;
     max-width: 1250px;
@@ -47,6 +51,7 @@ body {
     border-radius: 2em;
     display: flex;
     flex-flow: column nowrap;
+    background-color: var(--fon-color);
 }
 
 
@@ -89,11 +94,6 @@ main {
     height: 100%;
     margin: 0 1em;
     
-    /* display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-    align-items: flex-start;
-    column-gap: 1em; */
     
     display: grid;
     grid-template-columns: repeat(12, 1fr);
@@ -131,7 +131,8 @@ main {
 
 
 
-.game-menu__block_complexityGame {
+.game-menu__block_complexityGame,
+.game-menu__block_soundGame {
     grid-column-start: 6;
     grid-column-end: 9;
     grid-row-start: 1;
@@ -142,17 +143,44 @@ main {
     justify-content: center;
     align-items: flex-start;
     row-gap: 1em;
-    /* align-self: flex-start; */
-
 
     /* background-color: rgb(218, 90, 96); */
 }
 
-.game-menu__title_complexityGame {
+.game-menu__block_soundGame {
+    grid-column-start: 6;
+    grid-column-end: 9;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    width: fit-content;
+    justify-content: flex-start;
+
+    /* background-color: rgb(128, 58, 62); */
+}
+
+.game-menu__title_complexityGame,
+.game-menu__title_soundGame {
     margin: 0;
     text-align: center;
     text-decoration: underline;
     text-underline-offset: 0.2em;
+}
+
+
+.game-menu__djun_soundGame {
+    grid-column-start: 9;
+    grid-column-end: 13;
+    grid-row-start: 1;
+    grid-row-end: 3;
+
+    width: 100%;
+    background-image: url("../../img/layoutDesigner/wtf_djun.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 80%;
+
+
+    /* background-color: rgb(245, 86, 94); */
 }
 
 
@@ -165,10 +193,21 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 1.4em;
+    font-weight: bold;
 
     
     /* background-color: rgb(10, 195, 241); */
 }
+.game-menu__senorSay p::before {
+    top: 105%;
+    left: 60%;    
+}
+.game-menu__senorSay p::after {
+    top: 130%;
+    left: 64%;    
+}
+
 
 .game-menu__djunrAsk {
     grid-column-start: 1;
@@ -249,6 +288,16 @@ main {
     text-align: center;
     font-size: 2em;
 }
+#dialod-commit::before {
+    top: 20%;
+    left: 101%;
+    background-color: var(--dialogBubble-color);    
+}
+#dialod-commit::after {
+    top: 30%;
+    left: 105%;
+    background-color: var(--dialogBubble-color);   
+}
 
 #cabinet-senorImg {
     grid-column-start: 10;
@@ -257,8 +306,6 @@ main {
     grid-row-end: 2;
 
 
-    /* width: 100%;
-    aspect-ratio: 1 / 1; */
     background-image: url("../../img/layoutDesigner/menu_senor.png");
     background-repeat: no-repeat;
     background-position: bottom right;
@@ -266,19 +313,6 @@ main {
 
     /* background-color: #5dc6ff; */
 }
-
-
-
-/* .game-table-container {
-    width: 80%;
-    height: 100%;
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-    justify-content: space-between;
-
-    background-color: #e45c94;
-} */
 
 
 
@@ -406,7 +440,7 @@ main {
     grid-column-start: 11;
     grid-column-end: 13;
     grid-row-start: 2;
-    grid-row-end: 5;
+    grid-row-end: 6;
 
     display: flex;
     flex-flow: column nowrap;
@@ -417,6 +451,7 @@ main {
     border-radius: 1em;
 
     margin-left: 1em;
+    margin-bottom: 1em;
 
 
     /* background-color: rgb(231, 166, 68); */
@@ -443,8 +478,13 @@ main {
 
 
 #cabInfo-timer {
+    font-family: 'Courier New', Courier, monospace;
+   
     font-size: 2em;
+    font-weight: bold;
     white-space: nowrap;
+
+    /* background-color: antiquewhite; */
 }
 
 
@@ -457,9 +497,7 @@ main {
     border-radius: 50%;
     position:relative;
     margin: 1em auto;
-
-
-    /* background-color: #d18f2c; */
+    background-color: var(--elements-color);
 }
 #bream-1,
 #bream-2,
@@ -494,15 +532,16 @@ main {
     font-size: 3em;
 }
 
+
 .game-footer {
-    grid-column-start: 2;
-    grid-column-end: 12;
+    grid-column-start: 1;
+    grid-column-end: 11;
     grid-row-start: 5;
     grid-row-end: 6;
 
     display: flex;
     flex-flow: row nowrap;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 
     /* background-color: #0a3952; */
@@ -521,7 +560,6 @@ main {
     position: fixed;
     top: 0;
     left: 0;
-    /* z-index: 5001; */
     background-color: rgba(0, 0, 0, 0.8);
     opacity: 0;
     display: none;
@@ -544,7 +582,7 @@ main {
     align-items: center;
     column-gap: 5%;
     row-gap: 1em;    
-    background-color: #fff;
+    background-color: var(--fon-color);
   }
 
 
@@ -573,6 +611,14 @@ main {
     margin-top: auto;
     margin-bottom: auto;
 }
+#senorQuestion-text::before {
+    top: 10%;
+    left: -4%;    
+}
+#senorQuestion-text::after {
+    top: 20%;
+    left: -7%;    
+}
 
 
 
@@ -582,13 +628,6 @@ main {
 
     /* background-color: #77b4e6; */
 }
-
-/* #senorQuestion-btn {
-
-    cursor: pointer;
-    background-color: #5e5463;
-} */
-
 
 
 
@@ -630,9 +669,28 @@ main {
 #endGame-senorText {
     font-size: 1.6em;
 }
+#endGame-senorText::before {
+    top: 10%;
+    left: -4%;    
+}
+#endGame-senorText::after {
+    top: 20%;
+    left: -7%;    
+}
 
 #endGame-djunText {
     font-size: 2.5em;
+    font-weight: bold;
+}
+#endGame-djunText::before {
+    top: 10%;
+    left: 101%;
+    background-color: var(--dialogBubble-color);
+}
+#endGame-djunText::after {
+    top: 20%;
+    left: 105%;
+    background-color: var(--dialogBubble-color);  
 }
 
 
@@ -647,37 +705,36 @@ main {
     /* background-color: #363a37; */
 }
 
-/* .game-menu__difficult-btn {
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    border: none;
-    margin: 0;
-    margin-bottom: 1em;
-    padding: 0;
-    background: transparent;
-    color: #222;
-    transition: background-color .3s ease-in-out, color .3s ease-in-out;    
-}
-.game-menu__difficult-btn {
-    padding: 15px 20px;
-    background-color: #5dc6ff;
-}
-.game-menu__difficult-btn:hover {
-    transition: background-color .3s ease-in-out, color .3s ease-in-out;
-    background-color: #222;
-    color: #fff;
-} */
-
 
 
 /* Диалоговый параграф героев */
 .dialog {
+    background-color: var(--elements-color);
     border: 1px solid #000;
     border-radius: 1em;
     padding: 0.5em 1em;
     text-align: center;
+    position: relative;
 }
+.dialog::before {
+    content: "";
+    width: 3%;
+    aspect-ratio: 1 / 1;
+    border: 1px solid #000;
+    border-radius: 50%;
+    position: absolute;
+    background-color: var(--elements-color);
+}
+.dialog::after {
+    content: "";
+    width: 2%;
+    aspect-ratio: 1 / 1;
+    border: 1px solid #000;
+    border-radius: 50%;
+    position: absolute;
+    background-color: var(--elements-color);
+}
+
 
 
 /*  Кнопки  */
@@ -688,7 +745,7 @@ main {
     font-size: 1.1em;
     font-weight: bold;
     color: inherit;
-    background-color: #fff;
+    background-color: var(--elements-color);
     border: 2px solid #000;
     border-bottom-left-radius: 1em 16em;
     border-bottom-right-radius: 14em 1em;
@@ -771,8 +828,53 @@ main {
 }
 
 
+/* Аудио плеер */
 
+#audio-player {
+    width: fit-content;
+    height: 100%;
+    padding-left: 1em;
+    padding-right: 0.5em;
+    margin-bottom: 1em;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    column-gap: 2em;
+    box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px; 
+    background-color:var(--elements-color);
+    border:1px solid #000;
+    border-radius: 1em;    
+  }
 
+  .player-btn {
+    height: 80%;
+    aspect-ratio: 1 / 1;
+    border: none;
+    background: transparent;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+    transition: 0.5s;
+  }
+  #btn-playPause {
+    background-image: url("../../img/layoutDesigner/player_play.svg");
+  }
+  #btn-stop {
+    background-image: url("../../img/layoutDesigner/player_stop.svg");
+  }
+  #btn-volume {
+    background-image: url("../../img/layoutDesigner/player_volume1.svg");
+  }
+  #volume-value {
+    min-width: 2.5em;
+    margin-left: -1.5em;
+    background-color:#fff;
+  }
+  .player-btn:hover {
+    transform: scale(0.8);
+  }
 
 
 
@@ -821,7 +923,7 @@ label:has(> .option-radio) {
     height: 2.3em;
     width: 2.3em;
     border-radius: 0.6em;
-    background-color: rgba(255,255,255,1);
+    background-color: var(--elements-color);
     outline: rgba(0,0,0,1) solid 2px;
     outline-offset:-3px;
 }
@@ -850,4 +952,96 @@ label:has(> .option-radio) {
     left: 1.7em;
 }
 
+/* Переключатель */
 
+#label_checkbox_music {
+    position: relative;
+    display: inline-block;
+    width: var(--width_toggle);
+    height: var(--height_toggle);
+    box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
+    outline: #000 solid 1px;
+    border-radius: var(--height_toggle);
+    cursor: pointer;
+    margin: 0 auto;
+}
+
+#checkbox_music {
+    display: none;
+}
+
+.slider_soundGame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--height_toggle);
+    background: linear-gradient(90deg, rgba(162, 162, 162, 0.4) 50%, rgba(162,162,162,0.8) 100%);
+    transition: all 0.4s ease-in-out;
+}
+
+.slider_soundGame::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--height_toggle);
+    height: var(--height_toggle);
+    border-radius: calc(var(--height_toggle) / 2);
+    background-color: rgba(162,162,162,0.8);
+    box-shadow: 0px 0px 3px 8px rgba(255,255,255,1) inset;
+    outline: rgba(0,0,0,1) solid 1px;
+    outline-offset:-3px;
+    transition: all 0.4s ease-in-out;
+}
+
+#checkbox_music:checked+.slider_soundGame {
+    background: linear-gradient(-90deg, rgba(101,240,101,0.4) 50%, rgba(101,240,101,0.8) 100%);
+}
+
+#checkbox_music:checked+.slider_soundGame::before {
+    transform: translateX(calc(var(--width_toggle) - var(--height_toggle)));
+    background-color: rgba(101,240,101,0.8);
+}
+
+.labels_soundGame {
+    position: absolute;
+    top: 0.5rem;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 0.8em;
+    font-weight: bold;
+    color: #000;
+    transition: all 0.4s ease-in-out;
+    overflow: hidden;
+}
+
+.labels_soundGame::after {
+    content: "не хочу";
+    position: absolute;
+    right: 0.3rem;
+    opacity: 1;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.4);
+    transition: all 0.4s ease-in-out;
+}
+
+.labels_soundGame::before {
+    content: "конечно";
+    position: absolute;
+    left: calc(var(--height_toggle) - var(--width_toggle) + 0.5rem);
+    opacity: 0;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.4);
+    transition: all 0.4s ease-in-out;
+}
+
+#checkbox_music:checked~.labels_soundGame::after {
+    opacity: 0;
+    transform: translateX(calc(var(--width_toggle) - var(--height_toggle)));
+}
+
+#checkbox_music:checked~.labels_soundGame::before {
+    opacity: 1;
+    transform: translateX(calc(var(--width_toggle) - var(--height_toggle)));
+}

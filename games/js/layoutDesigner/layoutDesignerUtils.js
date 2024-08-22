@@ -1,4 +1,4 @@
-import { pairedTagsDict, singleTagsDict, settingsDict } from "./parametersGame.js"
+import { pairedTagsDict, singleTagsDict, settingsDict, senorSayDict } from "./parametersGame.js"
 import { shufflingArray } from "../commonUtilities.js"
 
 
@@ -29,4 +29,20 @@ export const createBream = (numberBream) => {
     bream.id = `bream-${numberBream}`;
     document.getElementById('bream-img').appendChild(bream);
     setTimeout(() => bream.style.opacity = '1', 500)        
+}
+
+
+export const alertResultAnswer = (element, color, speed, message) => {
+    element.textContent = senorSayDict[message];
+    let count = 3;
+    const interval = setInterval(() => {
+                        element.style.backgroundColor = settingsDict[color];
+                        document.documentElement.style.setProperty('--dialogBubble-color', settingsDict[color]);                           
+                        setTimeout(() => {
+                            element.style.backgroundColor = '';
+                            document.documentElement.style.setProperty('--dialogBubble-color', '');
+                        }, speed);
+                        count--;
+                        count <= 0 && clearInterval(interval)
+                    }, speed*2);
 }
