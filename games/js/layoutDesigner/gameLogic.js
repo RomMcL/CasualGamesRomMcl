@@ -18,11 +18,11 @@ export const gameLogic = (tagsNum, minute, second) => {
     let isDeadline = false;
     let isLimitBreams = false;
     let restarted = false;
-    
+ 
+    // Создание элементов игрового окна
     const header = document.querySelector('.header');
     header.style.display = 'none';
     document.documentElement.style.setProperty('--dialogBubble-color', '');
-
 
     const gameSection = document.querySelector('.game-section-container');
 
@@ -32,15 +32,19 @@ export const gameLogic = (tagsNum, minute, second) => {
     dialodCommit.id = 'dialod-commit';
     dialodCommit.classList.add('dialog');
     dialodCommit.textContent = senorSayDict['startGame'];
+
     const gameTable = document.createElement('div');
     gameTable.classList.add('game-table', `table-${tagsNum}`); 
     const cardCenter = document.createElement('div');
     cardCenter.classList.add('game-card-center', `center-card-${tagsNum}`);
     musicSelected && (cardCenter.style.backgroundImage = 'url("./img/layoutDesigner/music_djun.png")');
+
     const senorCabinet = document.createElement('div');
     senorCabinet.classList.add('senor-cabinet');
+
     const cabinetSenorImg = document.createElement('div');
     cabinetSenorImg.id = 'cabinet-senorImg';
+
     const deadlineWrapper = document.createElement('div');
     deadlineWrapper.classList.add('deadline-wrapper');   
     const deadlineTitle = document.createElement('span');
@@ -55,6 +59,7 @@ export const gameLogic = (tagsNum, minute, second) => {
     const timerFooter = document.createElement('span');
     timerFooter.classList.add('timer-head-footer');
     timerFooter.textContent = 'мин : сек';
+
     let breamWrapper = null;
     if (evilSenor) {
         breamWrapper = document.createElement('div');
@@ -69,6 +74,7 @@ export const gameLogic = (tagsNum, minute, second) => {
         countBreamSpan.textContent = countersSQ['countBream'];
         breamWrapper.append(cabInfoBreamTitle, breamImg, countBreamSpan);
     }
+
     const gameFooter = document.createElement('div');
     gameFooter.classList.add('game-footer');
     const restartBtn = document.createElement('button');
@@ -78,7 +84,8 @@ export const gameLogic = (tagsNum, minute, second) => {
     const cardsTags = createTagsArray(tagsNum);
 
     gameSection.innerHTML = '';
-       
+    
+    // Компоновка элементов
     gameSection.append(senorCommit,
                        cabinetSenorImg,
                        gameTable,
@@ -99,7 +106,7 @@ export const gameLogic = (tagsNum, minute, second) => {
     gameFooter.appendChild(restartBtn);
     musicSelected && gameFooter.appendChild(createPlayer());
 
-    /* Включение музыки */
+    // Включение музыки
     if (musicSelected) {
         const player = document.getElementById('music');
         const btnPlayPause = document.getElementById('btn-playPause');
@@ -109,7 +116,7 @@ export const gameLogic = (tagsNum, minute, second) => {
     }
     
 
-    /* Кейсы для изменения игрового поля в зависимости от количества карточек */
+    // Кейсы для изменения игрового поля в зависимости от количества карточек 
     const cards = document.querySelectorAll('.game-card');
     switch(tagsNum) {
         case 8: 
@@ -128,6 +135,7 @@ export const gameLogic = (tagsNum, minute, second) => {
 
     let allSecondsSpent = 0;
     
+    // Остановка и завершение игры
     const stopGame = (message) => {    
         dialodCommit.textContent = senorSayDict[message];
         isGameWin ? dialodCommit.style.backgroundColor = settingsDict['winСolor'] :
@@ -143,7 +151,8 @@ export const gameLogic = (tagsNum, minute, second) => {
         
         endGame(tagsNum, timeSpent, finalStaus);
     }
-    
+
+    // Таймер дедлайна
     const deadLineTimer = (min, sec) => {
         let currentMin = min;
         let currentSec = sec;
@@ -152,7 +161,7 @@ export const gameLogic = (tagsNum, minute, second) => {
             /* console.log('тик') */
             if (isGameWin || isLimitBreams || isDeadline || restarted)  {
                 clearInterval(timerInterval);
-                console.log('таймер выключен')
+                // console.log('таймер выключен')
             }
             else {
                 if (currentMin == 0 && currentSec <= 10) {
@@ -163,10 +172,9 @@ export const gameLogic = (tagsNum, minute, second) => {
                 cabInfoDeadline.textContent = `${currentMin.toString().padStart(2, '0')}:${currentSec.toString().padStart(2, '0')}`;
 
                 if (currentMin <= 0 && currentSec <= 0) {
-                    console.log('Время вышло! Проигрыш.');
+                    // console.log('Время вышло! Проигрыш.');
                     isDeadline = true;
                     stopGame('deadline');
-                    /* clearInterval(timerInterval); */
                 } else if (currentSec == 0) {
                     currentSec = 59;
                     currentMin--;
@@ -187,7 +195,7 @@ export const gameLogic = (tagsNum, minute, second) => {
     cards.forEach((card, index) => card.addEventListener('click', () => {
         
         if (countersSQ['countBream'] >= settingsDict['maxBreams'] && evilSenor) {
-            console.log('Перебор Лещей! Проигрыш.');
+            // console.log('Перебор Лещей! Проигрыш.');
             isLimitBreams = true;
             stopGame('limitBreams');           
         }
@@ -216,8 +224,9 @@ export const gameLogic = (tagsNum, minute, second) => {
             let firstTag = cards[indexFirstCard].firstChild.innerText;
             let secondTag = cards[indexSecondCard].firstChild.innerText;
 
+            // Пара угадана
             const guessedPair = () => {
-                /* console.log("угадали"); */
+                // console.log("угадали"); 
                 dialodCommit.textContent = senorSayDict['anyQuestions'];
                 setTimeout(() => {
                     try {
@@ -227,7 +236,7 @@ export const gameLogic = (tagsNum, minute, second) => {
                         indexSecondCard = null;
                         clickableCard = true;
                       } catch (e) {
-                        /* console.error(e); */
+                        // console.error(e);
                         console.log('Очень часто тыкаешь!');
                       }
                 }, settingsDict['conversionDelay']);
@@ -239,14 +248,15 @@ export const gameLogic = (tagsNum, minute, second) => {
                 else currentTag = firstTag.replace(/[^a-zA-Z]/g, '');
 
                 if (Array.from(cards).every(card => card.className.includes('flip'))) {
-                    console.log('Приз в студию!!!');
+                    // console.log('Приз в студию!!!');
                     isGameWin = true;
                     stopGame('projectCompleted');                  
                 } else startSenorQuestion(currentTag);                
             }
 
+            // Пара не угадана
             const notGuessedPair = () => {
-                /* console.log("не угадали"); */
+                // console.log("не угадали");
                 setTimeout(() => {  
                     try {
                         cards[indexFirstCard].classList.remove('flip');
@@ -255,8 +265,8 @@ export const gameLogic = (tagsNum, minute, second) => {
                         indexSecondCard = null;
                         clickableCard = true; 
                       } catch (e) {
-                        /* console.error(e); */
-                        console.log('Часто тыкаешь!');
+                        // console.error(e);
+                        //console.log('Часто тыкаешь!');
                       }
                 }, settingsDict['conversionDelay']);
             }
@@ -264,7 +274,7 @@ export const gameLogic = (tagsNum, minute, second) => {
             if (cards[indexFirstCard].firstElementChild.className === cards[indexSecondCard].firstElementChild.className) {
 
                 if (codeReview && firstTag.includes('/')) {
-                    /* console.log('codeReview: ' + "неверный порядок"); */
+                    // console.log('codeReview: ' + "неверный порядок");
                     if (evilSenor) {
                         cabinetSenorImg.style.backgroundImage = 'url("./img/layoutDesigner/evil_senor.png")';
                         setTimeout(() => cabinetSenorImg.style.backgroundImage = 'url("./img/layoutDesigner/menu_senor.png")', 1000);
@@ -276,9 +286,6 @@ export const gameLogic = (tagsNum, minute, second) => {
             } else {                 
                 notGuessedPair();               
             }
-
-        }
-        
+        }        
     }));
-
 }

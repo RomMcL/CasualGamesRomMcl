@@ -6,6 +6,13 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: "SpriteGraffiti";
+    src: url("../../../font/SpriteGraffiti.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
 
 *,
 *::before,
@@ -36,13 +43,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
 
 
 .game-content {
-
     width: 100%;
     max-width: 1250px;
     min-height: 90vh;
@@ -55,50 +60,40 @@ body {
 }
 
 
-.header {
-    
+.header {   
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
     column-gap: 1em;
-
     padding: 1em 1em;
-
 }
 
 .header-title {
-
     flex-grow: 1;
+    font-family: SpriteGraffiti, Arial, Helvetica, sans-serif;
+    font-size: 3.2em;
+    letter-spacing: 0.2em;
     text-align: center;
-
 }
 
 main {
     flex-grow: 1;
     display: flex;
-
     /* background-color: red; */
 }
 
-.game-section {
-    
-    width: 100%;
-
-    
+.game-section {    
+    width: 100%;    
     /* background-color: blue; */
 }
 
-.game-section-container {
-    
+.game-section-container {    
     height: 100%;
-    margin: 0 1em;
-    
-    
+    margin: 0 1em;    
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: repeat(4, 1fr);
-
     /* background-color: grey; */
 }
 
@@ -109,15 +104,12 @@ main {
     grid-row-start: 1;
     grid-row-end: 3;
 
-
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     row-gap: 0.5em;
-
     /* background-color: yellowgreen; */
-
 }
 
 
@@ -127,8 +119,6 @@ main {
     text-decoration: underline;
     text-underline-offset: 0.2em;
 }
-
-
 
 
 .game-menu__block_complexityGame,
@@ -143,18 +133,17 @@ main {
     justify-content: center;
     align-items: flex-start;
     row-gap: 1em;
-
     /* background-color: rgb(218, 90, 96); */
 }
 
 .game-menu__block_soundGame {
-    grid-column-start: 6;
-    grid-column-end: 9;
+    grid-column-start: 9;
+    grid-column-end: 13;
     grid-row-start: 2;
     grid-row-end: 3;
     width: fit-content;
     justify-content: flex-start;
-
+    margin: 0.5em auto;
     /* background-color: rgb(128, 58, 62); */
 }
 
@@ -166,23 +155,19 @@ main {
     text-underline-offset: 0.2em;
 }
 
-
 .game-menu__djun_soundGame {
     grid-column-start: 9;
     grid-column-end: 13;
     grid-row-start: 1;
-    grid-row-end: 3;
+    grid-row-end: 2;
 
     width: 100%;
     background-image: url("../../img/layoutDesigner/wtf_djun.png");
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 80%;
-
-
+    background-size: contain;
     /* background-color: rgb(245, 86, 94); */
 }
-
 
 .game-menu__senorSay {
     grid-column-start: 4;
@@ -194,9 +179,7 @@ main {
     justify-content: center;
     align-items: center;
     font-size: 1.4em;
-    font-weight: bold;
-
-    
+    font-weight: bold;   
     /* background-color: rgb(10, 195, 241); */
 }
 .game-menu__senorSay p::before {
@@ -207,7 +190,6 @@ main {
     top: 130%;
     left: 64%;    
 }
-
 
 .game-menu__djunrAsk {
     grid-column-start: 1;
@@ -221,8 +203,6 @@ main {
     justify-content: flex-end;
     row-gap: 0.5em;
     margin-bottom: 1em;
-
-
     /* background-color: rgb(218, 38, 143); */
 }
 .game-menu__djunrAsk *:first-child {
@@ -243,33 +223,28 @@ main {
     flex-flow: row nowrap;
     justify-content: space-around;
     align-items: flex-end;
-
     /* background-color: rgb(142, 233, 82); */
 }
 
-.game-menu__djunImg {
-    /* background-color: aquamarine; */
-    
+.game-menu__djunImg {    
     height: 90%;
     aspect-ratio: 1 / 1;
     background-image: url("../../img/layoutDesigner/menu_djun.png");
     background-repeat: no-repeat;
     background-position: bottom left;
     background-size: contain;
+    /* background-color: aquamarine; */
 }
 
 .game-menu__senorImg {
-    /* background-color: #5dc6ff; */
-
     height: 100%;
     aspect-ratio: 1 / 1;
     background-image: url("../../img/layoutDesigner/menu_senor.png");
     background-repeat: no-repeat;
     background-position: bottom right;
     background-size: contain;
+    /* background-color: #5dc6ff; */
 }
-
-
 
 
 
@@ -280,8 +255,7 @@ main {
     grid-row-end: 2;
     display: flex;
     justify-content: center;
-    align-items: center;
-    
+    align-items: center;    
     /* background-color: #fff; */
 }
 #dialod-commit {
@@ -305,12 +279,10 @@ main {
     grid-row-start: 1;
     grid-row-end: 2;
 
-
     background-image: url("../../img/layoutDesigner/menu_senor.png");
     background-repeat: no-repeat;
     background-position: bottom right;
     background-size: contain;
-
     /* background-color: #5dc6ff; */
 }
 
@@ -319,8 +291,6 @@ main {
 
 
 .game-table {
-    /* width: 100%;
-    align-self: center; */
     grid-column-start: 1;
     grid-column-end: 11;
     grid-row-start: 2;
@@ -331,9 +301,7 @@ main {
     
     display: grid;
     gap: 1%;
-
  /* background-color: aquamarine; */   
-
 }
 
 .table-8 {
@@ -352,12 +320,12 @@ main {
 
 
 .game-card-center {
-    /* background-color: #d18f2c; */
     border-radius: 1em;
     background-image: url("../../img/layoutDesigner/focused_djun.png");
     background-repeat: no-repeat;
     background-position: center;
-    background-size: contain;   
+    background-size: contain; 
+    /* background-color: #d18f2c; */ 
 }
 
 .center-card-8 {
@@ -382,8 +350,6 @@ main {
 
 
 .game-card {
-    /* width: 100%; */
-    /* aspect-ratio: 4 / 3; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -434,9 +400,6 @@ main {
 
 
 .senor-cabinet {
-    /* align-self: stretch;
-    width: 20%; */
-
     grid-column-start: 11;
     grid-column-end: 13;
     grid-row-start: 2;
@@ -445,15 +408,11 @@ main {
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-around;
-    row-gap: 1em;
-   
+    row-gap: 1em;   
     border: 1px solid #000;
     border-radius: 1em;
-
     margin-left: 1em;
     margin-bottom: 1em;
-
-
     /* background-color: rgb(231, 166, 68); */
 }
 
@@ -466,7 +425,6 @@ main {
     justify-content: center;
     margin-inline: 0.3em;
     text-align: center;
-
     /* background-color: #cfcdca; */
 }
 
@@ -478,12 +436,10 @@ main {
 
 
 #cabInfo-timer {
-    font-family: 'Courier New', Courier, monospace;
-   
+    font-family: 'Courier New', Courier, monospace;   
     font-size: 2em;
     font-weight: bold;
     white-space: nowrap;
-
     /* background-color: antiquewhite; */
 }
 
@@ -543,12 +499,8 @@ main {
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
-
     /* background-color: #0a3952; */
 }
-
-
-
 
 
 
@@ -590,20 +542,16 @@ main {
 #senorQuestion-senorImg {
     width: 30%;
     transform: scaleX(-1);
-
     /* background-color: #e45c94; */
 }
 
-#senorQuestion-question {
-    
+#senorQuestion-question {   
     width: 65%;
     align-self: stretch;
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
     justify-content: flex-start;
-    
-
     /* background-color: #76db82; */
 }
 
@@ -625,7 +573,6 @@ main {
 #senorQuestion-answersList {
     width: 100%;
     list-style: none;
-
     /* background-color: #77b4e6; */
 }
 
@@ -635,8 +582,6 @@ main {
 #endGame-title {
     width: 100%;
     text-align: center;
-
-
     /* background-color: #76db82; */
 }
 
@@ -660,7 +605,6 @@ main {
     width: 65%;
     text-align: center;
     margin-bottom: 0.5em;
-
     /* background-color: #84e09b; */
 }
 
@@ -700,8 +644,6 @@ main {
     flex-flow: row nowrap;
     justify-content: space-around;
     align-items: center;
-
-
     /* background-color: #363a37; */
 }
 
@@ -753,7 +695,6 @@ main {
     border-top-right-radius: 1em 14em;
     box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
     cursor: pointer;
-    /* line-height: 23px; */
     outline: none;
     padding: 0.5em 2em;
     margin-bottom: 0.5em;
@@ -784,7 +725,6 @@ main {
 }
   
 .icon-span {
-    /* width: 2em; */
     height: 100%;   
     aspect-ratio: 1 / 1;
     display: block;
@@ -793,8 +733,6 @@ main {
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    
-
     /* background-color: #5dc6ff; */
 }
 
@@ -819,7 +757,6 @@ main {
     right: 0;
     transform: rotate(90deg);
 }
-
 
 .btn-notActive {
     pointer-events: none;
@@ -893,14 +830,12 @@ label:has(> .option-radio) {
     border-radius: 0.8em;
     overflow: hidden;   
     cursor: pointer;
-
     /* background-color: #5dc6ff; */
 }
 
 label:has(> .option-radio) {
     border-radius: 1em;
     margin-left: 0;
-    /* padding: 0; */
 }
 
 #checkbox_codeReview,

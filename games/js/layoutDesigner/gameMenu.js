@@ -4,7 +4,7 @@ import { countersSQ } from "./gameSenorQuestions.js"
 import { wordDeclension } from "../commonUtilities.js"
 
 export let codeReview = false;
-export let evilSenor = false;
+export let evilSenor = true;
 export let musicSelected = false;
 
 
@@ -38,6 +38,7 @@ export const createGameMenu = () => {
     const evilSenor_CheckBox = document.createElement('input');
     evilSenor_CheckBox.type = 'checkbox';
     evilSenor_CheckBox.id = 'checkbox_evilSenor';
+    evilSenor_CheckBox.setAttribute("checked", "");
     const label_evilSenor_CheckBox = document.createElement('label')
     label_evilSenor_CheckBox.htmlFor = 'checkbox_evilSenor';
     label_evilSenor_CheckBox.append(evilSenor_CheckBox);

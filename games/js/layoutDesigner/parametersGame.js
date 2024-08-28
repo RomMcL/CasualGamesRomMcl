@@ -12,7 +12,7 @@ export const settingsDict = {
     
 };
 
-
+// Словарь склонения слов
 export const wordsDict = {
     'tag': ['тег', 'тега', 'тегов'],
     'minute': ['минуту', 'минуты', 'минут'],
@@ -21,7 +21,7 @@ export const wordsDict = {
     'question': ['вопрос', 'вопроса', 'вопросов'],
 };
 
-
+// Словарь музыкального проигрователя
 export const soundsDict = {
     'play': 'url("./img/layoutDesigner/player_play.svg")',
     'pause': 'url("./img/layoutDesigner/player_pause.svg")',
@@ -32,6 +32,7 @@ export const soundsDict = {
     'music': {'maski': './sound/layoutDesigner/maski.mp3',},
 }
 
+// Словарь парных тегов
 export const pairedTagsDict = {
     'a': 'это ссылка',
     'article': 'это основной контент страницы, тег HTML5',
@@ -79,6 +80,7 @@ export const pairedTagsDict = {
     'video': 'воспроизводит видеофайлы, создаёт панель управления ими',
 };
 
+// Словарь одиночных тегов
 export const singleTagsDict = {
     'br': 'это перевод строки',
     'col': 'форматирует одну/несколько колонок таблицы',
@@ -92,6 +94,7 @@ export const singleTagsDict = {
     'wbr': 'указывает, где нужно перенести длинное слово, если оно не вмещается в окно браузера',
 };
 
+// Словарь диалогов Сеньора
 export const senorSayDict = {
     'hello': 'Привет, Джуниор! Я – Сеньор. У меня есть несколько проектов для тебя, которые нужно сверстать. Они различны по размеру и времени, отведённому на их выполнение. Но учти, я буду тебя контролировать! Если будет время, даже код-ревью проведу. Есть вопросы? Не стесняйся, задавай свои F.A.Q. ',
 

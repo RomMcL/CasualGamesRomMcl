@@ -1,5 +1,6 @@
-import { pairedTagsDict, singleTagsDict, settingsDict } from "./parametersGame.js"
+import { singleTagsDict, settingsDict } from "./parametersGame.js"
 
+// Создание игровой карты
 export const createGameCard = (shirtCart, faceCard) => {
 
     const card = document.createElement('div');

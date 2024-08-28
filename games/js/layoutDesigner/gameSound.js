@@ -1,21 +1,23 @@
 import { soundsDict } from "./parametersGame.js"
 
-
+// Создание плеера музыкального сопровождения
 export const createPlayer = () => {
-
     const audioPlayer = document.createElement('div');   
     audioPlayer.id = 'audio-player';
 
     const btnPlayPause = document.createElement('button');   
     btnPlayPause.id = 'btn-playPause';
     btnPlayPause.classList.add('player-btn');
+
     const btnStop = document.createElement('button');   
     btnStop.id = 'btn-stop';
     btnStop.classList.add('player-btn');
+
     const btnVolume = document.createElement('button');   
     btnVolume.id = 'btn-volume';
     btnVolume.classList.add('player-btn');
     btnVolume.name = 'min';
+
     const volumeValue = document.createElement('span');   
     volumeValue.id = 'volume-value';
 
@@ -64,7 +66,6 @@ export const createPlayer = () => {
         }
         player.volume = volume;
     }
-
 
     btnPlayPause.addEventListener('click', playPauseAudio);
     btnStop.addEventListener('click', stopAudio);

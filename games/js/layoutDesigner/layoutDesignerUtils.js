@@ -1,7 +1,7 @@
 import { pairedTagsDict, singleTagsDict, settingsDict, senorSayDict } from "./parametersGame.js"
 import { shufflingArray } from "../commonUtilities.js"
 
-
+// Создание набора игровых тегов
 export const createTagsArray = (difficult) => {
 
     let randomSingleTagKey = shufflingArray(Object.keys(singleTagsDict))[0];
@@ -20,10 +20,9 @@ export const createTagsArray = (difficult) => {
     const tagsArray = [...openingTags, ...closingTags];
   
     return shufflingArray(tagsArray);
-
 }
 
-
+// Создание Лещей Сеньора
 export const createBream = (numberBream) => {
     const bream = document.createElement('div');
     bream.id = `bream-${numberBream}`;
@@ -31,7 +30,7 @@ export const createBream = (numberBream) => {
     setTimeout(() => bream.style.opacity = '1', 500)        
 }
 
-
+// Световое оповещение (мигание) элемента
 export const alertResultAnswer = (element, color, speed, message) => {
     element.textContent = senorSayDict[message];
     let count = 3;

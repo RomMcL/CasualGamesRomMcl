@@ -1,8 +1,8 @@
 import { createGameMenu } from "./gameMenu.js"
 
-const cardsApp = () => {
-
+// Старт игры (точка входа)
+const layoutDesignerApp = () => {
     createGameMenu();
 }
 
-cardsApp();
+layoutDesignerApp();

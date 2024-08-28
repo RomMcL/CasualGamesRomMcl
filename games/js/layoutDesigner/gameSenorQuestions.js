@@ -11,7 +11,7 @@ modalSQ.style.transition = `opacity ${settingsDict['fadeOutDelay']}ms`;
 
 const tagsDict = Object.assign({}, pairedTagsDict, singleTagsDict);
 
-
+// Запуск модального окна с вопросом Сеньора
 export const startSenorQuestion = (currentTag) => {
   
     let keysTagsDict = Object.keys(tagsDict);
@@ -34,37 +34,39 @@ export const startSenorQuestion = (currentTag) => {
     modalSQ.style.pointerEvents = 'auto';    
 }
 
-
+// Создание модального окна с вопросом Сеньора
 const createModalQuestion = (tag, answers) => {
 
         const questionTag = `<${tag}>`
     
         const sqContainer = document.createElement('div');
         sqContainer.id = 'senorQuestion-container';
+
         const sqSenorImg = document.createElement('img');
         sqSenorImg.id = 'senorQuestion-senorImg';
         sqSenorImg.src = './img/layoutDesigner/menu_senor.png';
         sqSenorImg.alt = 'Сеньор';
+
         const sqQuestion = document.createElement('div');
         sqQuestion.id = 'senorQuestion-question';
+
         const sqQuestionTitle = document.createElement('h1');
         sqQuestionTitle.id = 'senorQuestion-title';
         sqQuestionTitle.textContent = senorSayDict['questionTitle'];
+
         const sqQuestionText = document.createElement('h2');
         sqQuestionText.id = 'senorQuestion-text';
         sqQuestionText.classList.add('dialog');
         sqQuestionText.innerText = `Джуниор, ты используешь тег ${questionTag}.\nА для чего он нужен?`;
+
         const sqAnswersList = document.createElement('ul');
-        sqAnswersList.id = 'senorQuestion-answersList';        
+        sqAnswersList.id = 'senorQuestion-answersList'; 
+
         const answerBtn = document.createElement('span');
         answerBtn.id = 'senorQuestion-btn';
         answerBtn.classList.add('modalGameBtn', 'btn-notActive');
 
-
-        
-
         for (let i=0; i<4; i++) {
-
             const keyOption = Object.keys(tagsDict).find(k => tagsDict[k] === answers[i]);
 
             const option = document.createElement('li');
@@ -75,9 +77,9 @@ const createModalQuestion = (tag, answers) => {
             optionRadio.value = keyOption;
             optionRadio.id = `optionRadio-${i+1}`;
             optionRadio.classList.add('option-radio');
+
             const label_optionRadio = document.createElement('label')
             label_optionRadio.htmlFor = `optionRadio-${i+1}`;
-
             label_optionRadio.appendChild(optionRadio);
             label_optionRadio.appendChild(document.createTextNode(answers[i]));
             option.appendChild(label_optionRadio);
@@ -96,7 +98,7 @@ const createModalQuestion = (tag, answers) => {
         sqQuestion.append(sqQuestionTitle, sqQuestionText);
 }
 
-
+// Обработка ответа на вопрос Сеньора
 const giveAnswer = (tag) => {
 
     const dialodCommit = document.getElementById('senor-commit').firstChild;
@@ -112,11 +114,11 @@ const giveAnswer = (tag) => {
     }
 
     if (tag == optionValue) {
-        /* console.log('правильно ответил'); */
+        // console.log('правильно ответил');
         currentOption.parentElement.style.backgroundColor = settingsDict['winСolor'];
         alertResultAnswer(dialodCommit, 'winСolor', 200, 'correctAnswer');
     } else {
-        /* console.log('не правильно ответил'); */
+        // console.log('не правильно ответил');
         currentOption.parentElement.style.backgroundColor = settingsDict['lossСolor'];
         alertResultAnswer(dialodCommit, 'lossСolor', 200, 'incorrectAnswer');
         countersSQ['countBream']++
@@ -137,7 +139,6 @@ const giveAnswer = (tag) => {
     setTimeout(() => {
         modalSQ.innerHTML = '';
         modalSQ.style.display = 'none';
-    }, settingsDict['fadeOutDelay']);
-   
+    }, settingsDict['fadeOutDelay']);  
 }
 

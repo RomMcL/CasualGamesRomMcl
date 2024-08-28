@@ -7,11 +7,13 @@ import { countersSQ } from "./gameSenorQuestions.js"
 const modalEG = document.getElementById('modal-endGame');
 const modalSQ = document.getElementById('modal-senorQuestion');
 
+// Создание модального окна завершения игры
 export const endGame = (tagsNum, timeSpent, finalStaus) => {
   
     modalSQ.textContent = '';
     modalSQ.style.display = 'none';
     
+    // Фрмирование результатов
     const finalResult = () => {
         let senorText, djunText, senorImgLink, djunImgLink = '';
         let breams = countersSQ['countBream'];
@@ -60,6 +62,7 @@ export const endGame = (tagsNum, timeSpent, finalStaus) => {
 
     const result = finalResult();
 
+    // Создание элементов окна
     const endGameContainer = document.createElement('div');
     endGameContainer.id = 'endGame-container';
 
@@ -104,7 +107,6 @@ export const endGame = (tagsNum, timeSpent, finalStaus) => {
     endGameBtns.id = 'endGame-footer';
 
     
-
     const restartBtn = document.createElement('button');   
     restartBtn.id = 'btn-returnMenu';
     restartBtn.classList.add('modalGameBtn');
