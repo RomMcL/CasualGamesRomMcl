@@ -122,13 +122,6 @@ export const gameLogic = (tagsNum, minute, second) => {
         case 8: 
             gameTable.style.gap = '3%';
             break;
-        case 24: 
-            cards[2].style.cssText = 'grid-column: 5;';
-            cards[10].style.cssText = 'grid-column: 2;';
-            cards[12].style.cssText = 'grid-column: 2;';
-            cards[14].style.cssText = 'grid-column: 1;';
-            cards[22].style.cssText = 'grid-column: 5;';
-            break;
         default:
             break;
     }

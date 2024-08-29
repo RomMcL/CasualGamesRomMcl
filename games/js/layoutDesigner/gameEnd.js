@@ -25,7 +25,7 @@ export const endGame = (tagsNum, timeSpent, finalStaus) => {
 
         if (finalStaus['isLimitBreams']) {
             senorText = `Но не для тебя!
-                         За ${timeSpent} ты успел отхватить ${breams} ${wordDeclension(breams, wordsDict['bream'])} и был отстранён от проекта!
+                         За <span class="senor-accent">${timeSpent}</span> ты успел отхватить <span class="senor-accent">${breams} ${wordDeclension(breams, wordsDict['bream'])}</span> и был <span class="senor-accent">отстранён</span> от проекта!
                          Учи матчасть, Джуниор!`;
             djunText = `Я не справился...
                         Мне не хватило знаний.`;
@@ -34,7 +34,7 @@ export const endGame = (tagsNum, timeSpent, finalStaus) => {
             djunImgLink = './img/layoutDesigner/weeping_djun.png';
         } else if (finalStaus['isDeadline']) {
             senorText = `Но не для тебя!
-                         Ты правильно ответил на ${countSQ - breams} ${wordDeclension(countSQ - breams, wordsDict['question'])} из ${countSQ}, но это не важно, т.к. ты всё равно не уложился в дедлайн.
+                         Ты правильно ответил на <span class="senor-accent">${countSQ - breams} ${wordDeclension(countSQ - breams, wordsDict['question'])} из ${countSQ}</span>, но это не важно, т.к. ты всё равно <span class="senor-accent">не уложился в дедлайн</span>.
                          Подтяни скил многозадачности, Джуниор!`;
             djunText = `Я не справился...
                         Мне не хватило времени.`;
@@ -43,10 +43,10 @@ export const endGame = (tagsNum, timeSpent, finalStaus) => {
             djunImgLink = './img/layoutDesigner/weeping_djun.png';
         } else if (finalStaus['isGameWin']) {
             evilSenor ? senorText = `Неплохо, Джуниор!
-                                     Ты правильно ответил на ${countSQ - breams} ${wordDeclension(countSQ - breams, wordsDict['question'])} из ${countSQ} - это ${assessment}, но главное, ты уложился в дедлайн, справился за ${timeSpent}. И раз с многозадачностью ты справляешься...
+                                     Ты правильно ответил на <span class="senor-accent">${countSQ - breams} ${wordDeclension(countSQ - breams, wordsDict['question'])} из ${countSQ} - это ${assessment}</span>, но главное, ты уложился в дедлайн, справился за <span class="senor-accent">${timeSpent}</span>. И раз с многозадачностью ты справляешься...
                                      с завтрашнего дня начинаешь работать в режиме многопоточности!` :
                         senorText = `Молодец, Джуниор!
-                                     Ты правильно ответил на ${countSQ - breams} ${wordDeclension(countSQ - breams, wordsDict['question'])} из ${countSQ} - это ${assessment}, но главное, ты уложился в дедлайн, справился за ${timeSpent}.
+                                     Ты правильно ответил на <span class="senor-accent">${countSQ - breams} ${wordDeclension(countSQ - breams, wordsDict['question'])} из ${countSQ} - это ${assessment}</span>, но главное, ты уложился в дедлайн, справился за <span class="senor-accent">${timeSpent}</span>.
                                      Учись и развивайся, Джуниор!`
             evilSenor ? djunText = `За ЧТО?! Я же справился!
                                     Я так не могу ...` :
@@ -87,7 +87,7 @@ export const endGame = (tagsNum, timeSpent, finalStaus) => {
     const senorText = document.createElement('p');
     senorText.id = 'endGame-senorText';
     senorText.classList.add('dialog');
-    senorText.innerText = result['senorText'];
+    senorText.innerHTML = result['senorText'];
 
     const endGameResult = document.createElement('div');
     endGameResult.id = 'endGame-result';

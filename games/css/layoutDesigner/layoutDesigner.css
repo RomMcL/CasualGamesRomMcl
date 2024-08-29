@@ -25,13 +25,12 @@
 
 
 :root {
-    --fon-color: #D9D9D9;
+    --fon-color: linear-gradient(135deg, #E8E1D9,#687980);
     --elements-color: #fff;
     --dialogBubble-color: var(--elements-color);
     --width_toggle: 6em;
 	--height_toggle: calc(var(--width_toggle) / 3);
 }
-
 
 
 body {
@@ -40,23 +39,21 @@ body {
     background-image: url("../../img/layoutDesigner/bodyFon.svg");
     background-size: 200px;
     height: 100vh;
-    display: flex;
+    display: flex;    
     justify-content: center;
-    align-items: center;
+    align-items: center;  
 }
-
-
 
 .game-content {
     width: 100%;
     max-width: 1250px;
-    min-height: 90vh;
+    min-height: 90%;
     margin-inline: 1em;
     border: #000 solid 2px;
     border-radius: 2em;
     display: flex;
     flex-flow: column nowrap;
-    background-color: var(--fon-color);
+    background-image: var(--fon-color);
 }
 
 
@@ -77,15 +74,17 @@ body {
     text-align: center;
 }
 
+#menu-closeGame {
+    text-align: center;
+}
+
 main {
     flex-grow: 1;
     display: flex;
-    /* background-color: red; */
 }
 
 .game-section {    
     width: 100%;    
-    /* background-color: blue; */
 }
 
 .game-section-container {    
@@ -94,7 +93,6 @@ main {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: repeat(4, 1fr);
-    /* background-color: grey; */
 }
 
 
@@ -109,7 +107,6 @@ main {
     align-items: center;
     justify-content: flex-start;
     row-gap: 0.5em;
-    /* background-color: yellowgreen; */
 }
 
 
@@ -133,7 +130,6 @@ main {
     justify-content: center;
     align-items: flex-start;
     row-gap: 1em;
-    /* background-color: rgb(218, 90, 96); */
 }
 
 .game-menu__block_soundGame {
@@ -144,7 +140,6 @@ main {
     width: fit-content;
     justify-content: flex-start;
     margin: 0.5em auto;
-    /* background-color: rgb(128, 58, 62); */
 }
 
 .game-menu__title_complexityGame,
@@ -161,12 +156,12 @@ main {
     grid-row-start: 1;
     grid-row-end: 2;
 
-    width: 100%;
+    width: 90%;
     background-image: url("../../img/layoutDesigner/wtf_djun.png");
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: bottom center;
     background-size: contain;
-    /* background-color: rgb(245, 86, 94); */
+    margin: 0 auto;
 }
 
 .game-menu__senorSay {
@@ -179,8 +174,8 @@ main {
     justify-content: center;
     align-items: center;
     font-size: 1.4em;
-    font-weight: bold;   
-    /* background-color: rgb(10, 195, 241); */
+    font-weight: bold;
+    margin-left: 0.5em;
 }
 .game-menu__senorSay p::before {
     top: 105%;
@@ -203,7 +198,6 @@ main {
     justify-content: flex-end;
     row-gap: 0.5em;
     margin-bottom: 1em;
-    /* background-color: rgb(218, 38, 143); */
 }
 .game-menu__djunrAsk *:first-child {
     align-self: center;
@@ -223,7 +217,6 @@ main {
     flex-flow: row nowrap;
     justify-content: space-around;
     align-items: flex-end;
-    /* background-color: rgb(142, 233, 82); */
 }
 
 .game-menu__djunImg {    
@@ -233,7 +226,6 @@ main {
     background-repeat: no-repeat;
     background-position: bottom left;
     background-size: contain;
-    /* background-color: aquamarine; */
 }
 
 .game-menu__senorImg {
@@ -243,7 +235,6 @@ main {
     background-repeat: no-repeat;
     background-position: bottom right;
     background-size: contain;
-    /* background-color: #5dc6ff; */
 }
 
 
@@ -256,11 +247,11 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;    
-    /* background-color: #fff; */
 }
 #dialod-commit {
     text-align: center;
-    font-size: 2em;
+    font-size: 1.6em;
+    margin-top: 0.5em;
 }
 #dialod-commit::before {
     top: 20%;
@@ -283,7 +274,6 @@ main {
     background-repeat: no-repeat;
     background-position: bottom right;
     background-size: contain;
-    /* background-color: #5dc6ff; */
 }
 
 
@@ -301,21 +291,36 @@ main {
     
     display: grid;
     gap: 1%;
- /* background-color: aquamarine; */   
 }
 
 .table-8 {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
+    font-size: 1.8em;
 }
 .table-12 {
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(4, 1fr);
+    font-size: 1.4em;
 }
 .table-24,
 .table-32 {
     grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(6, 1fr)
+    grid-template-rows: repeat(6, 1fr);
+    font-size: 0.9em;
+}
+
+
+.table-24 .game-card:nth-child(4),
+.table-24 .game-card:nth-child(24) {
+    grid-column: 5;
+}
+.table-24 .game-card:nth-child(12),
+.table-24 .game-card:nth-child(14) {
+    grid-column: 2;
+}
+.table-24 .game-card:nth-child(16) {
+    grid-column: 1;
 }
 
 
@@ -325,7 +330,6 @@ main {
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain; 
-    /* background-color: #d18f2c; */ 
 }
 
 .center-card-8 {
@@ -355,13 +359,15 @@ main {
     align-items: center;
     background: purple;
     border-radius: 1em;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
     transition: all 0.2s linear; 
 }
 
 
 
-.game-card span {
-    font-size: 16px;
+.game-card span {   
     display: none;    
 }
 
@@ -413,7 +419,6 @@ main {
     border-radius: 1em;
     margin-left: 1em;
     margin-bottom: 1em;
-    /* background-color: rgb(231, 166, 68); */
 }
 
 
@@ -425,12 +430,12 @@ main {
     justify-content: center;
     margin-inline: 0.3em;
     text-align: center;
-    /* background-color: #cfcdca; */
 }
 
 .cabInfo-title {
     font-size: 1.5em;
     font-weight: bold;
+    margin-top: 0.5em;
     margin-bottom: 0.5em;
 }
 
@@ -440,7 +445,6 @@ main {
     font-size: 2em;
     font-weight: bold;
     white-space: nowrap;
-    /* background-color: antiquewhite; */
 }
 
 
@@ -499,7 +503,6 @@ main {
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
-    /* background-color: #0a3952; */
 }
 
 
@@ -534,25 +537,23 @@ main {
     align-items: center;
     column-gap: 5%;
     row-gap: 1em;    
-    background-color: var(--fon-color);
+    background-image: var(--fon-color);
   }
 
 
 
 #senorQuestion-senorImg {
-    width: 30%;
+    width: 20%;
     transform: scaleX(-1);
-    /* background-color: #e45c94; */
 }
 
 #senorQuestion-question {   
-    width: 65%;
+    width: 75%;
     align-self: stretch;
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
     justify-content: flex-start;
-    /* background-color: #76db82; */
 }
 
 #senorQuestion-text {   
@@ -568,23 +569,21 @@ main {
     left: -7%;    
 }
 
-
-
 #senorQuestion-answersList {
     width: 100%;
     list-style: none;
-    /* background-color: #77b4e6; */
 }
 
+#senorQuestion-answersList li:not(:last-child) {
+    margin-bottom: 1em;
+}
 
 
 
 #endGame-title {
     width: 100%;
     text-align: center;
-    /* background-color: #76db82; */
 }
-
 
 #endGame-body {
     width: 100%;
@@ -605,14 +604,17 @@ main {
     width: 65%;
     text-align: center;
     margin-bottom: 0.5em;
-    /* background-color: #84e09b; */
 }
-
-
 
 #endGame-senorText {
     font-size: 1.6em;
 }
+.senor-accent {
+    font-weight: bold;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+}
+
 #endGame-senorText::before {
     top: 10%;
     left: -4%;    
@@ -637,14 +639,14 @@ main {
     background-color: var(--dialogBubble-color);  
 }
 
-
 #endGame-footer {
     width: 100%;
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-around;
     align-items: center;
-    /* background-color: #363a37; */
+    text-align: center;
+    column-gap: 0.5em;
 }
 
 
@@ -680,7 +682,6 @@ main {
 
 
 /*  Кнопки  */
-
 .game-btns,
 .modalGameBtn {
     font-family: Zhizn, Arial, Helvetica, sans-serif;
@@ -713,7 +714,6 @@ main {
     box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
   }
 
-
 .modalGameBtn {
     position: relative;
     border-radius: 1em;
@@ -733,7 +733,6 @@ main {
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    /* background-color: #5dc6ff; */
 }
 
 #btn-returnMenu,
@@ -766,7 +765,6 @@ main {
 
 
 /* Аудио плеер */
-
 #audio-player {
     width: fit-content;
     height: 100%;
@@ -830,7 +828,6 @@ label:has(> .option-radio) {
     border-radius: 0.8em;
     overflow: hidden;   
     cursor: pointer;
-    /* background-color: #5dc6ff; */
 }
 
 label:has(> .option-radio) {
@@ -888,7 +885,6 @@ label:has(> .option-radio) {
 }
 
 /* Переключатель */
-
 #label_checkbox_music {
     position: relative;
     display: inline-block;
@@ -979,4 +975,604 @@ label:has(> .option-radio) {
 #checkbox_music:checked~.labels_soundGame::before {
     opacity: 1;
     transform: translateX(calc(var(--width_toggle) - var(--height_toggle)));
+}
+
+
+
+/*  Адаптация под маленькие экраны */
+
+@media (max-width: 992px) {
+    /*  Меню игры */
+    .game-menu__senorSay {
+        font-size: 1.0em;
+    }
+
+    /*  Игровое поле */
+    #dialod-commit {
+        font-size: 1.4em;
+    }
+
+    .game-card {
+        font-size: 0.9em;
+    }
+
+    .cabInfo-title {
+        font-size: 1.2em;
+    }
+
+    /*  Вопросы Сеньора */
+    #senorQuestion-senorImg {
+        width: 30%;
+    }
+    
+    #senorQuestion-question {   
+        width: 65%;
+    }
+       
+    .option-radio::before {
+        left: 3.5em;
+    }
+
+    .option-radio:checked::after {
+        left: 1.5em;
+    }
+
+    /*  Конец игры */
+    #endGame-senorText {
+        font-size: 1.4em;
+    }
+    
+    #endGame-djunText {
+        font-size: 2.0em;
+    }
+}
+
+@media (max-width: 768px) {
+    /*  Меню игры */
+    #menu-closeGame {
+        font-size: 1.0em;
+    }
+
+    .game-btns {
+        font-size: 1.0em;
+    }
+
+    /*  Игровое поле */
+    .game-card {
+        font-size: 0.8em;
+    }
+
+    .cabInfo-title {
+        font-size: 1.0em;
+    }
+
+    #cabInfo-timer { 
+        font-size: 1.8em;
+    }
+}
+
+@media (max-width: 700px) {
+    /*  Меню игры */
+    #menu-closeGame {
+        font-size: 0.8em;
+    }
+
+    .header-title {
+        font-size: 2.5em;
+    }
+
+    .game-menu__senorSay {
+        font-size: 0.9em;
+    }
+
+    .ask {
+        padding-inline: 1em;
+    }
+
+    /*  Игровое поле */
+    #dialod-commit {
+        font-size: 1.1em;
+        align-self: flex-start;
+        min-height: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .senor-cabinet {
+        grid-column-start: 1;
+        grid-column-end: 10;
+        grid-row-start: 1;
+        grid-row-end: 2;
+
+        flex-flow: row nowrap;
+        margin-left: 0;
+        margin-bottom: 0.2em;
+        height: fit-content;
+        align-self: flex-end;       
+    }
+
+    .deadline-wrapper,
+    .bream-wrapper {
+        flex-flow: row nowrap;
+        column-gap: 0.5em;
+    }
+
+    .timer-head-footer {
+        display: none;
+    }
+
+    #bream-img {
+        width: 96%;
+        max-width: 4em;
+        margin-top: 0.2em;
+        margin-bottom: 0.2em;
+    }
+
+    #bream-count {
+        margin-left: 0.2em;
+    }
+
+    .game-table {
+        grid-column-start: 1;
+        grid-column-end: 13;
+     
+    }
+
+    .game-footer {
+        grid-column-end: 13;   
+    }
+
+    /*  Вопросы Сеньора */    
+    #senorQuestion-question {   
+        font-size: 0.8em;
+    }
+           
+    #senorQuestion-answersList li:not(:last-child) {
+        margin-bottom: 0.8em;
+    }
+    
+    .option-radio::before {
+        left: 3.4em;
+    }
+
+    /*  Конец игры */
+    #endGame-container {
+        padding: 1em 2em;
+    }
+
+    #endGame-senorText {
+        font-size: 1.0em;
+    }
+    
+    #endGame-djunText {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 590px) {
+    /*  Меню игры */
+    .game-btns {
+        font-size: 0.9em;
+    }
+
+    .ask {
+        font-size: 1.0em;
+        padding-inline: 0.9em;
+    }
+
+    /*  Игровое поле */
+    #dialod-commit {
+        font-size: 1.0em;
+    }
+
+    .cabInfo-title {
+        font-size: 0.8em;
+    }
+
+    #bream-count {
+        font-size: 2em;
+    }
+
+    .table-8 {
+        font-size: 1.6em;
+    }
+
+    .table-12 {
+        font-size: 1.2em;
+    }
+
+    .table-24,
+    .table-32 {
+        font-size: 0.8em;
+    }
+
+    /*  Конец игры */
+    #endGame-footer {
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 544px) {
+    /*  Меню игры */
+    .header-title {
+        font-size: 2.0em;
+    }
+
+    #menu-closeGame {
+        font-size: 0.7em;
+        padding-right: 0.5em;
+    }
+
+    .game-btns {
+        font-size: 1.0em;
+        padding-inline: 1.0em;
+    }
+
+    .game-menu__block_startGame{
+        grid-column-end: 8;    
+    }
+
+    .game-menu__block_complexityGame {
+        grid-column-start: 8;
+        grid-column-end: 13;
+    }
+
+    .game-menu__block_soundGame {
+        grid-column-start: 10;
+        grid-column-end: 13;
+    }
+
+    .game-menu__djun_soundGame {
+        grid-column-start: 8;
+        grid-column-end: 10;
+        grid-row-start: 2;
+        grid-row-end: 3;   
+        width: 96%;
+        background-position: top center;
+    }
+
+    .game-menu__title_complexityGame,
+    .game-menu__title_soundGame {
+        font-size: 1.0em;
+    }
+
+    .game-menu__senorSay {
+        font-size: 0.8em;
+    }
+
+    .ask {
+        font-size: 0.8em;
+        padding-inline: 0.8em;
+    }
+
+    .game-menu__djunImg {    
+        height: 80%;
+    }
+    
+    .game-menu__senorImg {
+        height: 90%;
+    }
+
+    /*  Игровое поле */
+    #cabinet-senorImg {
+        background-position: top right;
+        background-size: auto 50%;
+    }
+    
+    .senor-cabinet {
+        grid-column-end: 13;     
+    }
+
+    .cabInfo-title {
+        font-size: 1em;
+    }
+
+    .table-8 {
+        font-size: 1.4em;
+    }
+
+    .table-12 {
+        font-size: 1.1em;
+    }
+
+    .table-24,
+    .table-32 {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(8, 1fr);
+        font-size: 1.0em;
+    }
+
+    .center-card-24,
+    .center-card-32 {
+        grid-column-start: 2;
+        grid-column-end: 4;
+        grid-row-start: 4;
+        grid-row-end: 6;
+    }
+    
+    .table-24 .game-card:nth-child(4),
+    .table-24 .game-card:nth-child(24) {
+        grid-column: 3;
+    }
+    .table-24 .game-card:nth-child(7),
+    .table-24 .game-card:nth-child(21) {
+        grid-column: 4;
+    }
+    .table-24 .game-card:nth-child(12),
+    .table-24 .game-card:nth-child(14),
+    .table-24 .game-card:nth-child(16) {
+        grid-column: 1;
+    }
+
+    /*  Вопросы Сеньора */
+    #senorQuestion-container {
+        padding: 1em 1em;
+    }
+
+    #senorQuestion-question {   
+        font-size: 0.6em;
+    }
+
+    #senorQuestion-answersList li:not(:last-child) {
+        margin-bottom: 0.7em;
+    }
+    
+    /*  Конец игры */
+    #endGame-container {
+        padding: 1em 1em;
+    }
+    #endGame-footer {
+        font-size: 0.7em;
+    }
+}
+
+@media (max-width: 460px) {
+    /*  Меню игры */
+    #menu-closeGame {
+        font-size: 0.6em;
+        padding-right: 0.2em;
+    }
+
+    .header-title {
+        font-size: 1.5em;
+    }
+
+    .game-menu__senorSay {
+        font-size: 0.7em;
+    }
+
+    .game-menu__djunImg {    
+        height: 70%;
+    }
+    
+    .game-menu__senorImg {
+        height: 80%;
+    }
+
+    /*  Игровое поле */
+    .cabInfo-title {
+        font-size: 0.8em;
+    }
+
+    #senor-commit {
+        grid-column-end: 11;
+        font-size: 0.9em;
+    }
+
+    #cabinet-senorImg {
+        grid-column-start: 11;
+        background-position: 100% 30%;
+        background-size: contain;
+    }
+
+    .player-btn {
+        height: 60%;
+    }
+
+    .table-8 {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(6, 1fr);
+        font-size: 1.7em;
+    }
+    .center-card-8 {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 3;
+        grid-row-end: 5;
+    }
+
+    .table-12 {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(6, 1fr);
+    }
+    .center-card-12 {
+        grid-column-start: 1;
+        grid-column-end: 4;
+        grid-row-start: 3;
+        grid-row-end: 5;
+    }
+
+    .table-24,
+    .table-32 {
+        font-size: 0.9em;
+    }
+
+    /*  Конец игры */
+    #endGame-senorSay {
+        width: 100%;
+        order: -2;
+    }
+
+    #endGame-senorImg {
+        order: -1;
+        width: 40%;
+    }
+
+    #endGame-djunImg {
+        order: -1;
+        width: 30%;
+        align-self: flex-end;      
+    }
+
+    #endGame-result {
+        width: 100%;
+        margin-top: 0.5em;
+    }
+
+    #endGame-senorText::before {
+        top: 105%;
+        left: 40%;    
+    }
+    #endGame-senorText::after {
+        top: 115%;
+        left: 38%;    
+    }
+    
+    #endGame-djunText::before {
+        top: -20%;
+        left: 60%;
+    }
+    #endGame-djunText::after {
+        top: -40%;
+        left: 65%;
+    }
+}
+
+@media (max-width: 400px) {
+    /*  Меню игры */
+    .header-title {
+        font-size: 1.3em;
+    }
+
+    .game-menu__title_startGame {
+        font-size: 1.1em;
+    }
+
+    .game-btns {
+        font-size: 0.9em;
+        padding-inline: 0.9em;
+    }
+
+    .game-menu__block_soundGame {
+        grid-column-start: 8;
+        grid-column-end: 13;
+    }
+
+    .game-menu__djun_soundGame {
+        grid-column-start: 1;
+        grid-column-end: 4;
+        grid-row-start: 3;
+        grid-row-end: 4;
+    }
+
+    .ask {
+        font-size: 0.7em;
+        padding-inline: 0.7em;
+    }
+
+    .game-menu__djunImg {    
+        height: 60%;
+    }
+    
+    .game-menu__senorImg {
+        height: 70%;
+    }
+
+    /*  Игровое поле */
+    .cabInfo-title {
+        font-size: 0.6em;
+    }
+
+    #cabInfo-timer {
+        font-size: 1.2em;
+    }
+
+    #bream-count {
+        font-size: 1.2em;
+    }
+   
+    .player-btn {
+        height: 50%;
+    }
+
+    #audio-player {
+        column-gap: 1em;   
+    }
+    #audio-player span {
+        font-size: 0.7em; 
+    }
+
+    .table-8 {
+        font-size: 1.5em;
+    }
+
+    .table-12 {
+        font-size: 1.0em;
+    }
+
+    .table-24,
+    .table-32 {
+        font-size: 0.75em;
+    }
+
+    /*  Вопросы Сеньора */
+    #senorQuestion-answersList li:not(:last-child) {
+        margin-bottom: 0.7em;
+    }
+
+    #senorQuestion-answersList li {
+        font-size: 0.9em;
+    }
+
+    /*  Конец игры */
+    #endGame-container {
+        padding: 1em 0.5em;
+    }
+    
+    #endGame-djunText {
+        font-size: 1.3em;
+    }
+}
+
+@media (max-width: 348px) {
+    /*  Меню игры */
+    #menu-closeGame {
+        font-size: 0.5em;
+    }
+
+    .header-title {
+        font-size: 1.0em;
+    }
+
+    label:has(> #checkbox_codeReview),
+    label:has(> #checkbox_evilSenor) {
+        margin-left: 1em;
+    }
+
+    .game-menu__djunImg {    
+        height: 50%;
+    }
+    
+    .game-menu__senorImg {
+        height: 60%;
+    }
+
+    /*  Игровое поле */
+    #senor-commit {
+        font-size: 0.8em;
+    }
+
+    .table-8 {
+        font-size: 1.4em;
+    }
+
+    .table-12 {
+        font-size: 0.8em;
+    }
+
+    .table-24,
+    .table-32 {
+        font-size: 0.65em;
+    }
 }

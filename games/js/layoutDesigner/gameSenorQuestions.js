@@ -129,7 +129,7 @@ const giveAnswer = (tag) => {
             const cabinetSenorImg = document.getElementById('cabinet-senorImg');
             cabinetSenorImg.style.backgroundImage = 'url("./img/layoutDesigner/evil_senor.png")';
             setTimeout(() => cabinetSenorImg.style.backgroundImage = 'url("./img/layoutDesigner/menu_senor.png")', 2000);
-        } else dialodCommit.textContent += ` Правильный ответ: ${tag} ${tagsDict[tag]}`;
+        } else dialodCommit.textContent += ` Правильный ответ: <${tag}> ${tagsDict[tag]}`;
     }
 
     countersSQ['countSenorQuestion']++;

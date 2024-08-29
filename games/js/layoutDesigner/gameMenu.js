@@ -124,7 +124,7 @@ export const createGameMenu = () => {
     djunrAsk.appendChild(djunAskTitle);
     for (let ask = 0; ask <= asks.length-1; ask++) {
         const btn = document.createElement('button');
-        btn.classList.add('modalGameBtn', `ask-${ask+1}`);
+        btn.classList.add('modalGameBtn', 'ask', `ask-${ask+1}`);
         btn.innerText = asks[ask];
         djunrAsk.appendChild(btn);
         btn.addEventListener('click', help.bind(null, senorSayDict[`help${ask+1}`], ask+1));
@@ -151,8 +151,8 @@ export const createGameMenu = () => {
     const createStarttButton = (tagsNum, minute, second) => {
         const button = document.createElement('button');
         button.classList.add('game-btns');
-        button.innerText = `Сверстать проект на 
-                            ${tagsNum/2} ${wordDeclension(tagsNum/2, wordsDict['tag'])}`;
+        button.innerText = `Сверстать проект
+                            на ${tagsNum/2} ${wordDeclension(tagsNum/2, wordsDict['tag'])}`;
         button.addEventListener('click', () => gameLogic(tagsNum, minute, second));
         return button;
     }
