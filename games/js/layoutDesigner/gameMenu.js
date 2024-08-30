@@ -191,10 +191,10 @@ export const createGameMenu = () => {
 
     block_startGame.append(
         title_startGame,
-        createStarttButton(8, 1, 5),     //кол-во карточек, минуты, секунды дедлайна
-        createStarttButton(12, 2, 10),
-        createStarttButton(24, 3, 20),
-        createStarttButton(32, 4, 30),
+        createStarttButton(8, 0, 35),     //кол-во карточек, минуты, секунды дедлайна
+        createStarttButton(12, 0, 50),
+        createStarttButton(24, 2, 10),
+        createStarttButton(32, 3, 40),
     );
 
     block_complexityGame.append(
