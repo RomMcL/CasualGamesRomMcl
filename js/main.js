@@ -55,6 +55,6 @@ for (let link of menuLinks) {
 }
 
 for (let index in pages) {
-    pages[index] == currentPageName && menuLinks[index].classList.add('active');
+    pages[index] == currentPageName && menuLinks[index].classList.add('nav-activePage');
 }
 

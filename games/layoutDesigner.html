@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=0">    
+    <link rel="stylesheet" type="text/css" href="./css/layoutDesigner/layoutDesigner.css" />
+    <title>Верстальщик</title>
+</head>
+
+<body class="body">
+    <audio id="music" loop="loop" preload="auto"></audio>
+    <div class="game-content">
+        <header class="header">
+            <a href='../catalog.html' id="menu-closeGame" class="modalGameBtn"><span class="icon-span"></span>К каталогу игр</a>
+            <h1 class="header-title">Верстальщик</h1>
+        </header>
+        <main>
+            <section class="game-section">
+                <div class="game-section-container"></div>
+            </section>
+        </main>
+    </div>
+    <div id="modal-senorQuestion"></div>
+    <div id="modal-endGame"></div>
+
+    <script type="module" src="./js/layoutDesigner/layoutDesignerGame.js"></script>
+
+</body>
+</html>

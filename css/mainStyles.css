@@ -39,10 +39,8 @@ h2 {
 }
 
 
-/* переопределение bootstrap */
-
-.active {
-    color: #f7d36e !important;
+.nav-activePage {
+    color: #f7d36e;
     text-shadow: 0 0 1.0em #000, 
                  0 0 0.2em #000;
 }

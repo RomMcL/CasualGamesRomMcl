@@ -1,0 +1,1578 @@
+
+@font-face {
+    font-family: "Zhizn";
+    src: url("../../../font/Zhizn.otf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "SpriteGraffiti";
+    src: url("../../../font/SpriteGraffiti.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+
+:root {
+    --fon-color: linear-gradient(135deg, #E8E1D9,#687980);
+    --elements-color: #fff;
+    --dialogBubble-color: var(--elements-color);
+    --width_toggle: 6em;
+	--height_toggle: calc(var(--width_toggle) / 3);
+}
+
+
+body {
+    font-family: Zhizn, Arial, Helvetica, sans-serif;
+    font-size: 16xp;
+    background-image: url("../../img/layoutDesigner/bodyFon.svg");
+    background-size: 200px;
+    height: 100vh;
+    display: flex;    
+    justify-content: center;
+    align-items: center;  
+}
+
+.game-content {
+    width: 100%;
+    max-width: 1250px;
+    min-height: 90%;
+    margin-inline: 1em;
+    border: #000 solid 2px;
+    border-radius: 2em;
+    display: flex;
+    flex-flow: column nowrap;
+    background-image: var(--fon-color);
+}
+
+
+.header {   
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 1em;
+    padding: 1em 1em;
+}
+
+.header-title {
+    flex-grow: 1;
+    font-family: SpriteGraffiti, Arial, Helvetica, sans-serif;
+    font-size: 3.2em;
+    letter-spacing: 0.2em;
+    text-align: center;
+}
+
+#menu-closeGame {
+    text-align: center;
+}
+
+main {
+    flex-grow: 1;
+    display: flex;
+}
+
+.game-section {    
+    width: 100%;    
+}
+
+.game-section-container {    
+    height: 100%;
+    margin: 0 1em;    
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+}
+
+
+.game-menu__block_startGame{
+    grid-column-start: 1;
+    grid-column-end: 6;
+    grid-row-start: 1;
+    grid-row-end: 3;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    row-gap: 0.5em;
+}
+
+
+.game-menu__title_startGame {
+    margin: 0;
+    text-align: center;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+}
+
+
+.game-menu__block_complexityGame,
+.game-menu__block_soundGame {
+    grid-column-start: 6;
+    grid-column-end: 9;
+    grid-row-start: 1;
+    grid-row-end: 2;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    row-gap: 1em;
+}
+
+.game-menu__block_soundGame {
+    grid-column-start: 9;
+    grid-column-end: 13;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    width: fit-content;
+    justify-content: flex-start;
+    margin: 0.5em auto;
+}
+
+.game-menu__title_complexityGame,
+.game-menu__title_soundGame {
+    margin: 0;
+    text-align: center;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+}
+
+.game-menu__djun_soundGame {
+    grid-column-start: 9;
+    grid-column-end: 13;
+    grid-row-start: 1;
+    grid-row-end: 2;
+
+    width: 90%;
+    background-image: url("../../img/layoutDesigner/wtf_djun.png");
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: contain;
+    margin: 0 auto;
+}
+
+.game-menu__senorSay {
+    grid-column-start: 4;
+    grid-column-end: 13;
+    grid-row-start: 3;
+    grid-row-end: 4;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4em;
+    font-weight: bold;
+    margin-left: 0.5em;
+}
+.game-menu__senorSay p::before {
+    top: 105%;
+    left: 60%;    
+}
+.game-menu__senorSay p::after {
+    top: 130%;
+    left: 64%;    
+}
+
+.game-menu__djunrAsk {
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 3;
+    grid-row-end: 6;
+
+    display: flex;
+    flex-flow: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+    row-gap: 0.5em;
+    margin-bottom: 1em;
+}
+.game-menu__djunrAsk *:first-child {
+    align-self: center;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+}
+
+
+.game-menu__heroesImgs {
+    grid-column-start: 4;
+    grid-column-end: 13;
+    grid-row-start: 4;
+    grid-row-end: 5;
+
+    margin-top: 0.5em;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: flex-end;
+}
+
+.game-menu__djunImg {    
+    height: 90%;
+    aspect-ratio: 1 / 1;
+    background-image: url("../../img/layoutDesigner/menu_djun.png");
+    background-repeat: no-repeat;
+    background-position: bottom left;
+    background-size: contain;
+}
+
+.game-menu__senorImg {
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    background-image: url("../../img/layoutDesigner/menu_senor.png");
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-size: contain;
+}
+
+
+
+#senor-commit {
+    grid-column-start: 1;
+    grid-column-end: 10;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+#dialod-commit {
+    text-align: center;
+    font-size: 1.6em;
+    margin-top: 0.5em;
+}
+#dialod-commit::before {
+    top: 20%;
+    left: 101%;
+    background-color: var(--dialogBubble-color);    
+}
+#dialod-commit::after {
+    top: 30%;
+    left: 105%;
+    background-color: var(--dialogBubble-color);   
+}
+
+#cabinet-senorImg {
+    grid-column-start: 10;
+    grid-column-end: 13;
+    grid-row-start: 1;
+    grid-row-end: 2;
+
+    background-image: url("../../img/layoutDesigner/menu_senor.png");
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-size: contain;
+}
+
+
+
+
+
+.game-table {
+    grid-column-start: 1;
+    grid-column-end: 11;
+    grid-row-start: 2;
+    grid-row-end: 5;
+
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 1em;
+    
+    display: grid;
+    gap: 1%;
+}
+
+.table-8 {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    font-size: 1.8em;
+}
+.table-12 {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    font-size: 1.4em;
+}
+.table-24,
+.table-32 {
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    font-size: 0.9em;
+}
+
+
+.table-24 .game-card:nth-child(4),
+.table-24 .game-card:nth-child(24) {
+    grid-column: 5;
+}
+.table-24 .game-card:nth-child(12),
+.table-24 .game-card:nth-child(14) {
+    grid-column: 2;
+}
+.table-24 .game-card:nth-child(16) {
+    grid-column: 1;
+}
+
+
+.game-card-center {
+    border-radius: 1em;
+    background-image: url("../../img/layoutDesigner/focused_djun.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain; 
+}
+
+.center-card-8 {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+.center-card-12 {
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 4;
+}
+.center-card-24,
+.center-card-32 {
+    grid-column-start: 3;
+    grid-column-end: 5;
+    grid-row-start: 3;
+    grid-row-end: 5;
+}
+
+
+.game-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: purple;
+    border-radius: 1em;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    transition: all 0.2s linear; 
+}
+
+
+
+.game-card span {   
+    display: none;    
+}
+
+.game-card span+span {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-image: url("../../img/layoutDesigner/questionLayoutDesigner.svg");    
+    background-size: 70% 70%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.game-card.flip {
+    background: #5dc6ff !important;
+    transform: perspective(200px) rotateY(180deg);
+}
+
+.game-card.flip span {
+    display: block;
+    transform: rotateY(-180deg);
+}
+
+.game-card.flip span+span {
+    display: none;
+}
+
+.game-card.successfully {
+    background: #76db82 !important;
+}
+
+.game-card:hover{
+    background: #d1d1c0;
+}
+
+
+
+.senor-cabinet {
+    grid-column-start: 11;
+    grid-column-end: 13;
+    grid-row-start: 2;
+    grid-row-end: 6;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    row-gap: 1em;   
+    border: 1px solid #000;
+    border-radius: 1em;
+    margin-left: 1em;
+    margin-bottom: 1em;
+}
+
+
+.deadline-wrapper,
+.bream-wrapper {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    margin-inline: 0.3em;
+    text-align: center;
+}
+
+.cabInfo-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+
+#cabInfo-timer {
+    font-family: 'Courier New', Courier, monospace;   
+    font-size: 2em;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+
+
+#bream-img {
+    width: 96%;
+    max-width: 8em;
+    aspect-ratio: 1 / 1;
+    border: 2px solid #000;
+    border-radius: 50%;
+    position:relative;
+    margin: 1em auto;
+    background-color: var(--elements-color);
+}
+#bream-1,
+#bream-2,
+#bream-3 {
+    position: absolute;
+    bottom: -10%;
+    left: 50%;
+    right: 50%;
+    transform: translateX(-50%);
+    width:70%;
+    height:130%;
+    background-image: url("../../img/layoutDesigner/bream.svg");
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: cover;
+    opacity: 0;
+    transition: opacity 1.5s;
+}
+#bream-2 {
+    bottom: -20%;
+    transform-origin: bottom left;
+    transform: rotate(-45deg);
+}
+#bream-3 {
+    bottom: 0;
+    left: 0;
+    transform-origin: bottom center;
+    transform: rotate(45deg);
+}
+
+#bream-count {
+    font-size: 3em;
+}
+
+
+.game-footer {
+    grid-column-start: 1;
+    grid-column-end: 11;
+    grid-row-start: 5;
+    grid-row-end: 6;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+
+#modal-senorQuestion,
+#modal-endGame {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    display: none;
+}
+
+
+#senorQuestion-container,
+#endGame-container {
+    width: 90%;
+    max-width: 1000px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);    
+    padding: 1em 3em;
+    border-radius: 2em;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    column-gap: 5%;
+    row-gap: 1em;    
+    background-image: var(--fon-color);
+  }
+
+
+
+#senorQuestion-senorImg {
+    width: 20%;
+    transform: scaleX(-1);
+}
+
+#senorQuestion-question {   
+    width: 75%;
+    align-self: stretch;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#senorQuestion-text {   
+    margin-top: auto;
+    margin-bottom: auto;
+}
+#senorQuestion-text::before {
+    top: 10%;
+    left: -4%;    
+}
+#senorQuestion-text::after {
+    top: 20%;
+    left: -7%;    
+}
+
+#senorQuestion-answersList {
+    width: 100%;
+    list-style: none;
+}
+
+#senorQuestion-answersList li:not(:last-child) {
+    margin-bottom: 1em;
+}
+
+
+
+#endGame-title {
+    width: 100%;
+    text-align: center;
+}
+
+#endGame-body {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#endGame-senorImg,
+#endGame-djunImg {
+    width: 30%;
+    transform: scaleX(-1);
+}
+
+#endGame-senorSay,
+#endGame-result {
+    width: 65%;
+    text-align: center;
+    margin-bottom: 0.5em;
+}
+
+#endGame-senorText {
+    font-size: 1.6em;
+}
+.senor-accent {
+    font-weight: bold;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+}
+
+#endGame-senorText::before {
+    top: 10%;
+    left: -4%;    
+}
+#endGame-senorText::after {
+    top: 20%;
+    left: -7%;    
+}
+
+#endGame-djunText {
+    font-size: 2.5em;
+    font-weight: bold;
+}
+#endGame-djunText::before {
+    top: 10%;
+    left: 101%;
+    background-color: var(--dialogBubble-color);
+}
+#endGame-djunText::after {
+    top: 20%;
+    left: 105%;
+    background-color: var(--dialogBubble-color);  
+}
+
+#endGame-footer {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    column-gap: 0.5em;
+}
+
+
+
+/* Диалоговый параграф героев */
+.dialog {
+    background-color: var(--elements-color);
+    border: 1px solid #000;
+    border-radius: 1em;
+    padding: 0.5em 1em;
+    text-align: center;
+    position: relative;
+}
+.dialog::before {
+    content: "";
+    width: 3%;
+    aspect-ratio: 1 / 1;
+    border: 1px solid #000;
+    border-radius: 50%;
+    position: absolute;
+    background-color: var(--elements-color);
+}
+.dialog::after {
+    content: "";
+    width: 2%;
+    aspect-ratio: 1 / 1;
+    border: 1px solid #000;
+    border-radius: 50%;
+    position: absolute;
+    background-color: var(--elements-color);
+}
+
+
+
+/*  Кнопки  */
+.game-btns,
+.modalGameBtn {
+    font-family: Zhizn, Arial, Helvetica, sans-serif;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: inherit;
+    background-color: var(--elements-color);
+    border: 2px solid #000;
+    border-bottom-left-radius: 1em 16em;
+    border-bottom-right-radius: 14em 1em;
+    border-top-left-radius: 16em 1em;
+    border-top-right-radius: 1em 14em;
+    box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
+    cursor: pointer;
+    outline: none;
+    padding: 0.5em 2em;
+    margin-bottom: 0.5em;
+    text-decoration: none;
+    transition: all 235ms ease-in-out;
+    touch-action: manipulation;
+  
+}
+
+.game-btns:hover {
+    box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
+    transform: translate3d(0, 2px, 0);
+}
+
+.game-btns:focus {
+    box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
+  }
+
+.modalGameBtn {
+    position: relative;
+    border-radius: 1em;
+}
+
+.modalGameBtn:hover {
+    box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
+    transform: translate3d(0, 2px, 0);
+}
+  
+.icon-span {
+    height: 100%;   
+    aspect-ratio: 1 / 1;
+    display: block;
+    position: absolute;
+    background-image: url("../../img/layoutDesigner/btn_icon.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+#btn-returnMenu,
+#menu-closeGame {
+    padding-left: 3em;
+    padding-right: 1em;
+}
+#btn-returnMenu .icon-span,
+#menu-closeGame .icon-span {
+    top: 0;
+    left: 0;
+    transform: rotate(-90deg);
+}
+
+#btn-closeGame {
+    padding-left: 1em;
+    padding-right: 3em;
+}
+#btn-closeGame .icon-span {
+    top: 0;
+    right: 0;
+    transform: rotate(90deg);
+}
+
+.btn-notActive {
+    pointer-events: none;
+    cursor: none;
+    color: grey;
+}
+
+
+/* Аудио плеер */
+#audio-player {
+    width: fit-content;
+    height: 100%;
+    padding-left: 1em;
+    padding-right: 0.5em;
+    margin-bottom: 1em;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    column-gap: 2em;
+    box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px; 
+    background-color:var(--elements-color);
+    border:1px solid #000;
+    border-radius: 1em;    
+  }
+
+  .player-btn {
+    height: 80%;
+    aspect-ratio: 1 / 1;
+    border: none;
+    background: transparent;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+    transition: 0.5s;
+  }
+  #btn-playPause {
+    background-image: url("../../img/layoutDesigner/player_play.svg");
+  }
+  #btn-stop {
+    background-image: url("../../img/layoutDesigner/player_stop.svg");
+  }
+  #btn-volume {
+    background-image: url("../../img/layoutDesigner/player_volume1.svg");
+  }
+  #volume-value {
+    min-width: 2.5em;
+    margin-left: -1.5em;
+    background-color:#fff;
+  }
+  .player-btn:hover {
+    transform: scale(0.8);
+  }
+
+
+
+/* Кастомизация чекбоксов */
+
+label:has(> #checkbox_codeReview),
+label:has(> #checkbox_evilSenor),
+label:has(> .option-radio) {
+    font-weight: bold;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 1em;
+    padding: 0.2em;
+    margin-left: 2em;
+    border-radius: 0.8em;
+    overflow: hidden;   
+    cursor: pointer;
+}
+
+label:has(> .option-radio) {
+    border-radius: 1em;
+    margin-left: 0;
+}
+
+#checkbox_codeReview,
+#checkbox_evilSenor,
+.option-radio {
+    height: 2.3em;
+    width: 2.3em;
+    position: relative;
+    left: -50px;
+    cursor: pointer;
+}
+
+#checkbox_codeReview::before,
+#checkbox_evilSenor::before,
+.option-radio::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 4em;
+    height: 2.3em;
+    width: 2.3em;
+    border-radius: 0.6em;
+    background-color: var(--elements-color);
+    outline: rgba(0,0,0,1) solid 2px;
+    outline-offset:-3px;
+}
+
+.option-radio::before{
+    border-radius: 50%;
+}
+
+#checkbox_codeReview:checked::after,
+#checkbox_evilSenor:checked::after,
+.option-radio:checked::after {
+    content: "✓";
+    font-size: 2.4em;
+    color: green;
+    text-shadow: 2px 2px 2px #000;
+    position: absolute;
+    top: -0.4em;
+    left: 1.8em;
+    height: 2.3em;
+    width: 2.3em;
+}
+
+.option-radio:checked::after {
+    content: "✘";
+    top: -0.3em;
+    left: 1.7em;
+}
+
+/* Переключатель */
+#label_checkbox_music {
+    position: relative;
+    display: inline-block;
+    width: var(--width_toggle);
+    height: var(--height_toggle);
+    box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
+    outline: #000 solid 1px;
+    border-radius: var(--height_toggle);
+    cursor: pointer;
+    margin: 0 auto;
+}
+
+#checkbox_music {
+    display: none;
+}
+
+.slider_soundGame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--height_toggle);
+    background: linear-gradient(90deg, rgba(162, 162, 162, 0.4) 50%, rgba(162,162,162,0.8) 100%);
+    transition: all 0.4s ease-in-out;
+}
+
+.slider_soundGame::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--height_toggle);
+    height: var(--height_toggle);
+    border-radius: calc(var(--height_toggle) / 2);
+    background-color: rgba(162,162,162,0.8);
+    box-shadow: 0px 0px 3px 8px rgba(255,255,255,1) inset;
+    outline: rgba(0,0,0,1) solid 1px;
+    outline-offset:-3px;
+    transition: all 0.4s ease-in-out;
+}
+
+#checkbox_music:checked+.slider_soundGame {
+    background: linear-gradient(-90deg, rgba(101,240,101,0.4) 50%, rgba(101,240,101,0.8) 100%);
+}
+
+#checkbox_music:checked+.slider_soundGame::before {
+    transform: translateX(calc(var(--width_toggle) - var(--height_toggle)));
+    background-color: rgba(101,240,101,0.8);
+}
+
+.labels_soundGame {
+    position: absolute;
+    top: 0.5rem;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 0.8em;
+    font-weight: bold;
+    color: #000;
+    transition: all 0.4s ease-in-out;
+    overflow: hidden;
+}
+
+.labels_soundGame::after {
+    content: "не хочу";
+    position: absolute;
+    right: 0.3rem;
+    opacity: 1;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.4);
+    transition: all 0.4s ease-in-out;
+}
+
+.labels_soundGame::before {
+    content: "конечно";
+    position: absolute;
+    left: calc(var(--height_toggle) - var(--width_toggle) + 0.5rem);
+    opacity: 0;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.4);
+    transition: all 0.4s ease-in-out;
+}
+
+#checkbox_music:checked~.labels_soundGame::after {
+    opacity: 0;
+    transform: translateX(calc(var(--width_toggle) - var(--height_toggle)));
+}
+
+#checkbox_music:checked~.labels_soundGame::before {
+    opacity: 1;
+    transform: translateX(calc(var(--width_toggle) - var(--height_toggle)));
+}
+
+
+
+/*  Адаптация под маленькие экраны */
+
+@media (max-width: 992px) {
+    /*  Меню игры */
+    .game-menu__senorSay {
+        font-size: 1.0em;
+    }
+
+    /*  Игровое поле */
+    #dialod-commit {
+        font-size: 1.4em;
+    }
+
+    .game-card {
+        font-size: 0.9em;
+    }
+
+    .cabInfo-title {
+        font-size: 1.2em;
+    }
+
+    /*  Вопросы Сеньора */
+    #senorQuestion-senorImg {
+        width: 30%;
+    }
+    
+    #senorQuestion-question {   
+        width: 65%;
+    }
+       
+    .option-radio::before {
+        left: 3.5em;
+    }
+
+    .option-radio:checked::after {
+        left: 1.5em;
+    }
+
+    /*  Конец игры */
+    #endGame-senorText {
+        font-size: 1.4em;
+    }
+    
+    #endGame-djunText {
+        font-size: 2.0em;
+    }
+}
+
+@media (max-width: 768px) {
+    /*  Меню игры */
+    #menu-closeGame {
+        font-size: 1.0em;
+    }
+
+    .game-btns {
+        font-size: 1.0em;
+    }
+
+    /*  Игровое поле */
+    .game-card {
+        font-size: 0.8em;
+    }
+
+    .cabInfo-title {
+        font-size: 1.0em;
+    }
+
+    #cabInfo-timer { 
+        font-size: 1.8em;
+    }
+}
+
+@media (max-width: 700px) {
+    /*  Меню игры */
+    #menu-closeGame {
+        font-size: 0.8em;
+    }
+
+    .header-title {
+        font-size: 2.5em;
+    }
+
+    .game-menu__senorSay {
+        font-size: 0.9em;
+    }
+
+    .ask {
+        padding-inline: 1em;
+    }
+
+    /*  Игровое поле */
+    #dialod-commit {
+        font-size: 1.1em;
+        align-self: flex-start;
+        min-height: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .senor-cabinet {
+        grid-column-start: 1;
+        grid-column-end: 10;
+        grid-row-start: 1;
+        grid-row-end: 2;
+
+        flex-flow: row nowrap;
+        margin-left: 0;
+        margin-bottom: 0.2em;
+        height: fit-content;
+        align-self: flex-end;       
+    }
+
+    .deadline-wrapper,
+    .bream-wrapper {
+        flex-flow: row nowrap;
+        column-gap: 0.5em;
+    }
+
+    .timer-head-footer {
+        display: none;
+    }
+
+    #bream-img {
+        width: 96%;
+        max-width: 4em;
+        margin-top: 0.2em;
+        margin-bottom: 0.2em;
+    }
+
+    #bream-count {
+        margin-left: 0.2em;
+    }
+
+    .game-table {
+        grid-column-start: 1;
+        grid-column-end: 13;
+     
+    }
+
+    .game-footer {
+        grid-column-end: 13;   
+    }
+
+    /*  Вопросы Сеньора */    
+    #senorQuestion-question {   
+        font-size: 0.8em;
+    }
+           
+    #senorQuestion-answersList li:not(:last-child) {
+        margin-bottom: 0.8em;
+    }
+    
+    .option-radio::before {
+        left: 3.4em;
+    }
+
+    /*  Конец игры */
+    #endGame-container {
+        padding: 1em 2em;
+    }
+
+    #endGame-senorText {
+        font-size: 1.0em;
+    }
+    
+    #endGame-djunText {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 590px) {
+    /*  Меню игры */
+    .game-btns {
+        font-size: 0.9em;
+    }
+
+    .ask {
+        font-size: 1.0em;
+        padding-inline: 0.9em;
+    }
+
+    /*  Игровое поле */
+    #dialod-commit {
+        font-size: 1.0em;
+    }
+
+    .cabInfo-title {
+        font-size: 0.8em;
+    }
+
+    #bream-count {
+        font-size: 2em;
+    }
+
+    .table-8 {
+        font-size: 1.6em;
+    }
+
+    .table-12 {
+        font-size: 1.2em;
+    }
+
+    .table-24,
+    .table-32 {
+        font-size: 0.8em;
+    }
+
+    /*  Конец игры */
+    #endGame-footer {
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 544px) {
+    /*  Меню игры */
+    .header-title {
+        font-size: 2.0em;
+    }
+
+    #menu-closeGame {
+        font-size: 0.7em;
+        padding-right: 0.5em;
+    }
+
+    .game-btns {
+        font-size: 1.0em;
+        padding-inline: 1.0em;
+    }
+
+    .game-menu__block_startGame{
+        grid-column-end: 8;    
+    }
+
+    .game-menu__block_complexityGame {
+        grid-column-start: 8;
+        grid-column-end: 13;
+    }
+
+    .game-menu__block_soundGame {
+        grid-column-start: 10;
+        grid-column-end: 13;
+    }
+
+    .game-menu__djun_soundGame {
+        grid-column-start: 8;
+        grid-column-end: 10;
+        grid-row-start: 2;
+        grid-row-end: 3;   
+        width: 96%;
+        background-position: top center;
+    }
+
+    .game-menu__title_complexityGame,
+    .game-menu__title_soundGame {
+        font-size: 1.0em;
+    }
+
+    .game-menu__senorSay {
+        font-size: 0.8em;
+    }
+
+    .ask {
+        font-size: 0.8em;
+        padding-inline: 0.8em;
+    }
+
+    .game-menu__djunImg {    
+        height: 80%;
+    }
+    
+    .game-menu__senorImg {
+        height: 90%;
+    }
+
+    /*  Игровое поле */
+    #cabinet-senorImg {
+        background-position: top right;
+        background-size: auto 50%;
+    }
+    
+    .senor-cabinet {
+        grid-column-end: 13;     
+    }
+
+    .cabInfo-title {
+        font-size: 1em;
+    }
+
+    .table-8 {
+        font-size: 1.4em;
+    }
+
+    .table-12 {
+        font-size: 1.1em;
+    }
+
+    .table-24,
+    .table-32 {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(8, 1fr);
+        font-size: 1.0em;
+    }
+
+    .center-card-24,
+    .center-card-32 {
+        grid-column-start: 2;
+        grid-column-end: 4;
+        grid-row-start: 4;
+        grid-row-end: 6;
+    }
+    
+    .table-24 .game-card:nth-child(4),
+    .table-24 .game-card:nth-child(24) {
+        grid-column: 3;
+    }
+    .table-24 .game-card:nth-child(7),
+    .table-24 .game-card:nth-child(21) {
+        grid-column: 4;
+    }
+    .table-24 .game-card:nth-child(12),
+    .table-24 .game-card:nth-child(14),
+    .table-24 .game-card:nth-child(16) {
+        grid-column: 1;
+    }
+
+    /*  Вопросы Сеньора */
+    #senorQuestion-container {
+        padding: 1em 1em;
+    }
+
+    #senorQuestion-question {   
+        font-size: 0.6em;
+    }
+
+    #senorQuestion-answersList li:not(:last-child) {
+        margin-bottom: 0.7em;
+    }
+    
+    /*  Конец игры */
+    #endGame-container {
+        padding: 1em 1em;
+    }
+    #endGame-footer {
+        font-size: 0.7em;
+    }
+}
+
+@media (max-width: 460px) {
+    /*  Меню игры */
+    #menu-closeGame {
+        font-size: 0.6em;
+        padding-right: 0.2em;
+    }
+
+    .header-title {
+        font-size: 1.5em;
+    }
+
+    .game-menu__senorSay {
+        font-size: 0.7em;
+    }
+
+    .game-menu__djunImg {    
+        height: 70%;
+    }
+    
+    .game-menu__senorImg {
+        height: 80%;
+    }
+
+    /*  Игровое поле */
+    .cabInfo-title {
+        font-size: 0.8em;
+    }
+
+    #senor-commit {
+        grid-column-end: 11;
+        font-size: 0.9em;
+    }
+
+    #cabinet-senorImg {
+        grid-column-start: 11;
+        background-position: 100% 30%;
+        background-size: contain;
+    }
+
+    .player-btn {
+        height: 60%;
+    }
+
+    .table-8 {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(6, 1fr);
+        font-size: 1.7em;
+    }
+    .center-card-8 {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 3;
+        grid-row-end: 5;
+    }
+
+    .table-12 {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(6, 1fr);
+    }
+    .center-card-12 {
+        grid-column-start: 1;
+        grid-column-end: 4;
+        grid-row-start: 3;
+        grid-row-end: 5;
+    }
+
+    .table-24,
+    .table-32 {
+        font-size: 0.9em;
+    }
+
+    /*  Конец игры */
+    #endGame-senorSay {
+        width: 100%;
+        order: -2;
+    }
+
+    #endGame-senorImg {
+        order: -1;
+        width: 40%;
+    }
+
+    #endGame-djunImg {
+        order: -1;
+        width: 30%;
+        align-self: flex-end;      
+    }
+
+    #endGame-result {
+        width: 100%;
+        margin-top: 0.5em;
+    }
+
+    #endGame-senorText::before {
+        top: 105%;
+        left: 40%;    
+    }
+    #endGame-senorText::after {
+        top: 115%;
+        left: 38%;    
+    }
+    
+    #endGame-djunText::before {
+        top: -20%;
+        left: 60%;
+    }
+    #endGame-djunText::after {
+        top: -40%;
+        left: 65%;
+    }
+}
+
+@media (max-width: 400px) {
+    /*  Меню игры */
+    .header-title {
+        font-size: 1.3em;
+    }
+
+    .game-menu__title_startGame {
+        font-size: 1.1em;
+    }
+
+    .game-btns {
+        font-size: 0.9em;
+        padding-inline: 0.9em;
+    }
+
+    .game-menu__block_soundGame {
+        grid-column-start: 8;
+        grid-column-end: 13;
+    }
+
+    .game-menu__djun_soundGame {
+        grid-column-start: 1;
+        grid-column-end: 4;
+        grid-row-start: 3;
+        grid-row-end: 4;
+    }
+
+    .ask {
+        font-size: 0.7em;
+        padding-inline: 0.7em;
+    }
+
+    .game-menu__djunImg {    
+        height: 60%;
+    }
+    
+    .game-menu__senorImg {
+        height: 70%;
+    }
+
+    /*  Игровое поле */
+    .cabInfo-title {
+        font-size: 0.6em;
+    }
+
+    #cabInfo-timer {
+        font-size: 1.2em;
+    }
+
+    #bream-count {
+        font-size: 1.2em;
+    }
+   
+    .player-btn {
+        height: 50%;
+    }
+
+    #audio-player {
+        column-gap: 1em;   
+    }
+    #audio-player span {
+        font-size: 0.7em; 
+    }
+
+    .table-8 {
+        font-size: 1.5em;
+    }
+
+    .table-12 {
+        font-size: 1.0em;
+    }
+
+    .table-24,
+    .table-32 {
+        font-size: 0.75em;
+    }
+
+    /*  Вопросы Сеньора */
+    #senorQuestion-answersList li:not(:last-child) {
+        margin-bottom: 0.7em;
+    }
+
+    #senorQuestion-answersList li {
+        font-size: 0.9em;
+    }
+
+    /*  Конец игры */
+    #endGame-container {
+        padding: 1em 0.5em;
+    }
+    
+    #endGame-djunText {
+        font-size: 1.3em;
+    }
+}
+
+@media (max-width: 348px) {
+    /*  Меню игры */
+    #menu-closeGame {
+        font-size: 0.5em;
+    }
+
+    .header-title {
+        font-size: 1.0em;
+    }
+
+    label:has(> #checkbox_codeReview),
+    label:has(> #checkbox_evilSenor) {
+        margin-left: 1em;
+    }
+
+    .game-menu__djunImg {    
+        height: 50%;
+    }
+    
+    .game-menu__senorImg {
+        height: 60%;
+    }
+
+    /*  Игровое поле */
+    #senor-commit {
+        font-size: 0.8em;
+    }
+
+    .table-8 {
+        font-size: 1.4em;
+    }
+
+    .table-12 {
+        font-size: 0.8em;
+    }
+
+    .table-24,
+    .table-32 {
+        font-size: 0.65em;
+    }
+}
