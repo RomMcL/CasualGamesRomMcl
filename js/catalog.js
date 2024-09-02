@@ -1,17 +1,17 @@
 
 const games = {
     'game1': {
-        'name': 'Название первой игры',
-        'image': './img/logo.png',
-        'info': 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, id quae ratione aut veritatis optio laudantium nemo voluptate incidunt voluptatibus reprehenderit corrupti.',
-        'description': 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, id quae ratione aut veritatis optio laudantium nemo voluptate incidunt voluptatibus reprehenderit corrupti. Nam repellendus suscipit optio sequi deleniti iure. Impedit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque nobis dolorum recusandae maxime iure architecto omnis beatae excepturi. Architecto earum minus quae, magnam culpa reprehenderit consequatur. Atque eum similique quae.',
-        'type': 'Жанр игры 1',
+        'name': 'Верстальщик',
+        'image': './games/img/layoutDesigner/catalogImg.png',
+        'info': 'Помоги молодому Верстальщику отыскать пары тегов и ответить на каверзные вопросы Сеньора.',
+        'description': 'В игре главному герою предстоит находить пары тегов (открывающий и закрывающий) и правильно отвечать на вопросы Сеньора, чтобы не получить Лещей и не быть отстранённым от проекта. Так же не стоит забывать о дедлайне! Предусмотрена настройка сложности. В режиме Код-ревью Сеньор будет проверять не только сами теги на их соответствие, но и следить за порядком их открывания. А в режиме Злого Сеньора, за неправильные ответы, Джуниор будет получать Лещей, что может привести к фатальным результатам.',
+        'type': 'Угадай пару, Викторина',
         'start': './games/layoutDesigner.html'
     },
     'game2': {
         'name': 'Название второй игры',
         'image': './img/isUnderDevelopment.png',
-        'info': 'Краткое описание игры 2',
+        'info': 'Игра 2 в разработке',
         'description': 'Полное описание игры 2',
         'type': 'Жанр игры 2',
         'start': '#'
@@ -19,7 +19,7 @@ const games = {
     'game3': {
         'name': 'Название третьей игры',
         'image': './img/isUnderDevelopment.png',
-        'info': 'Краткое описание игры 3',
+        'info': 'Игра 3 в разработке',
         'description': 'Полное описание игры 3',
         'type': 'Жанр игры 3',
         'start': '#',
@@ -27,7 +27,7 @@ const games = {
     'game4': {
         'name': 'Название четвёртой игры',
         'image': './img/isUnderDevelopment.png',
-        'info': 'Краткое описание игры 4',
+        'info': 'Игра 4 в разработке',
         'description': 'Полное описание игры 4',
         'type': 'Жанр игры 4',
         'start': '#',
